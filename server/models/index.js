@@ -22,7 +22,7 @@ fs
   })
   .forEach(file => {
     // const model = sequelize['import'](path.join(__dirname, file));
-    const model = sequelize.import(path.join(__dirname, file));
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize)
     const modelName = model.name.charAt(0).toUpperCase() + model.name.slice(1);
     db[modelName] = model;
   });
