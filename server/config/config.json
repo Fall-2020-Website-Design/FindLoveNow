@@ -1,20 +1,20 @@
 {
-    "development": {
-      "username": "admin",
-      "password": "password",
-      "database": "FindLoveNow_Dev",
-      "host": "127.0.0.1",
-      "dialect": "postgres"
-    },
-    "test": {
-      "username": "user",
-      "password": "password",
-      "database": "FindLoveNow_Test",
-      "host": "127.0.0.1",
-      "dialect": "postgres"
-    },
-    "production": {
-      "use_env_variable": "DATABASE_URL",
-      "dialect": "postgres"
-    }
+  "development": {
+    "username": "admin",
+    "password": "password",
+    "database": "FindLoveNow_Dev",
+    "host": "host.docker.internal",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "user",
+    "password": "password",
+    "database": "FindLoveNow_Test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "postgres"
   }
+}
