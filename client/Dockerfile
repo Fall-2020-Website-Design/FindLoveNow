@@ -6,13 +6,14 @@ FROM node:10
 # Becomes more relevant when using Docker Compose later
 WORKDIR /app/client/
 
-ENV PATH /app/client//node_modules/.bin:$PATH
+ENV PATH /app/client/node_modules/.bin:$PATH
 
 # Copies package.json and package-lock.json to Docker environment
 COPY package*.json /app/client/
 
 # Installs all node packages
-RUN npm install --silent RUN npm install react-scripts -g --silent
+RUN npm install --silent 
+RUN npm install react-scripts -g --silent
 
 # Copies everything over to Docker environment
 COPY . /app/client
