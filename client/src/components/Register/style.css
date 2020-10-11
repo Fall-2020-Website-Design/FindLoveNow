@@ -1,0 +1,138 @@
+body{
+  background-color:E5E3E3;
+}
+
+.base-container {
+  position: absolute;
+  width: 1047px;
+  height: 650px;
+  left: 196px;
+  top: 100px;
+  
+  background: #FFFFFF;
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+}
+  
+.header {
+      font-size: 24px;
+      font-family: "Open Sans", sans-serif;
+      padding-right: 550px;
+      color:red;
+
+    }
+.signInHeader{
+  font-size: 20px;
+  font-family: "Open Sans", sans-serif;
+  padding-top: 10px;
+  padding-right: 550px;
+  color: 484848;
+
+}
+
+
+
+    .content {
+      display: flex;
+      flex-direction: column;
+    }
+        .container-right {
+          position: absolute;
+          width: 523px;
+          height: 644px;
+          left: 524px;
+          top: 0px;
+          border-radius: 15px;
+          background: linear-gradient(180deg, rgba(244, 121, 121, 0.83) 0%, rgba(231, 30, 30, 0) 100%);
+        }
+        img{
+          padding-top: 150px;
+          width: 400px;
+          height: 350px;
+          left: 819px;
+          top: 285px;
+          opacity: 0.7;
+        }
+    
+  
+      .form {
+        padding-left: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        padding-bottom: 20px;
+      }
+  
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: fit-content;
+          float: left;
+        }
+          label {
+            font-size: 20px;
+          }
+
+          input {
+            margin-top: 6px;
+            min-width: 18em;
+            height: 37px;
+            padding: 0px 10px;
+            font-size: 16px;
+            font-family: "Open Sans", sans-serif;
+            background-color: #f3f3f3;
+            border: 0;
+            border-radius: 4px;
+            margin-bottom: 31px;
+            transition: all 250ms ease-in-out;
+          }
+            input:hover {
+              background-color: #ffffff;
+              box-shadow: 0px 0px 14px 0.3px #0e81ce96;
+            }
+  
+            input:focus {
+              outline: none;
+              box-shadow: 0px 0px 12px 0.8px #3474dbb2;
+            }
+  
+    .btn {
+      position: absolute;
+width: 396px;
+height: 57px;
+left: 52px;
+top: 452px;
+
+background: linear-gradient(91.29deg, #DC2323 3.02%, rgba(244, 121, 121, 0.83) 100%);
+
+border-radius: 10px;
+border: #f3f3f3;
+
+font-family: Poppins;
+color: white;
+font-style: normal;
+font-weight: bold;
+font-size: 24px;
+line-height: 36px;
+    }
+
+    .btn2 {
+      position: absolute;
+width: 396px;
+height: 57px;
+left: 52px;
+top: 550px;
+
+background: linear-gradient(91.29deg, #DC2323 3.02%, rgba(244, 121, 121, 0.83) 100%);
+
+border-radius: 10px;
+border: #f3f3f3;
+
+font-family: Poppins;
+color: white;
+font-style: normal;
+font-weight: bold;
+font-size: 24px;
+line-height: 36px;
+    }
