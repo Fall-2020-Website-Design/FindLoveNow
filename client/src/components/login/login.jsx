@@ -1,5 +1,7 @@
 import React from "react";
-import loginImg from "../../login.svg";
+import loginImg from '../../Image/login.svg';
+import NavBar from '../NavBar/NavBar'
+
 import "./Login.css";
 import { Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,6 +14,7 @@ export default class Login extends React.Component {
   render() {
     return (
       <div className="base-container" ref={this.props.containerRef}>
+        <NavBar/>
         <Navbar>
           <Link to={`/Register`}>
             <i>Register</i>

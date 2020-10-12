@@ -1,21 +1,15 @@
-import React from "react";
-import signupImg from "../../signup.svg";
-import "./Register.css";
-export default class Register extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
+import React, { Component } from 'react'
+import signupImg from '../../Image/signup.svg'
+import NavBar from '../NavBar/NavBar'
+export class Register extends Component {
   render() {
     return (
-      <div className="base-container" ref={this.props.containerRef}>
-        <div className="header">
-          <h1>FindLoveNow Logo</h1>
-        </div>
-        <div className="signInHeader">
-        <h2>Register Now</h2>
+      <div className="base-container">
+        <NavBar/> 
+        <div  className="signInHeader">
+      < h2 > Register Now</h2 >
         <h4>Sign up to FindLoveNow</h4>
-        </div>
+        </div >
         <div className="content">
         <div className="container-right">
             <div className="image">
@@ -42,7 +36,9 @@ export default class Register extends React.Component {
             Register
           </button>
         </div>
-      </div>
-    );
+      </div>          
+    )  
   }
 }
+
+export default Register

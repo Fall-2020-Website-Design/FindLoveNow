@@ -1,10 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Login from './components/Login/Login';
-import Register from './components/Register/Register'
-import About from './components/About/About'
-import Profile from './components/Profile/Profile'
+import Login from './Components/Login/Login';
+import Register from './Components/Register/Register';
+import About from './Components/About/About';
+import Profile from './Components/Profile/Profile';
 
 import {
   BrowserRouter as Router,
@@ -18,6 +17,7 @@ class App extends React.Component{
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
+          <Route exact path="/Login" component={Login} />
           <Route exact path="/Register" component={Register}/>
           <Route exact path="/About" component={About}/>
           <Route exact path="/Profile" component={Profile}/>
