@@ -1,7 +1,7 @@
 import React from "react";
 import signupImg from "../../signup.svg";
-
-export class Register extends React.Component {
+import "./Register.css";
+export default class Register extends React.Component {
   constructor(props) {
     super(props);
   }
