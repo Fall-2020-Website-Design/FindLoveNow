@@ -1,7 +1,9 @@
 import React from "react";
 import loginImg from "../../login.svg";
-import "./style.css";
-
+import "./Login.css";
+import { Navbar } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from "react-router-dom";
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -10,6 +12,11 @@ export default class Login extends React.Component {
   render() {
     return (
       <div className="base-container" ref={this.props.containerRef}>
+        <Navbar>
+          <Link to={`/Register`}>
+            <i>Register</i>
+          </Link>
+        </Navbar>
         <div className="header">
           <h1>FindLoveNow Logo</h1>
         </div>
