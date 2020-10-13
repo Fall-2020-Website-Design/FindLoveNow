@@ -3,6 +3,10 @@
     
 }
 
+.link:hover {
+    color: #FF0000;
+}
+
 .l-color {
     color: #FFFFFF;
     font-style: normal;

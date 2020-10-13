@@ -4,8 +4,9 @@ import NavBar from '../NavBar/NavBar'
 export class Register extends Component {
   render() {
     return (
+      <div>
+      <NavBar/> 
       <div className="base-container">
-        <NavBar/> 
         <div  className="signInHeader">
       < h2 > Register Now</h2 >
         <h4>Sign up to FindLoveNow</h4>
@@ -36,7 +37,8 @@ export class Register extends Component {
             Register
           </button>
         </div>
-      </div>          
+      </div>  
+      </div>        
     )  
   }
 }
