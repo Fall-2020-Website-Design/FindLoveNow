@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import signupImg from '../../Image/signup.svg'
+import signupImg from '../../Images/signup.svg'
 import NavBar from '../NavBar/NavBar'
 export class Register extends Component {
   render() {

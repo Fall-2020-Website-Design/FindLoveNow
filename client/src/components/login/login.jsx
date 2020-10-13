@@ -1,5 +1,5 @@
 import React from "react";
-import loginImg from '../../Image/login.svg';
+import loginImg from '../../Images/login.svg';
 import NavBar from '../NavBar/NavBar'
 
 import "./Login.css";
@@ -15,14 +15,6 @@ export default class Login extends React.Component {
     return (
       <div className="base-container" ref={this.props.containerRef}>
         <NavBar/>
-        <Navbar>
-          <Link to={`/Register`}>
-            <i>Register</i>
-          </Link>
-        </Navbar>
-        <div className="header">
-          <h1>FindLoveNow Logo</h1>
-        </div>
         <div className="signInHeader">
         <h2>Sign In</h2>
         <h4>Sign in to find your perfect match</h4>
