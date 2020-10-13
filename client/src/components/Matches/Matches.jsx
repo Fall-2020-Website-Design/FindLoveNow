@@ -7,7 +7,7 @@ import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from '../NavBar/NavBar';
-import checkmark from '../../Image/download.png';
+import checkmark from '../../Images/.svg';
 import "./Matches.css";
 
 export default class Matches extends Component {
