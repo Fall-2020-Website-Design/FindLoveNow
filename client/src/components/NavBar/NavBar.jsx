@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import logoImg from '../../Image/logo.svg'
+import logoImg from '../../Images/logo.svg'
+import heartImg from '../../Images/heart.svg'
+import heartImg2 from '../../Images/heart2.svg'
 import './NavBar.css'
 import Navbar from 'react-bootstrap/Navbar'
 import Image from 'react-bootstrap/Image'
@@ -12,29 +14,19 @@ import UserBar from './UserBar'
 export class NavBar extends Component {
     render() {
         return (
-            <Navbar bg="light" >
-                <Navbar.Brand href={`/`}>
-                    <img
-                        alt=""
-                        src={logoImg}
-                        width="200"
-                        height="30"
-                        className="d-inline-block align-top"
-                    />{' '}
-                About
-            </Navbar.Brand>
-            </Navbar>
+            <Navbar collapseOnSelect expand="sm" bg="light" className="justify-content-between">
+                <Form inline>
+                    <Navbar.Brand href={`/`}>
+                        <Image src={heartImg2} className="Heart-Logo2" id="Heart2" alt="Heart Logo 2" width="50" />
+                        <Image src={heartImg} className="Heart-Logo" id="Heart" alt="Heart Logo" width="50" />
+                        <Image src={logoImg} className="Love-Logo" id="FindLoveNow" alt="Find Love Logo" width="180" />
+                    </Navbar.Brand>
+                </Form>
 
-            // <Navbar collapseOnSelect expand="sm" bg-="light" className="align-text-bottom">
-            //     <Form inline>
-            //         <Navbar.Brand href={`/`}>
-            //             <Image src={logoImg} className="Love-Logo" id="FindLoveNow" alt="Find Love Logo" width={200} />
-            //         </Navbar.Brand>
-            //     </Form>
-            //     <Form inlne className="">
-            //         <NonUserBar/>
-            //     </Form>
-            // </Navbar>
+                <Form>
+                    <NonUserBar />
+                </Form>
+            </Navbar>
         )
     }
 }
