@@ -1,5 +1,5 @@
 import React from "react";
-import loginImg from '../../Image/login.svg';
+import loginImg from '../../Images/login.svg';
 import NavBar from '../NavBar/NavBar'
 
 import "./Login.css";
