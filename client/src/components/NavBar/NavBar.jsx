@@ -1,41 +1,40 @@
 import React, { Component } from 'react'
-import logoImg from '../../Image/logo.svg';
+import logoImg from '../../Image/logo.svg'
 import './NavBar.css'
-import {
-    Navbar,
-    NavbarBrand,
-    Button,
-    Form,
-    FormControl
+import Navbar from 'react-bootstrap/Navbar'
+import Image from 'react-bootstrap/Image'
+import Form from 'react-bootstrap/Form'
+import 'bootstrap/dist/css/bootstrap.css'
+import NonUserBar from './NonUserBar'
+import UserBar from './UserBar'
 
-} from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
-import { Link } from 'react-router-dom';
 
 export class NavBar extends Component {
     render() {
         return (
-            <Navbar bg="light" variant="light">
-                <NavbarBrand className="mr-auto">
-                    <Link to={`/`}>
-                        <img src={logoImg} className="Love-Logo" id="FindLoveNow" alt="Find Love Logo" width={200} />
-                    </Link>
-                </NavbarBrand>
-                <Form inline>
-                    <Link to={`About`} className="l2-color mr-sm-2">
-                        About Us
-                    </Link>
-                    <Button className="b-color">
-                        <Link to={`Login`} className="l-color mr-sm-2">
-                            Login
-                        </Link>
-                         | 
-                        <Link to={`Register`} className="l-color ml-sm-2">
-                            Register
-                            </Link>
-                    </Button>
-                </Form>
+            <Navbar bg="light" >
+                <Navbar.Brand href={`/`}>
+                    <img
+                        alt=""
+                        src={logoImg}
+                        width="200"
+                        height="30"
+                        className="d-inline-block align-top"
+                    />{' '}
+                About
+            </Navbar.Brand>
             </Navbar>
+
+            // <Navbar collapseOnSelect expand="sm" bg-="light" className="align-text-bottom">
+            //     <Form inline>
+            //         <Navbar.Brand href={`/`}>
+            //             <Image src={logoImg} className="Love-Logo" id="FindLoveNow" alt="Find Love Logo" width={200} />
+            //         </Navbar.Brand>
+            //     </Form>
+            //     <Form inlne className="">
+            //         <NonUserBar/>
+            //     </Form>
+            // </Navbar>
         )
     }
 }
