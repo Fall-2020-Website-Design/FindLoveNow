@@ -9,7 +9,7 @@ import NavBar from '../NavBar/NavBar';
 import checkmark_image from '../../Images/checkmark.svg';
 import x_image from '../../Images/x.svg';
 import previous_image from '../../Images/prev.svg';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.css'
 import "./Matches.css";
 
 export default class Matches extends Component {
