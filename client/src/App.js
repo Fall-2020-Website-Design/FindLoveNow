@@ -1,9 +1,9 @@
-import React from 'react';
-import './App.css';
-import Login from './Components/Login/Login';
-import Register from './Components/Register/Register';
-import About from './Components/About/About';
-import Profile from './Components/Profile/Profile';
+import React, { Component } from 'react'
+import './App.css'
+import Login from './Components/Login/Login'
+import Register from './Components/Register/Register'
+import About from './Components/About/About'
+import Profile from './Components/Profile/Profile'
 
 import {
   BrowserRouter as Router,
@@ -11,7 +11,7 @@ import {
   Route,
 } from 'react-router-dom';
 
-class App extends React.Component{
+export class App extends Component{
   render() {
     return (
       <Router>
