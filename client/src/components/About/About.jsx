@@ -5,6 +5,7 @@ export class About extends Component {
         return (
             <div>
                 <NavBar/>
+                
             </div>
         )
     }
