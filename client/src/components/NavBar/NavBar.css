@@ -2,6 +2,8 @@
     background: linear-gradient(91.29deg, #DC2323 3.02%, rgba(244, 121, 121, 0.83) 100%); 
     border-radius: 10px;
     left: 1185px;
+    width: 250px;
+    padding-left: 35px;
 }
 
 .link:hover {
@@ -13,10 +15,13 @@
     font-style: normal;
     font-weight: bold;
     font-size: 25px;
+    font-family: "Times New Roman", Times, serif;
 }
 
 .l2-color {
     color: #EE7D7D;
     font-weight: bold;
     font-size: 25px;
+    font-family: "Times New Roman", Times, serif;
 }
+
