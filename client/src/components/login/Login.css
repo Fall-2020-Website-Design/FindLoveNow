@@ -16,7 +16,7 @@ body{
     left: 196px;
     top: 100px;
     background: #FFFFFF;
-    box-shadow: 0px 4px 25px rgb(255, 225, 225);
+    box-shadow: 0px 4px 25px #ffdfdf;
     border-radius: 10px;
   }
     
@@ -69,10 +69,10 @@ body{
       
     
         .custom-form-cm {
-          padding-left: 70px;
           display: flex;
           flex-direction: column;
           align-items: left;
+          padding-left: 70px;
           padding-bottom: 20px;
         }
     
@@ -112,31 +112,24 @@ body{
                 box-shadow: 0px 0px 12px 0.8px #ff7575;
               }
               
-              .forgot-password {
-padding-left: 210px;
-font-family: Poppins;
-font-style: normal;
-font-weight: 300;
-font-size: 15px;
-color: #9B9B9B;
-              }
     
       .custom-button-cm {
-        position: absolute;
-  width: 350px;
-  height: 50px;
-  left: 80px;
-  top: 465px;
-  
   background: linear-gradient(91.29deg, #DC2323 3.02%, rgba(244, 121, 121, 0.83) 100%);
-  
+  color: #FFFFFF;
+  padding: 12px;
+  border: none;
+  width: 38%;
   border-radius: 10px;
-  border: #f3f3f3;
-  
-  font-family: Poppins;
-  color: white;
+  cursor: pointer;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
-  line-height: 36px;
+  font-family: 'Times New Roman', Times, serif;
       }
+      .custom-button-cm:hover{
+        background:#DC2323;
+    }
+.custom-spacing-btn-cm{
+  padding-left: 50px;
+}
+

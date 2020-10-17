@@ -16,7 +16,7 @@ body{
     left: 196px;
     top: 100px;
     background: #FFFFFF;
-    box-shadow: 0px 4px 25px rgb(255, 225, 225);
+    box-shadow: 0px 4px 25px #ffdfdf;
     border-radius: 10px;
   }
     
@@ -68,28 +68,27 @@ body{
           }
       
     
-        .custom-form-cm {
+        .custom-form2-cm {
           padding-left: 70px;
           display: flex;
           flex-direction: column;
           align-items: left;
-          padding-bottom: 20px;
         }
     
-          .custom-form-group-cm{
+          .custom-form-group-cm2{
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             width: fit-content;
             float: left;
           }
-            .custom-label-cm {
+            .custom-label-cm2 {
               font-size: 16px;
               font-family: Poppins;
               color: red;
             }
   
-            .custom-input-cm {
+            .custom-input-cm2 {
               margin-top: 6px;
               min-width: 20em;
               height: 37px;
@@ -102,32 +101,34 @@ body{
               margin-bottom: 31px;
               transition: all 250ms ease-in-out;
             }
-              .custom-input-cm:hover {
+              .custom-input-cm2:hover {
                 background-color: #ffffff;
                 box-shadow: 0px 0px 14px 0.3px #ff7575;
               }
     
-              .custom-input-cm:focus {
+              .custom-input-cm2:focus {
                 outline: none;
                 box-shadow: 0px 0px 12px 0.8px #ff7575;
               }
 
               .custom-button2-cm {
-                position: absolute;
-                width: 350px;
-                height: 50px;
-                left: 80px;
-                top: 615px;
-                
                 background: linear-gradient(91.29deg, #DC2323 3.02%, rgba(244, 121, 121, 0.83) 100%);
-                
+                color: #FFFFFF;
+                padding: 12px;
+                border: none;
+                width: 37%;
                 border-radius: 10px;
-                border: #f3f3f3;
-                
-                font-family: Poppins;
-                color: white;
+                cursor: pointer;
                 font-style: normal;
                 font-weight: bold;
                 font-size: 24px;
-                line-height: 36px;
+                font-family: 'Times New Roman', Times, serif;
                     }
+                    .custom-button2-cm:hover{
+                      background:#DC2323;
+                  }
+              .custom-spacing-btn2-cm{
+                padding-left: 55px;
+                padding-bottom: 20px;
+              }
+              
