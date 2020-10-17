@@ -10,6 +10,12 @@ const setAuthToken = token => {
   }
 };
 
+// const isLoggedIn = () => {
+//     if (localStorage.jwtToken)  {
+//         const token = local
+//     }
+// }
+
 export {
     setAuthToken
 }
