@@ -10,6 +10,7 @@ services:
     volumes:
       - ./server:/app/server
       - /app/server/node_modules
+      - /app/server/node_modules/bcrypt/
 
   client:
     build: ./client
