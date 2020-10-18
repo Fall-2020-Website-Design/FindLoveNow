@@ -40,7 +40,7 @@ s
                                 <Row>
                                     <Col className="d-flex justify-content-between arrows" >
                                         <Image alt="" src={arrow} className="align-top right-arrow" fluid />
-                                        <Image alt="" src={arrow} className="align-top" fluid />
+                                        <Image alt="" src={arrow} className="align-top " fluid />
                                     </Col>
                                 </Row>
 
