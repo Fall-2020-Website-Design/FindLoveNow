@@ -7,7 +7,7 @@ import './NavBar.css'
 export class NonUserBar extends Component {
     render() {
         return (
-            <Nav className="justify-content-between">
+            <Nav className="justify-content-between ">
                 <Form inline >
                     <Nav.Link className="mr-4" href={`About`} inline><div className="l2-color">About</div></Nav.Link>
                 </Form>
