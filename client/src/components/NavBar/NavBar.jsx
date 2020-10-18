@@ -8,13 +8,13 @@ import Image from 'react-bootstrap/Image'
 import Form from 'react-bootstrap/Form'
 import 'bootstrap/dist/css/bootstrap.css'
 import NonUserBar from './NonUserBar'
-import UserBar from './UserBar'
+
 
 
 export class NavBar extends Component {
     render() {
         return (
-            <Navbar collapseOnSelect expand="sm" bg="light" className="justify-content-between">
+            <Navbar collapseOnSelect expand="sm" bg="light" className="justify-content-between container-fluid">
                 <Form inline>
                     <Navbar.Brand href={`/`}>
                         <Image src={heartImg2} className="Heart-Logo2" id="Heart2" alt="Heart Logo 2" width="50" />
@@ -23,7 +23,7 @@ export class NavBar extends Component {
                     </Navbar.Brand>
                 </Form>
 
-                <Form>
+                <Form >
                     <NonUserBar />
                 </Form>
             </Navbar>

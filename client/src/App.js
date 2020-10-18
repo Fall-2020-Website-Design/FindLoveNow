@@ -5,6 +5,7 @@ import Register from './Components/Register/Register'
 import About from './Components/About/About'
 import Profile from './Components/Profile/Profile'
 import Matches from './Components/Matches/Matches'
+import NaveBar from './Components/NavBar/NavBar'
 import {
   BrowserRouter as Router,
   Switch,
@@ -22,6 +23,7 @@ export class App extends Component{
           <Route exact path="/About" component={About}/>
           <Route exact path="/Profile" component={Profile}/>
           <Route exact path="/Home" component={Matches}/>
+          <Route exact path="/NavBar" component={NaveBar}/>
         </Switch>
       </Router>
     );
