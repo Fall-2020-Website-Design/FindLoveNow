@@ -32,7 +32,8 @@ const getUserById = (req, res, next) => {
 const login = (req,res, next) => {
     const payload = {
         id : req.user.userID,
-        name : req.user.name
+        name : req.user.name,
+        email : req.user.email
     }
     return UserServices.getJwtToken(payload)
     .then((token) => {
