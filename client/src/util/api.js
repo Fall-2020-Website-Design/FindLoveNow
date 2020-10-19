@@ -2,7 +2,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 
 
-const setAuthToken = token => {
+const setAuthToken = (token) => {
   if (token) {
     // Apply authorization token to every request if logged in
     axios.defaults.headers.common["Authorization"] = token;
@@ -48,15 +48,15 @@ const LogoutUser = (user) => {
 }
 
 const LoginUser = (userData) => {
-  return axios.post('/api/users/login',userData)
+  return axios.post('http://localhost:8080/api/users/login',userData)
 }
 
 const Register = (userData) => {
   return axios.post('/api/users/register', userData)
 }
 
-const helloworldtest = function() {
-  return axios.get('/api/helloworld')
+const helloworldtest = () => {
+  return axios.get('http://localhost:8080/api/helloworld')
 }
 
 const searchByEmail = (email) => {
