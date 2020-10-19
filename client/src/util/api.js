@@ -1,4 +1,6 @@
 import axios from "axios";
+import jwt_decode from "jwt-decode";
+
 
 const setAuthToken = token => {
   if (token) {
@@ -53,11 +55,22 @@ const Register = (userData) => {
   return axios.post('/api/users/register', userData)
 }
 
+const helloworldtest = function() {
+  return axios.get('/api/helloworld')
+}
+
+const searchByEmail = (email) => {
+  return axios.get(`/api/users/findByEmail/${email}`)
+}
+
+
 export {
     setAuthToken,
     isLoggedIn,
     LogoutUser,
     LoginUser,
-    Register
+    Register,
+    searchByEmail,
+    helloworldtest
 }
 
