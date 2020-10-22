@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState  } from 'react'
 import './App.css'
 import Login from './Components/Login/Login'
 import Register from './Components/Register/Register'
@@ -12,22 +12,30 @@ import {
 } from 'react-router-dom';
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+import { AuthProvider } from "./Context/authContext";
+import PrivateRoute from './privateRoute';
 
-export class App extends Component{
-  render() {
+function App (props) {
+  // const existingTokens = JSON.parse(localStorage.getItem("jwtToken"));
+  // const [authTokens, setAuthTokens] = useState(existingTokens);
+  // const setTokens = (data) => {
+  //   localStorage.setItem("jwtToken", JSON.stringify(data));
+  //   setAuthTokens(data);
+  // }
     return (
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/Login" component={Login} />
-          <Route exact path="/Register" component={Register}/>
-          <Route exact path="/About" component={About}/>
-          <Route exact path="/Profile" component={Profile}/>
-          <Route exact path="/Home" component={Matches}/>
-        </Switch>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/Login" component={Login} />
+            <Route exact path="/Register" component={Register}/>
+            <Route exact path="/About" component={About}/>
+            <PrivateRoute path="/Profile" component={Profile}/>
+            <Route exact path="/Home" component={Matches}/>
+          </Switch>
+        </Router>
+      </AuthProvider>
     );
-  }
 }
 
 // import { Login, Register } from "./components/login/index";
@@ -92,6 +100,5 @@ export class App extends Component{
 //     </div>
 //   );
 // };
-
 
 export default App;
