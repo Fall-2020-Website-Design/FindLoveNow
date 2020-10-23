@@ -47,7 +47,7 @@ class AuthProvider extends Component {
 
   LogoutUser = () => {
     localStorage.removeItem("jwtToken");
-    setAuthToken(false);
+    this.setAuthToken(false);
     this.setState((prevState) => {
       return { userID: null, email: "", isAuthenicated: false };
     });
@@ -58,7 +58,7 @@ class AuthProvider extends Component {
   checkTokenExpired = () => {
     if (localStorage.getItem("jwtToken")) {
       const token = localStorage.getItem("jwtToken");
-      setAuthToken(token);
+      this.setAuthToken(token);
       // Decode token and get user info and exp
       const decoded = jwt_decode(token);
       this.setUser(decoded);
