@@ -1,37 +1,35 @@
-import React, { Component , createContext, useContext } from 'react';
-import axios from 'axios';
+import React, { Component, createContext, useContext } from "react";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+
 export const AuthContext = createContext();
 
 // export const AuthProvider = AuthContext.Provider
 class AuthProvider extends Component {
-    state = {
-        userID: null,
-        email: "",
-        isAuthenicated: false, 
+  state = {
+    userID: null,
+    email: "",
+    isAuthenicated: false,
+  };
+
+  // if the variable existingToken returns true then its proof that the user is Authenicated
+  // we can pass this function in privateRoute.jsx to make sure certain routes are protected.
+  checkTokenExist = () => {
+    const existingTokens = JSON.parse(localStorage.getItem("jwtToken"));
+    if (existingTokens) {
+      return true;
+    } else {
+      return false;
     }
+  };
 
+  // put the jwtToken and its info into localStorage
+  setTokens = (data) => {
+    localStorage.setItem("jwtToken", JSON.stringify(data));
+  };
 
-    checkTokenExist = () => {
-        const existingTokens = JSON.parse(localStorage.getItem("jwtToken"));
-        if (existingTokens) {
-            return true
-        }
-        else {
-            return false 
-        }
-    }
-
-
-    setTokens = (data) => {
-      localStorage.setItem("jwtToken", JSON.stringify(data));
-      if (localStorage.getItem("jwtToken")) {
-          this.setState({
-              isAuthenicated : true
-          })
-      }
-    }
-
-    setAuthToken = (token) => {
+  // Set the Authorization header
+  setAuthToken = (token) => {
     if (token) {
       // Apply authorization token to every request if logged in
       axios.defaults.headers.common["Authorization"] = token;
@@ -41,41 +39,72 @@ class AuthProvider extends Component {
     }
   };
 
-    setUser = ( decoded) => {
-        this.setState(prevState => { 
-            return { userID: decoded.id, 
-            email: decoded.email,
-            isAuthenicated : true,
-            }
-         })
+  setUser = (decoded) => {
+    this.setState((prevState) => {
+      return { userID: decoded.id, email: decoded.email, isAuthenicated: true };
+    });
+  };
+
+  LogoutUser = () => {
+    localStorage.removeItem("jwtToken");
+    setAuthToken(false);
+    this.setState((prevState) => {
+      return { userID: null, email: "", isAuthenicated: false };
+    });
+    window.location.href = "./";
+  };
+
+  // Check for token to keep user logged in
+  checkTokenExpired = () => {
+    if (localStorage.getItem("jwtToken")) {
+      const token = localStorage.getItem("jwtToken");
+      setAuthToken(token);
+      // Decode token and get user info and exp
+      const decoded = jwt_decode(token);
+      this.setUser(decoded);
+      const currentTime = Date.now() / 1000; // to get in milliseconds
+      if (decoded.exp < currentTime) {
+        // Logout user
+        this.LogoutUser();
       }
-    
-      render() {
-        const { children } = this.props
-        const   { userID, email, isAuthenicated }   = this.state
-        // do I need setUser ???? I have no idea yet but I have a feeling I do not.
-        const { setUser , setTokens , checkTokenExist, setAuthToken } = this
-    
-        return (
-          <AuthContext.Provider
-            value={{
-              userID, email, isAuthenicated,
-              setUser,
-              setTokens,
-              checkTokenExist,
-              setAuthToken
-            }}
-          >
-            {children}
-          </AuthContext.Provider>
-        )
-      }
+    }
+  };
+
+  render() {
+    const { children } = this.props;
+    const { userID, email, isAuthenicated } = this.state;
+    const {
+      setUser,
+      setTokens,
+      checkTokenExist,
+      setAuthToken,
+      LogoutUser,
+      checkTokenExpired,
+    } = this;
+
+    return (
+      <AuthContext.Provider
+        value={{
+          userID,
+          email,
+          isAuthenicated,
+          setUser,
+          setTokens,
+          checkTokenExist,
+          setAuthToken,
+          LogoutUser,
+        checkTokenExpired,
+        }}
+      >
+        {children}
+      </AuthContext.Provider>
+    );
+  }
 }
-export const AuthConsumer = AuthContext.Consumer
+export const AuthConsumer = AuthContext.Consumer;
 
 export default AuthContext;
-export {AuthProvider}
+export { AuthProvider };
 // export function useAuth() {
 //   return useContext(AuthContext);
 // }
-
