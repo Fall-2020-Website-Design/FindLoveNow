@@ -41,9 +41,9 @@ export class About extends Component {
                         <Col md={4}>
                             <Image src={YuBin} className="About-image d-block mx-auto" />
                             <br />
-                            <h5 className="About-text text-center">YuBin Liu</h5>
+                            <h5 className="About-text text-center">Yu Bin Liu (Jacky)</h5>
                         </Col>
-                        
+
                         <Col className="my-auto">
                             <Row className="my-auto">
                                 <Col>
@@ -139,7 +139,7 @@ export class About extends Component {
                                     </a>
                                 </Col>
                                 <Col>
-                                    <a href="https://www.linkedin.com/in/jia-peng-zhen-5555a1170" rel="noopener noreferrer" target="_blank" >
+                                    <a href="https://www.linkedin.com/in/jia-peng-zhen-6455a1170/" rel="noopener noreferrer" target="_blank" >
                                         <Image src={LinkedIn} width="100" className="responsive d-block mx-auto" />
                                     </a>
                                 </Col>
