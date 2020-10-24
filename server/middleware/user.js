@@ -66,10 +66,10 @@ const attachDecodedToken = async (value, {req}) => {
  * 
  */
   const confirmPassword = async(value, {req}) => {
-    if (value !== req.body.password) {
-      throw new Error('Password confirmation does not match password')
-    }
-    return true 
+    if (value !== req.body.password2) {
+      throw new Error('Password confirmation does not match password') 
+      }
+    return true
   }
 
   module.exports = {

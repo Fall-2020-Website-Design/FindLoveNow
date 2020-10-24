@@ -4,7 +4,51 @@ import NavBar from '../NavBar/NavBar'
 import heartImg2 from '../../Images/heart2.svg'
 import heartImg from '../../Images/heart.svg'
 import "./Register.css";
+import * as API from "../../util/api"
 export class Register extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      email: "",
+      password: "",
+      password2: "",
+      errors: []
+    }
+  }
+
+  // Handle field change
+  handleChange = (input) => (e) => {
+    this.setState({ [input]: e.target.value });
+  };
+
+  testhelloworld = () => {
+    API.helloworldtest().
+      then((res) => {
+        console.log(res)
+      }).catch(errors => {
+        console.log(errors)
+      })
+  }
+  // eventually api call to call the backend
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { name , email, password, password2 } = this.state;
+    API.Register({
+      name,
+      email,
+      password,
+      password2
+    }).then((result) => {
+      if (result.status === 200) {
+        this.props.history.push('/login')
+      }
+    })
+    .catch((errors) => {
+      console.log(errors)
+      this.setState({ errors})
+      })
+  }
   render() {
     return (
     <div>
@@ -24,26 +68,34 @@ export class Register extends Component {
           </div>
           <div className="custom-form2-cm">
             <div className="custom-form-group-cm2">
-              <label className="custom-label-cm2" htmlFor="username">Name</label>
-              <input className ="custom-input-cm2" type="text" name="username" placeholder="Full name" />
+              <label className="custom-label-cm2" htmlFor="name">Name</label>
+              <input className ="custom-input-cm2" type="text" name="name" placeholder="Full name"
+                onChange={this.handleChange("name")}
+              />
             </div>
             <div className="custom-form-group-cm2">
               <label className="custom-label-cm2" htmlFor="email">Email</label>
-              <input className ="custom-input-cm2" type="text" name="email" placeholder="Email Address" />
+              <input className ="custom-input-cm2" id="email" type="email" name="email" placeholder="Email Address" 
+              onChange={this.handleChange("email")}
+              />
             </div>
             <div className="custom-form-group-cm2">
               <label className="custom-label-cm2" htmlFor="password">Password</label>
-              <input className ="custom-input-cm2" type="text" name="password" placeholder="Password" />
+              <input className ="custom-input-cm2" id="password" type="password" name="password" placeholder="Password"
+              onChange={this.handleChange("password")}
+              />
             </div>
             <div className="custom-form-group-cm2">
-              <label className="custom-label-cm2" htmlFor="password">Confirm Password</label>
-              <input className ="custom-input-cm2" type="text" name="password" placeholder="Repeat Password" />
+              <label className="custom-label-cm2" htmlFor="password2">Confirm Password</label>
+              <input className ="custom-input-cm2" id="password2" type="password" name="password2" placeholder="Repeat Password"
+              onChange={this.handleChange("password2")}
+              />
             </div>
           </div>
           <div className="custom-spacing-btn2-cm">
-          <button type="button" className="custom-button2-cm">
+          <button type="button" className="custom-button2-cm" onClick={this.handleSubmit}>
             Register
-          </button>
+          </button >
           </div>
         </div>
       </div>
