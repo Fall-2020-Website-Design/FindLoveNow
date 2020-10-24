@@ -7,14 +7,18 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import Image from 'react-bootstrap/Image'
 import NonUserBar from './NonUserBar'
+import UserBar from './UserBar'
 import 'bootstrap/dist/css/bootstrap.css'
 import { Link } from 'react-router-dom'
+import { AuthContext } from "../../Context/authContext";
 
 export class NavBar extends Component {
+    static contextType = AuthContext
+
     render() {
+        const { userID, email, isAuthenicated, LogoutUser } = this.context
         return (
             <Navbar collapseOnSelect expand="md" bg="light" className="justify-content-between">
-
                 <Navbar.Brand>
                     <Link to="/">
                     <Image src={heartImg2} className="Heart-Logo2" id="Heart2" alt="Heart Logo 2" width="40" fluid />
@@ -25,7 +29,7 @@ export class NavBar extends Component {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse fluid>
                     <Nav className="mr-auto" />
-                    <NonUserBar />
+                    {isAuthenicated ? <UserBar email={email}/> : <NonUserBar />}
                 </Navbar.Collapse>
             </Navbar>
         )
