@@ -5,6 +5,8 @@ import Register from "./Components/Register/Register";
 import About from "./Components/About/About";
 import Profile from "./Components/Profile/Profile";
 import Matches from "./Components/Matches/Matches";
+import Filter from "./Components/Filter/Filter";
+import Chat from "./Components/Chat/Chat";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
@@ -22,6 +24,8 @@ export class App extends Component {
             <Route exact path="/Register" component={Register} />
             <Route exact path="/About" component={About} />
             <PrivateRoute path="/Profile" component={Profile} />
+            <Route exact path="/Filter" component={Filter} />
+            <Route exact path="/Chat" component={Chat} />
             <Route exact path="/Home" component={Matches} />
           </Switch>
         </Router>
