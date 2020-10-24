@@ -33,17 +33,20 @@ export class Register extends Component {
   // eventually api call to call the backend
   handleSubmit = (e) => {
     e.preventDefault();
-    const { name , email, password, password2, errors } = this.state;
+    const { name , email, password, password2 } = this.state;
     API.Register({
       name,
       email,
       password,
       password2
     }).then((result) => {
-      console.log(result)
+      if (result.status === 200) {
+        this.props.history.push('/login')
+      }
     })
     .catch((errors) => {
       console.log(errors)
+      this.setState({ errors})
       })
   }
   render() {
