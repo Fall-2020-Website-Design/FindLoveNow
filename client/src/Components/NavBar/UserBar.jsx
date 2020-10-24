@@ -13,7 +13,9 @@ import FilterMatches from '../../Images/FilterMatchesImg.svg'
 import ProfileImg from '../../Images/ProfileImg.svg'
 
 export class UserBar extends Component {
-    render() {
+    render()
+     {
+         const {email } = this.props
         return (
             <Nav fluid>
                 <Form inline className="my-auto">
