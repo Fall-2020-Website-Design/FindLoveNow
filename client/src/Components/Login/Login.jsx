@@ -27,9 +27,10 @@ export class Login extends React.Component {
   componentDidUpdate() {
     const {isAuthenicated } = this.context
     console.log("this is the value of authenticated from CONTEXT " + isAuthenicated)
-    // const referer = location.state.referer || '/';
+    // const referer = window.location.state.referer || '/' why u no work :(
       if (isAuthenicated) {
-      return <Redirect to="/" />;
+        return this.props.history.push("/Home")
+        // return <Redirect to={referer} />;
     }
   }
 
@@ -51,26 +52,18 @@ export class Login extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { email, password, errors} = this.state
-    // console.log(authData)
     API.LoginUser({
       email,
       password
     }).then((result) => {
-      if (result.status == 200) {
-        const { setUser,userID, email, isAuthenicated, setTokens , setAuthToken} = this.context
+      if (result.status === 200) {
+        const { setUser,setTokens , setAuthToken} = this.context
         console.log(result)
         const {token } = result.data
-        // localStorage.setItem("jwtToken", token)
-        // let x = this.API.setAuthToken(token)
-        // console.log(`hello from console log ${token}`)
         const decoded = jwt_decode(token)
-        console.log(decoded)
-        console.log(`testing decoded variable ${JSON.stringify(decoded)}`)
         setUser(decoded)
         setTokens(token)
         setAuthToken(token)
-        // console.log("Im logged in successfully")
-        // console.log(userID, email,isAuthenicated) // why doesn't this update on the first try????
         }
       })
     .catch((errors) => {

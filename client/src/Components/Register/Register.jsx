@@ -23,7 +23,7 @@ export class Register extends Component {
   };
 
   testhelloworld = () => {
-    API.helloworldtest.
+    API.helloworldtest().
       then((res) => {
         console.log(res)
       }).catch(errors => {
@@ -33,10 +33,19 @@ export class Register extends Component {
   // eventually api call to call the backend
   handleSubmit = (e) => {
     e.preventDefault();
-    const { username, email, password, password2 } = this.state;
-    this.testhelloworld()
-  };
-
+    const { name , email, password, password2, errors } = this.state;
+    API.Register({
+      name,
+      email,
+      password,
+      password2
+    }).then((result) => {
+      console.log(result)
+    })
+    .catch((errors) => {
+      console.log(errors)
+      })
+  }
   render() {
     return (
     <div>
@@ -57,25 +66,33 @@ export class Register extends Component {
           <div className="custom-form2-cm">
             <div className="custom-form-group-cm2">
               <label className="custom-label-cm2" htmlFor="name">Name</label>
-              <input className ="custom-input-cm2" type="text" name="name" placeholder="Full name" />
+              <input className ="custom-input-cm2" type="text" name="name" placeholder="Full name"
+                onChange={this.handleChange("name")}
+              />
             </div>
             <div className="custom-form-group-cm2">
               <label className="custom-label-cm2" htmlFor="email">Email</label>
-              <input className ="custom-input-cm2" id="email" type="email" name="email" placeholder="Email Address" />
+              <input className ="custom-input-cm2" id="email" type="email" name="email" placeholder="Email Address" 
+              onChange={this.handleChange("email")}
+              />
             </div>
             <div className="custom-form-group-cm2">
               <label className="custom-label-cm2" htmlFor="password">Password</label>
-              <input className ="custom-input-cm2" id="password" type="password" name="password" placeholder="Password" />
+              <input className ="custom-input-cm2" id="password" type="password" name="password" placeholder="Password"
+              onChange={this.handleChange("password")}
+              />
             </div>
             <div className="custom-form-group-cm2">
               <label className="custom-label-cm2" htmlFor="password2">Confirm Password</label>
-              <input className ="custom-input-cm2" id="password2" type="password" name="password2" placeholder="Repeat Password" />
+              <input className ="custom-input-cm2" id="password2" type="password" name="password2" placeholder="Repeat Password"
+              onChange={this.handleChange("password2")}
+              />
             </div>
           </div>
           <div className="custom-spacing-btn2-cm">
-          <button type="button" className="custom-button2-cm">
+          <button type="button" className="custom-button2-cm" onClick={this.handleSubmit}>
             Register
-          </button>
+          </button >
           </div>
         </div>
       </div>

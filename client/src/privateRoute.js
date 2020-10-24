@@ -13,9 +13,7 @@ function PrivateRoute({ component: Component, ...rest }) {
         checkTokenExist ? (
           <Component {...props} />
         ) : (
-          <Redirect
-            to={{ pathname: "/login", state: { referer: props.location } }}
-          />
+            <Redirect to="/login" />
         )
       }
     />
