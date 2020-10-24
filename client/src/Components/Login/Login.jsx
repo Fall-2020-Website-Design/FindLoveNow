@@ -19,11 +19,10 @@ export default class Login extends React.Component {
         <NavBar/>
         <div className="custom-base-container">
         <div className="signInHeader">
-        <center><img style={{width:"30px", height:"30px" }} src={heartImg}/></center>
         <center><h3 style={{color:"red"}}>FindLoveNow LOGO</h3></center>
-        <center><img style={{width:"20px", height:"20px" }} src={heartImg}/></center>
-        <center><h3>Sign in</h3></center>
-        <center><h3>To find your perfect match!</h3></center>
+        <center><img style={{width:"30px", height:"30px" }} src={heartImg}/></center>
+        <center><h3>Sign In</h3></center>
+        <center><h3 style={{fontFamily:"Snell Roundhand, cursive", fontSize:"25px"}}>to find your perfect match  <img style={{width:"10px", height:"10px" }} src={heartImg}/></h3></center>
         </div>
 
         <div className="custom-content-cm">
@@ -43,9 +42,12 @@ export default class Login extends React.Component {
               <input className ="custom-input-cm" type="password" name="password" placeholder="Password" />
             </div>
           </div>
+          <div className="custom-spacing-btn-cm">
           <button type="button" className="custom-button-cm">
             Login
           </button>
+          </div>
+
         </div>
       </div>
       </div>
