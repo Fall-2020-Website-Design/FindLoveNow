@@ -1,0 +1,38 @@
+.About-color {
+    color: #EE7D7D;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.About-FindLoveNow-color {
+    color: #EE7D7D;
+    font-weight: bold;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.About-text {
+    font-family: "Times New Roman", Times, serif;
+}
+
+.About-image {
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    margin-top: 2em;
+    object-fit: cover;
+}
+
+.About-container {
+    padding: 30px;
+    position: auto;
+    width: auto;
+    height: auto;
+    left: auto;
+    top: auto;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 25px rgb(255, 225, 225);
+    border-radius: 10px;
+    
+}
+
