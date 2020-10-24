@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import NavBar from '../NavBar/NavBar'
 
 export class Profile extends Component {
     render() {
         return (
             <div>
-                <h3> Hello World</h3>
+                <NavBar />
             </div>
         )
     }
