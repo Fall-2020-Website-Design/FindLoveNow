@@ -7,6 +7,7 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import Image from 'react-bootstrap/Image'
 import NonUserBar from './NonUserBar'
+import UserBar from './UserBar'
 import 'bootstrap/dist/css/bootstrap.css'
 import { Link } from 'react-router-dom'
 
@@ -17,15 +18,16 @@ export class NavBar extends Component {
 
                 <Navbar.Brand>
                     <Link to="/">
-                    <Image src={heartImg2} className="Heart-Logo2" id="Heart2" alt="Heart Logo 2" width="40" fluid />
-                    <Image src={heartImg} className="Heart-Logo" id="Heart" alt="Heart Logo" width="40" fluid />
-                    <Image src={logoImg} className="Love-Logo" id="FindLoveNow" alt="Find Love Logo" width="200" fluid />
+                        <Image src={heartImg2} className="Heart-Logo2" id="Heart2" alt="Heart Logo 2" width="40" fluid />
+                        <Image src={heartImg} className="Heart-Logo" id="Heart" alt="Heart Logo" width="40" fluid />
+                        <Image src={logoImg} className="Love-Logo" id="FindLoveNow" alt="Find Love Logo" width="180" fluid />
                     </Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse fluid>
                     <Nav className="mr-auto" />
-                    <NonUserBar />
+                    {/* <NonUserBar /> */}
+                    <UserBar />
                 </Navbar.Collapse>
             </Navbar>
         )
