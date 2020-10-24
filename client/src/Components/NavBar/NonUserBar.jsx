@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Badge, Nav } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import './NavBar.css'
+import { Link } from 'react-router-dom';
 
 
 export class NonUserBar extends Component {
@@ -9,13 +10,22 @@ export class NonUserBar extends Component {
         return (
             <Nav fluid>
                 <Form inline >
-                    <Nav.Link className="mr-4" href={`About`} inline><div className="NavBar-l2-color">About</div></Nav.Link>
+                    <Link to="/About" className=" nav-link mr-4" inline>
+                        <div className="NavBar-l2-color">
+                            About</div>
+                    </Link>
                 </Form>
 
                 <Form inline className="NavBar-b-color">
-                    <Nav.Link href={`Login`}><div className="NavBar-l-color">Login</div></Nav.Link>
+                    <Link to="/Login">
+                        <div className="NavBar-l-color">Login
+                        </div>
+                    </Link>
                     <div className="NavBar-l-color">|</div>
-                    <Nav.Link href={`Register`}><div className="NavBar-l-color">Sign Up</div></Nav.Link>
+                    <Link to="/Register">
+                        <div className="NavBar-l-color">Register
+                        </div>
+                    </Link>
                 </Form>
             </Nav>
         )
