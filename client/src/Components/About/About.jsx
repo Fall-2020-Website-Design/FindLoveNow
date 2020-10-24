@@ -43,6 +43,7 @@ export class About extends Component {
                             <br />
                             <h5 className="About-text text-center">YuBin Liu</h5>
                         </Col>
+                        
                         <Col className="my-auto">
                             <Row className="my-auto">
                                 <Col>

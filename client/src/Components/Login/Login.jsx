@@ -3,15 +3,76 @@ import loginImg from '../../Images/login.svg';
 import heartImg2 from '../../Images/heart2.svg'
 import heartImg from '../../Images/heart.svg'
 import NavBar from '../NavBar/NavBar'
-
+import * as API from "../../util/api"
 import "./Login.css";
 import { Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from "react-router-dom";
-export default class Login extends React.Component {
+import jwt_decode from "jwt-decode";
+import { AuthContext } from "../../Context/authContext";
+import { Link, Redirect } from "react-router-dom";
+
+export class Login extends React.Component {
+  
+  static contextType = AuthContext
+
   constructor(props) {
     super(props);
+    this.state = {
+      userID: null,
+      email: "",
+      password: "",
+      errors: [],
+    }
   }
+  componentDidUpdate() {
+    const {isAuthenicated } = this.context
+    console.log("this is the value of authenticated from CONTEXT " + isAuthenicated)
+    // const referer = window.location.state.referer || '/' why u no work :(
+      if (isAuthenicated) {
+        return this.props.history.push("/Home")
+        // return <Redirect to={referer} />;
+    }
+  }
+
+  // Handle field change
+  handleChange = (input) => (e) => {
+    this.setState({ [input]: e.target.value });
+  };
+
+  helloworldtest = () => {
+    API.helloworldtest().
+      then((res) => {
+        console.log(res)
+      }).catch(errors => {
+        console.log(errors)
+      })
+  }
+
+  // eventually api call to the backend
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { email, password, errors} = this.state
+    API.LoginUser({
+      email,
+      password
+    }).then((result) => {
+      if (result.status === 200) {
+        const { setUser,setTokens , setAuthToken} = this.context
+        console.log(result)
+        const {token } = result.data
+        const decoded = jwt_decode(token)
+        setUser(decoded)
+        setTokens(token)
+        setAuthToken(token)
+        }
+      })
+    .catch((errors) => {
+      console.log(errors)
+      this.setState({
+        errors
+      })
+    })
+  };
 
   render() {
     return (
@@ -34,16 +95,20 @@ export default class Login extends React.Component {
           </div>
           <div className="custom-form-cm">
             <div className="custom-form-group-cm">
-              <label className="custom-label-cm" htmlFor="username">Email</label>
-              <input className ="custom-input-cm" type="text" name="username" placeholder="Email Address" />
+              <label className="custom-label-cm" htmlFor="email">Email</label>
+              <input className ="custom-input-cm" id="email" type="text" name="email" placeholder="Email Address"
+              onChange={this.handleChange("email")}
+              />
             </div>
             <div className="custom-form-group-cm">
               <label className="custom-label-cm" htmlFor="password">Password</label>
-              <input className ="custom-input-cm" type="password" name="password" placeholder="Password" />
+              <input className ="custom-input-cm" id="password" type="password" name="password" placeholder="Password" 
+              onChange={this.handleChange("password")}
+              />
             </div>
           </div>
           <div className="custom-spacing-btn-cm">
-          <button type="button" className="custom-button-cm">
+          <button type="button" className="custom-button-cm" onClick={this.handleSubmit}>
             Login
           </button>
           </div>
@@ -54,3 +119,5 @@ export default class Login extends React.Component {
     );
   }
 }
+
+export default Login
