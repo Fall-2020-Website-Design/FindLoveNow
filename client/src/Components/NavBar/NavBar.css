@@ -1,4 +1,4 @@
-.b-color {
+.NavBar-b-color {
     background: linear-gradient(91.29deg, #DC2323 3.02%, rgba(244, 121, 121, 0.83) 100%); 
     border-radius: 10px;
     left: 1185px;
@@ -10,7 +10,7 @@
     color: #FF0000;
 }
 
-.l-color {
+.NavBar-l-color {
     color: #FFFFFF;
     font-style: normal;
     font-weight: bold;
@@ -18,7 +18,7 @@
     font-family: "Times New Roman", Times, serif;
 }
 
-.l2-color {
+.NavBar-l2-color {
     color: #EE7D7D;
     font-weight: bold;
     font-size: 25px;
