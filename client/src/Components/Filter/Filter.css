@@ -4,8 +4,7 @@ body{
 
 .filter-padding{
     padding-bottom: 20px;
-
-  }
+}
 .Filter-Header{
     color: #737373;
     font-family: 'Times New Roman', Times, serif;
@@ -26,13 +25,13 @@ body{
 
 .Filter-Ruler{
     border: 3px solid rgba(253, 0, 0, 0.42);
-    width: 90%;
+    width: 100%;
     border-radius: 10px;
 }
 .custom-filter-container{
     margin: auto;
     width: 60%;
-    height: 900px;
+    height: 1200px;
     background: #FFFFFF;
     box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.15);
     border-radius: 15px;
@@ -57,13 +56,43 @@ body{
           background:#DC2323;
       }
     .custom-spacing-btn-cm-f{
-        padding-left: 300px;
+        margin: 0 auto;
+        justify-content: center;
+        display: flex;
     }
 .FilterImg{
     width: 70px;
     height: 70px;
 }
-.custom-spacing-img-cm-f{
-    padding-left: 350px;
-    padding-bottom: 10px;
+
+*{
+    box-sizing: border-box;
 }
+input[type=text]{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid black;
+    border-radius: 3px;
+  }
+
+select{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid black;
+    border-radius: 3px;
+  }
+
+label{
+    margin-bottom: 10px;
+    display: block;
+    color:#9F9F9F;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+}
+
