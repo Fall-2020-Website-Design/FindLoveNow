@@ -1,0 +1,69 @@
+body{
+    background-color:E5E3E3;
+  }
+
+.filter-padding{
+    padding-bottom: 20px;
+
+  }
+.Filter-Header{
+    color: #737373;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    padding: 20px;
+    text-decoration-line: underline;
+}
+
+.Filter-SubHeader{
+    color: #EE7E7E;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.Filter-Ruler{
+    border: 3px solid rgba(253, 0, 0, 0.42);
+    width: 90%;
+    border-radius: 10px;
+}
+.custom-filter-container{
+    margin: auto;
+    width: 60%;
+    height: 900px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+
+}
+.custom-button-cm-f {
+    background: linear-gradient(91.29deg, #DC2323 3.02%, rgba(244, 121, 121, 0.83) 100%);
+    color: #FFFFFF;
+    padding: 12px;
+    border: none;
+    width: 38%;
+    border-radius: 10px;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    font-family: 'Times New Roman', Times, serif;
+        }
+        .custom-button-cm-f:hover{
+          background:#DC2323;
+      }
+    .custom-spacing-btn-cm-f{
+        padding-left: 300px;
+    }
+.FilterImg{
+    width: 70px;
+    height: 70px;
+}
+.custom-spacing-img-cm-f{
+    padding-left: 350px;
+    padding-bottom: 10px;
+}
