@@ -38,110 +38,118 @@ export class About extends Component {
                     <hr />
 
                     <Row>
-                        <Col md={6}>
+                        <Col md={4}>
                             <Image src={YuBin} className="About-image d-block mx-auto" />
                             <br />
-                            <h5 className="About-text text-center">YuBin Liu</h5>
+                            <h5 className="About-text text-center">Yu Bin Liu (Jacky)</h5>
                         </Col>
 
-                        <Row className="my-auto">
-                            <Col>
-                                <a href="https://github.com/JackyLiu97" rel="noopener noreferrer" target="_blank" >
-                                    <Image src={GitHub} width="100" className="d-block mx-auto" />
-                                </a>
-                            </Col>
-                            <Col>
-                                <a href="https://www.linkedin.com/in/jacky-liu97" rel="noopener noreferrer" target="_blank" >
-                                    <Image src={LinkedIn} width="100" className="responsive d-block mx-auto" />
-                                </a>
-                            </Col>
-                            <Col>
-                                <a href="mailto:Jackyliu977@gmail.com" rel="noopener noreferrer" target="_blank" >
-                                    <Image src={Email} width="100" className="d-block mx-auto" />
-                                </a>
-                            </Col>
-                        </Row>
+                        <Col className="my-auto">
+                            <Row className="my-auto">
+                                <Col>
+                                    <a href="https://github.com/JackyLiu97" rel="noopener noreferrer" target="_blank" >
+                                        <Image src={GitHub} width="100" className="d-block mx-auto" />
+                                    </a>
+                                </Col>
+                                <Col>
+                                    <a href="https://www.linkedin.com/in/jacky-liu97" rel="noopener noreferrer" target="_blank" >
+                                        <Image src={LinkedIn} width="100" className="responsive d-block mx-auto" />
+                                    </a>
+                                </Col>
+                                <Col>
+                                    <a href="mailto:Jackyliu977@gmail.com" rel="noopener noreferrer" target="_blank" >
+                                        <Image src={Email} width="100" className="d-block mx-auto" />
+                                    </a>
+                                </Col>
+                            </Row>
+                        </Col>
                     </Row>
                     <hr />
 
                     <Row>
-                        <Col md={6}>
+                        <Col md={4}>
                             <Image src={Chrystal} className="About-image d-block mx-auto" />
                             <br />
                             <h5 className="About-text text-center">Chrystal Mingo</h5>
                         </Col>
 
-                        <Row className="my-auto">
-                            <Col>
-                                <a href="https://github.com/chrystalmingo" rel="noopener noreferrer" target="_blank" >
-                                    <Image src={GitHub} width="100" className="d-block mx-auto" />
-                                </a>
-                            </Col>
-                            <Col>
-                                <a href="https://www.linkedin.com/in/chrystalmingo" rel="noopener noreferrer" target="_blank" >
-                                    <Image src={LinkedIn} width="100" className="responsive d-block mx-auto" />
-                                </a>
-                            </Col>
-                            <Col>
-                                <a href="mailto:Mingochrystal@gmail.com" rel="noopener noreferrer" target="_blank" >
-                                    <Image src={Email} width="100" className="d-block mx-auto" />
-                                </a>
-                            </Col>
-                        </Row>
+                        <Col className="my-auto">
+                            <Row className="my-auto">
+                                <Col>
+                                    <a href="https://github.com/chrystalmingo" rel="noopener noreferrer" target="_blank" >
+                                        <Image src={GitHub} width="100" className="d-block mx-auto" />
+                                    </a>
+                                </Col>
+                                <Col>
+                                    <a href="https://www.linkedin.com/in/chrystalmingo" rel="noopener noreferrer" target="_blank" >
+                                        <Image src={LinkedIn} width="100" className="responsive d-block mx-auto" />
+                                    </a>
+                                </Col>
+                                <Col>
+                                    <a href="mailto:Mingochrystal@gmail.com" rel="noopener noreferrer" target="_blank" >
+                                        <Image src={Email} width="100" className="d-block mx-auto" />
+                                    </a>
+                                </Col>
+                            </Row>
+                        </Col>
                     </Row>
                     <hr />
 
                     <Row>
-                        <Col md={6}>
+                        <Col md={4}>
                             <Image src={Edgar} className="About-image d-block mx-auto" />
                             <br />
                             <h5 className="About-text text-center">Edgar Pineda</h5>
                         </Col>
 
-                        <Row className="my-auto">
-                            <Col>
-                                <a href="https://github.com/edgarp2017" rel="noopener noreferrer" target="_blank" >
-                                    <Image src={GitHub} width="100" className="d-block mx-auto" />
-                                </a>
-                            </Col>
-                            <Col>
-                                <a href="https://www.linkedin.com/in/edgar-pineda-torres" rel="noopener noreferrer" target="_blank" >
-                                    <Image src={LinkedIn} width="100" className="responsive d-block mx-auto" />
-                                </a>
-                            </Col>
-                            <Col>
-                                <a href="mailto:epineda0313@gmail.com" rel="noopener noreferrer" target="_blank" >
-                                    <Image src={Email} width="100" className="d-block mx-auto" />
-                                </a>
-                            </Col>
-                        </Row>
+                        <Col className="my-auto">
+                            <Row className="my-auto">
+                                <Col>
+                                    <a href="https://github.com/edgarp2017" rel="noopener noreferrer" target="_blank" >
+                                        <Image src={GitHub} width="100" className="d-block mx-auto" />
+                                    </a>
+                                </Col>
+                                <Col>
+                                    <a href="https://www.linkedin.com/in/edgar-pineda-torres" rel="noopener noreferrer" target="_blank" >
+                                        <Image src={LinkedIn} width="100" className="responsive d-block mx-auto" />
+                                    </a>
+                                </Col>
+                                <Col>
+                                    <a href="mailto:epineda0313@gmail.com" rel="noopener noreferrer" target="_blank" >
+                                        <Image src={Email} width="100" className="d-block mx-auto" />
+                                    </a>
+                                </Col>
+                            </Row>
+                        </Col>
                     </Row>
                     <hr />
 
                     <Row>
-                        <Col md={6}>
+                        <Col md={4}>
                             <Image src={Alex} className="About-image d-block mx-auto" />
                             <br />
                             <h5 className="About-text text-center">Jia Peng Zhen (Alex)</h5>
                         </Col>
 
-                        <Row className="my-auto">
-                            <Col>
-                                <a href="https://github.com/alexzhen93" rel="noopener noreferrer" target="_blank" >
-                                    <Image src={GitHub} width="100" className="d-block mx-auto" />
-                                </a>
-                            </Col>
-                            <Col>
-                                <a href="https://www.linkedin.com/in/jia-peng-zhen-5555a1170" rel="noopener noreferrer" target="_blank" >
-                                    <Image src={LinkedIn} width="100" className="responsive d-block mx-auto" />
-                                </a>
-                            </Col>
-                            <Col>
-                                <a href="mailto:Jiapengzhen@outlook.com" rel="noopener noreferrer" target="_blank" >
-                                    <Image src={Email} width="100" className="d-block mx-auto" />
-                                </a>
-                            </Col>
-                        </Row>
+                        <Col className="my-auto">
+                            <Row className="my-auto">
+                                <Col>
+                                    <a href="https://github.com/alexzhen93" rel="noopener noreferrer" target="_blank" >
+                                        <Image src={GitHub} width="100" className="d-block mx-auto" />
+                                    </a>
+                                </Col>
+                                <Col>
+                                    <a href="https://www.linkedin.com/in/jia-peng-zhen-6455a1170/" rel="noopener noreferrer" target="_blank" >
+                                        <Image src={LinkedIn} width="100" className="responsive d-block mx-auto" />
+                                    </a>
+                                </Col>
+                                <Col>
+                                    <a href="mailto:Jiapengzhen@outlook.com" rel="noopener noreferrer" target="_blank" >
+                                        <Image src={Email} width="100" className="d-block mx-auto" />
+                                    </a>
+                                </Col>
+                            </Row>
+                        </Col>
                     </Row>
                 </Container>
             </div>
