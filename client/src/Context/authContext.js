@@ -11,14 +11,21 @@ class AuthProvider extends Component {
     email: "",
     isAuthenicated: false,
   };
+  
+  componentDidMount() {
+    console.log("calling componentDidmount from AuthProvider!")
+    this.checkTokenExpired()
+  }
 
   // if the variable existingToken returns true then its proof that the user is Authenicated
   // we can pass this function in privateRoute.jsx to make sure certain routes are protected.
   checkTokenExist = () => {
-    const existingTokens = JSON.parse(localStorage.getItem("jwtToken"));
-    if (existingTokens) {
+    const existingToken = JSON.parse(localStorage.getItem("jwtToken"));
+    if (existingToken) {
+      this.setAuthToken(existingToken);
       return true;
     } else {
+      this.setAuthToken(false);
       return false;
     }
   };
@@ -93,7 +100,7 @@ class AuthProvider extends Component {
           checkTokenExist,
           setAuthToken,
           LogoutUser,
-        checkTokenExpired,
+          checkTokenExpired,
         }}
       >
         {children}

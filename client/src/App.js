@@ -12,13 +12,6 @@ import { AuthProvider } from "./Context/authContext";
 import PrivateRoute from "./privateRoute";
 
 export class App extends Component {
-  
-  // const existingTokens = JSON.parse(localStorage.getItem("jwtToken"));
-  // const [authTokens, setAuthTokens] = useState(existingTokens);
-  // const setTokens = (data) => {
-  //   localStorage.setItem("jwtToken", JSON.stringify(data));
-  //   setAuthTokens(data);
-  // }
   render() {
     return (
       <AuthProvider>
