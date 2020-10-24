@@ -1,8 +1,10 @@
 .matches-card {
-    width: 550px;
-    height: 700px;
+    width: 34.375rem;
+    height: 43.75rem;
     background: #FFFFFF;
     border-radius: 20px;
+    border-width: 2px;
+    border-color: #FF0000;
 }
 
 .card-body {
@@ -53,8 +55,8 @@
 }
 
 .card-col {
-    left: 200px;
-    top: 25px;
+    left: 25%;
+    top: 30px;
 }
 
 .checkmark-img {
@@ -63,16 +65,24 @@
 }
 
 .arrows {
-    padding-top: 3%;
+    padding-top: 1%;
 }
 
-.right-arrow {
+.left-arrow {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
 
+.right-arrow:hover {
+    transform: scale(1.1);
+}
+
+.left-arrow:hover {
+    transform: scale(-1.1);
+}
+
 .card-img {
-    width: 550px;
+    width: 34.15rem;
     height: 525px;
     border-bottom: 3px;
     border-bottom-style: solid;

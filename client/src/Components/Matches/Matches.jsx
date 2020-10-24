@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect, useRef } from 'react';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -9,9 +9,12 @@ import NavBar from '../NavBar/NavBar';
 import checkmark_image from '../../Images/checkmark.svg';
 import x_image from '../../Images/x.png';
 import previous_image from '../../Images/prev.svg';
-import arrow from '../../Images/arrow.svg';
 import location_image from '../../Images/location.svg';
 import sample_picture from '../../Images/samplepicture.svg'; // just a place holder for now
+import Bar from './Bar';
+import Arrows from './Arrows';
+import Images from './Images';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import "./Matches.css";
 
@@ -19,36 +22,51 @@ export default class Matches extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          currentPicture: 1,
-          totalPictures: 5,
+          currentPicture: 0,
           name: "John",
           age: 25,
           bio: "Human Resources at CitiBank",
-          miles: 20
+          miles: 20,
+          images: [sample_picture,
+            'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80',
+            'https://images.unsplash.com/photo-1470341223622-1019832be824?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2288&q=80',
+            'https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2094&q=80',
+            'https://images.unsplash.com/photo-1534161308652-fdfcf10f62c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2174&q=80']
         };
     }
-s
+
+    handleToUpdate = (index) => {
+        this.setState({
+            currentPicture:index
+        });
+    }
+
+    nextImage = () => {
+        this.setState({
+            currentPicture: this.state.currentPicture === this.state.images.length-1 ? 0 : this.state.currentPicture + 1
+        })
+    }
+
+    prevImage = () => {
+        this.setState({
+            currentPicture: this.state.currentPicture === 0 ? this.state.images.length-1 : this.state.currentPicture - 1
+        })
+    }
+
     render() {
+
         return (
             <div>
                 <NavBar />
-                <Container>
-                    <Col className="card-col">
-                        
+                <Container fluid>
+                    <Col className="align-self-ceneter">
                         <Card className="matches-card">
                             <Card.Body>
-                                <Row>
-                                    <Col className="d-flex justify-content-between arrows" >
-                                        <Image alt="" src={arrow} className="align-top right-arrow" fluid />
-                                        <Image alt="" src={arrow} className="align-top " fluid />
-                                    </Col>
-                                </Row>
+                                <Bar total={this.state.images.length} current={this.state.currentPicture} click={this.handleToUpdate} />
 
-                                <Row className="justify-content-md-center">
-                                    <Col>
-                                        <Image src={sample_picture} className="card-img" />
-                                    </Col>
-                                </Row>
+                                <Arrows prev={this.prevImage} next={this.nextImage}/>
+
+                                <Images image={this.state.images[this.state.currentPicture]} />
 
                                 <Col className="info" >
                                     <div className="name-age"> {this.state.name}, {this.state.age} </div>
@@ -81,9 +99,8 @@ s
                                     <Image alt="" src={x_image} className="align-top" fluid />
                                 </Button>
                             </Col>
-                            
-                            
                         </Row>
+
                     </Col>
                 </Container>
             </div>
