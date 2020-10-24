@@ -8,8 +8,7 @@ export default class Chat extends React.Component {
 
   render() {
     return (
-        <p>Hello I finished the front end code but for now it will be commented out until the backend is connected to socket io, for the frontend to be properly displayed.<img style={{width:"1450px", height:"800px" }} src={ChatFigma}/></p>
-
+        <p>Hello I finished the front end code but for now it will be commented out until the backend is connected to socket io, for the frontend to be properly displayed. I created components called InfoBar, Input, Messages, Text Container, and imported them all into the Chat.<img style={{width:"1450px", height:"800px" }} src={ChatFigma}/></p>
     );
   }
 }
@@ -31,7 +30,7 @@ import "./Chat.css";
 
 
 
-//const ENDPOINT = 'https://project-chat-application.herokuapp.com/'; we will put our website as the endpoint link here once we deploy it on herokuapp
+//const ENDPOINT = 'URL'; we will put our website as the endpoint link here once we deploy it on herokuapp
 let socket;
 
 const Chat = ({ location }) => {
