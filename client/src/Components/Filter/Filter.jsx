@@ -28,7 +28,6 @@ export default class Filter extends React.Component {
             <div className="Filter-Submit">
             <form>
             <label>My Neighborhood:</label>
-            <br></br>
             <input type="text" list="Location" />
                 <datalist id="Location">
                     <option>Current Location</option>
@@ -67,7 +66,6 @@ export default class Filter extends React.Component {
             <div className="Filter-Submit">
             <form>
             <label>Max Distance:</label>
-            <br></br>
             <input type="text" list="Distance" />
                 <datalist id="Distance">
                     <option>10 miles</option>
@@ -78,7 +76,6 @@ export default class Filter extends React.Component {
             <div className="Filter-Height">
             <form>
             <label>Height:</label>
-            <br></br>
             <input type="text" list="Height" />
                 <datalist id="Height">
                     <option>3'9+</option>
