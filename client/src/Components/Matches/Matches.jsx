@@ -54,19 +54,20 @@ export default class Matches extends Component {
     }
 
     render() {
-
         return (
             <div>
                 <NavBar />
-                <Container fluid>
-                    <Col className="align-self-ceneter">
+                
+                <Container className="card-container" fluid >
+
+                    <Col className="d-inline-flex justify-content-center pt-4">
                         <Card className="matches-card">
-                            <Card.Body>
+                            <Card.Body className="card-body">
                                 <Bar total={this.state.images.length} current={this.state.currentPicture} click={this.handleToUpdate} />
 
                                 <Arrows prev={this.prevImage} next={this.nextImage}/>
 
-                                <Images image={this.state.images[this.state.currentPicture]} />
+                                <Images image={this.state.images[this.state.currentPicture]} className="d-inline-flex justify-content-center " />
 
                                 <Col className="info" >
                                     <div className="name-age"> {this.state.name}, {this.state.age} </div>
@@ -80,8 +81,10 @@ export default class Matches extends Component {
                                 </div>
                             </Card.Body>
                         </Card>
-                        
-                        <Row className="btn-row pt-4 pl-4">
+                    </Col>
+
+                    <Col className="d-inline-flex justify-content-center">
+                        <Row className="d-inline-flex justify-content-center btn-row pt-4 pl-4">
                             <Col>
                                 <Button variant="secondary" className="btn-circle-xl btn-xl ml-5 btn-check mr-2">
                                     <Image alt="" src={checkmark_image} className=" align-top" fluid />
@@ -100,8 +103,8 @@ export default class Matches extends Component {
                                 </Button>
                             </Col>
                         </Row>
-
                     </Col>
+                    
                 </Container>
             </div>
         )
