@@ -44,7 +44,7 @@ export default class Matches extends Component {
             <div>
                 <NavBar />
                 
-                <Container className="card-container" fluid >
+                <Container>
 
                     <Cards user={this.state.user} />
 

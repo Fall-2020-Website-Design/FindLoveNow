@@ -13,7 +13,6 @@
 
 .card-body {
     padding: 0rem;
-    width: 34.15rem;
 }
 
 .images {
@@ -55,10 +54,6 @@
     box-shadow: 1px 1px 5px gray;
 }
 
-.btn-row {
-    width: 550px;
-}
-
 .card-col {
     left: 25%;
 }
@@ -86,7 +81,6 @@
 }
 
 .card-img {
-    width: 34.15rem;
     height: 32.1875rem;
     border-bottom: 3px;
     border-bottom-style: solid;
