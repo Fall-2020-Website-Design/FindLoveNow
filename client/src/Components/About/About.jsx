@@ -22,7 +22,7 @@ export class About extends Component {
         return (
             <div>
                 <NavBar />
-                <Container className="About-container" fuild>
+                <Container className="About-container">
                     <h1 className="About-color text-center my-auto">About Us</h1>
                     <hr />
                     <Row>

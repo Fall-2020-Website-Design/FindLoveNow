@@ -13,39 +13,37 @@ import FilterMatches from '../../Images/FilterMatchesImg.svg'
 import ProfileImg from '../../Images/ProfileImg.svg'
 
 export class UserBar extends Component {
-    render()
-     {
-         const {email } = this.props
+    render() {
         return (
-            <Nav fluid>
+            <Nav >
                 <Form inline className="my-auto">
                     <Col />
                     <Link to="/Home">
-                        <Image src={FindaMatch} id="FindaMatch" alt="Find a Match" width="35" className="d-block mx-auto" fluid />
+                        <Image src={FindaMatch} id="FindaMatch" alt="Find a Match" width="35" className="d-block mx-auto" />
                         <Row className="NavBar-l3-color mx-auto">Find a Match</Row>
                     </Link>
 
                     <Col />
                     <Link to="/Chat">
-                        <Image src={ChatImg} id="ChatImg" alt="Chat Image" width="39" className="d-block mx-auto" fluid />
+                        <Image src={ChatImg} id="ChatImg" alt="Chat Image" width="39" className="d-block mx-auto" />
                         <Row className="NavBar-l3-color mx-auto">Chat</Row>
                     </Link>
 
                     <Col />
                     <Link to="/BlindDate">
-                        <Image src={BlindDate} id="BlindDate" alt="Blind Date" width="35" className="d-block mx-auto" fluid />
+                        <Image src={BlindDate} id="BlindDate" alt="Blind Date" width="35" className="d-block mx-auto" />
                         <Row className="NavBar-l3-color mx-auto">Blind Date</Row>
                     </Link>
 
                     <Col />
                     <Link to="/FilterMatches">
-                        <Image src={FilterMatches} id="FilterMatches" alt="Filter Matches" width="35" className="d-block mx-auto" fluid />
+                        <Image src={FilterMatches} id="FilterMatches" alt="Filter Matches" width="35" className="d-block mx-auto" />
                         <Row className="NavBar-l3-color mx-auto">Filter Matches</Row>
                     </Link>
 
                     <Col />
                     <Link to="/Profile" className="mt-2">
-                        <Image src={ProfileImg} id="ProfileImg" alt="Profile" width="35" className="d-block mx-auto" fluid />
+                        <Image src={ProfileImg} id="ProfileImg" alt="Profile" width="35" className="d-block mx-auto" />
                         <Row className="NavBar-l3-color mx-auto">Profile</Row>
                     </Link>
                 </Form>

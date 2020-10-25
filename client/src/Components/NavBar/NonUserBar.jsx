@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom';
 export class NonUserBar extends Component {
     render() {
         return (
-            <Nav fluid>
+            <Nav>
                 <Form inline >
-                    <Link to="/About" className=" nav-link mr-4" inline>
+                    <Link to="/About" className=" nav-link mr-4">
                         <div className="NavBar-l2-color">
                             About</div>
                     </Link>
