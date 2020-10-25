@@ -13,21 +13,21 @@ export class Buttons extends Component {
         return (
             <div>
                 <Col className="d-inline-flex justify-content-center">
-                    <Row className="d-inline-flex justify-content-center btn-row pt-4 pl-4">
+                    <Row className="d-inline-flex justify-content-center btn-row pt-4">
                         <Col>
-                            <Button variant="secondary" className="btn-circle-xl btn-xl ml-5 btn-check mr-2" onClick={this.props.accept} >
+                            <Button variant="secondary" className="btn-circle-xl btn-xl btn-check" onClick={this.props.accept} >
                                 <Image alt="" src={checkmark_image} className=" align-top" fluid />
                             </Button>
                         </Col>
 
-                        <Col className="pt-3 pl-5">
+                        <Col className="pt-3 ml-3">
                             <Button variant="secondary" className="btn-circle-sm btn-sm" onClick={this.props.prev} >
                                 <Image alt="" src={previous_image} className="align-top pt-1" fluid />
                             </Button>
                         </Col>
 
                         <Col>
-                            <Button variant="secondary" className="btn-circle-xl btn-xl mr-5" onClick={this.props.reject} >
+                            <Button variant="secondary" className="btn-circle-xl btn-xl" onClick={this.props.reject} >
                                 <Image alt="" src={x_image} className="align-top" fluid />
                             </Button>
                         </Col>
