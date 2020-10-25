@@ -19,10 +19,10 @@ export default class Filter extends React.Component {
             <hr className="Filter-Ruler"></hr>
             <div className="Filter-Selection">
             <label>I’m Interested In:</label>
-                <select class="custom-select d-block w-25" id="state" required>
+            <select>
                     <option value="Gender">Men</option>
-                        <option>Women</option>
-                        <option>Both</option>
+                    <option>Women</option>
+                    <option>Both</option>
             </select>
             </div>
             <div className="Filter-Submit">
@@ -40,7 +40,7 @@ export default class Filter extends React.Component {
             <hr className="Filter-Ruler"></hr>
             <div className="Filter-Selection">
             <label>Age Range: (Min)</label>
-                <select class="custom-select d-block w-25" id="state" required>
+                <select>
                     <option value="Gender">Min</option>
                     <option>19</option>
                     <option>20</option>
@@ -52,7 +52,7 @@ export default class Filter extends React.Component {
                     <option>26</option>
             </select>
             <label>Age Range: (Max)</label>
-            <select class="custom-select d-block w-25" id="state" required>
+            <select>
                     <option value="Gender">Max</option>
                     <option>19</option>
                     <option>20</option>
@@ -90,7 +90,7 @@ export default class Filter extends React.Component {
             </div>
             <div className="Filter-Ethnicity">
             <label>Ethnicity:</label>
-            <select class="custom-select d-block w-25" id="state" required>
+            <select>
                     <option value="Ethnicity">No Preferences</option>
                     <option>American Indian or Alaska Native</option>
                     <option>Asian</option>
@@ -101,9 +101,9 @@ export default class Filter extends React.Component {
             </select>
             </div>
             <hr className="Filter-Ruler"></hr>
-            <div className="custom-spacing-img-cm-f">
+            <center>
             <img className="FilterImg" src={FilterImg}/>
-            </div>
+            </center>
             <div className="custom-spacing-btn-cm-f">
           <button type="button" className="custom-button-cm-f">
             Save
