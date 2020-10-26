@@ -8,8 +8,6 @@ import Matches from "./Components/Matches/Matches";
 import Filter from "./Components/Filter/Filter";
 import Chat from "./Components/Chat/Chat";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import jwt_decode from "jwt-decode";
-import axios from "axios";
 import { AuthProvider } from "./Context/authContext";
 import PrivateRoute from "./privateRoute";
 
