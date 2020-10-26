@@ -1,14 +1,17 @@
 import React from "react";
 import ChatFigma from '../../Images/chatfigma.png';
-
 import "./Chat.css";
 
 import { Link } from "react-router-dom";
+import NavBar from "../NavBar/NavBar";
 export default class Chat extends React.Component {
 
   render() {
     return (
-        <p>Hello I finished the front end code but for now it will be commented out until the backend is connected to socket io, for the frontend to be properly displayed. I created components called InfoBar, Input, Messages, Text Container, and imported them all into the Chat.<img style={{width:"1450px", height:"800px" }} src={ChatFigma}/></p>
+      <>
+        <NavBar />
+        <p>Hello I finished the front end code but for now it will be commented out until the backend is connected to socket io, for the frontend to be properly displayed. I created components called InfoBar, Input, Messages, Text Container, and imported them all into the Chat.<img style={{ width: "1450px", height: "800px" }} src={ChatFigma} /></p>
+      </>
     );
   }
 }
@@ -54,12 +57,12 @@ const Chat = ({ location }) => {
       }
     });
   }, [ENDPOINT, location.search]);
-  
+
   useEffect(() => {
     socket.on('message', message => {
       setMessages(messages => [ ...messages, message ]);
     });
-    
+
     socket.on("roomData", ({ users }) => {
       setUsers(users);
     });
