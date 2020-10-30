@@ -19,10 +19,11 @@ export class Cards extends Component {
             age: this.props.user.age,
             bio: this.props.user.bio,
             miles: this.props.user.miles,
-            images: this.props.user.images
+            images: this.props.user.images,
+            width: 0
         }     
     }
-
+    
     handleToUpdate = (index) => {
         this.setState({
             currentPicture: index
