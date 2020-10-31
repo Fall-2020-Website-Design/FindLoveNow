@@ -27,6 +27,10 @@ export default class Matches extends Component {
         }
     }
 
+    componentDidMount () {
+        console.log(this.state.user)
+    }
+
     acceptUser = () => {
         console.log("Checkmark clicked!")
     }

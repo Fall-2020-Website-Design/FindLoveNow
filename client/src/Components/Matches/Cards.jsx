@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useRef } from 'react';
 import Bar from './Bar';
 import Arrows from './Arrows';
 import Images from './Images';
@@ -19,11 +19,11 @@ export class Cards extends Component {
             age: this.props.user.age,
             bio: this.props.user.bio,
             miles: this.props.user.miles,
-            images: this.props.user.images,
-            width: 0
+            images: this.props.user.images
         }     
+        this.myInput = React.createRef()
     }
-    
+
     handleToUpdate = (index) => {
         this.setState({
             currentPicture: index
