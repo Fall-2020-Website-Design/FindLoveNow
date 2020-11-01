@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.css';

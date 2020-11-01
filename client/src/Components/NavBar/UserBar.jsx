@@ -11,9 +11,13 @@ import ChatImg from '../../Images/ChatImg.svg'
 import BlindDate from '../../Images/BlindDateImg.svg'
 import FilterMatches from '../../Images/FilterMatchesImg.svg'
 import ProfileImg from '../../Images/ProfileImg.svg'
+import LogoutImg from '../../Images/LogoutImg.svg'
+import { AuthContext } from "../../Context/authContext";
 
 export class UserBar extends Component {
+    static contextType = AuthContext
     render() {
+        const { LogoutUser } = this.context
         return (
             <Nav >
                 <Form inline className="my-auto">
@@ -36,7 +40,7 @@ export class UserBar extends Component {
                     </Link>
 
                     <Col />
-                    <Link to="/Fliter">
+                    <Link to="/Filter">
                         <Image src={FilterMatches} id="FilterMatches" alt="Filter Matches" width="35" className="d-block mx-auto" />
                         <Row className="NavBar-l3-color mx-auto">Filter Matches</Row>
                     </Link>
@@ -47,7 +51,11 @@ export class UserBar extends Component {
                         <Row className="NavBar-l3-color mx-auto">Profile</Row>
                     </Link>
 
-                    
+                    <Col />
+                    <Link to="/" className="mt-2" onClick={ LogoutUser } >
+                        <Image src={LogoutImg} id="LogoutImg" alt="Logout" width="28" className="d-block mx-auto" />
+                        <Row className="NavBar-l3-color mx-auto">Logout</Row>
+                    </Link> 
                 </Form>
             </Nav>
         )

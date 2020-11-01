@@ -1,15 +1,13 @@
 import React from "react";
 import loginImg from '../../Images/login.svg';
-import heartImg2 from '../../Images/heart2.svg'
 import heartImg from '../../Images/heart.svg'
 import NavBar from '../NavBar/NavBar'
 import * as API from "../../util/api"
 import "./Login.css";
-import { Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import jwt_decode from "jwt-decode";
 import { AuthContext } from "../../Context/authContext";
-import { Link, Redirect } from "react-router-dom";
+
 
 export class Login extends React.Component {
   
