@@ -12,9 +12,6 @@ router.use('/helloworld', (req, res, next) => {
     res.status(200).send('hello world');
   });
 
-router.use('/sonar_ci', (req, res, next) => {
-  res.status(200).send('sonar_ci check')
-})
 
 router.use('*', (req, res, next) => {
     res.status(404).json({ errors: [{ msg: 'Unknown API route' }] });
