@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './Logo.css'
 
-const Logo = (props) => {
+const Logo = () => {
 
     return (
         <svg id="logo" width="144" height="17" viewBox="0 0 144 17" fill="none" xmlns="http://www.w3.org/2000/svg">

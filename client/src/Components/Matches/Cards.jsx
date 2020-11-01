@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useRef } from 'react';
+import React, { Component } from 'react';
 import Bar from './Bar';
 import Arrows from './Arrows';
 import Images from './Images';
@@ -21,7 +21,6 @@ export class Cards extends Component {
             miles: this.props.user.miles,
             images: this.props.user.images
         }     
-        this.myInput = React.createRef()
     }
 
     handleToUpdate = (index) => {
