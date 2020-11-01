@@ -1,8 +1,6 @@
 import React from "react";
 import ChatFigma from '../../Images/chatfigma.png';
 import "./Chat.css";
-
-import { Link } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 export default class Chat extends React.Component {
 
