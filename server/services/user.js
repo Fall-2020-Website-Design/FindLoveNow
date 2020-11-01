@@ -61,7 +61,15 @@ const createUser = async (data) => {
         email : data.email, 
         password : data.password
     })
+    
+    const id = await findUserByEmail(data.email)
+
+    // when user is created it is added to Matches table
+    const newMatch = await db.Match.create({
+        userID: id.dataValues.userID
+    })
     console.log(`${newUser} has been created in the function createUser`)
+
     return newUser
 }
 
