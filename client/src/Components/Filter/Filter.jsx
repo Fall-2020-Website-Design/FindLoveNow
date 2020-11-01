@@ -1,6 +1,7 @@
 import React from "react";
 import FilterImg from '../../Images/filter.png';
 import "./Filter.css";
+import NavBar from "../NavBar/NavBar";
 
 import { Link } from "react-router-dom";
 
@@ -11,8 +12,8 @@ export default class Filter extends React.Component {
     return (
         
         <div>
-            <h1>NavBar needed</h1>
-        <div className="filter-padding">
+            < NavBar />
+        <div className="filter-padding pt-4">
         <div className="custom-filter-container">
             <center><h1 className="Filter-Header">Filter Matches</h1></center>
             <h2 className="Filter-SubHeader">Basic Preferences:</h2>

@@ -36,7 +36,7 @@ export class UserBar extends Component {
                     </Link>
 
                     <Col />
-                    <Link to="/FilterMatches">
+                    <Link to="/Fliter">
                         <Image src={FilterMatches} id="FilterMatches" alt="Filter Matches" width="35" className="d-block mx-auto" />
                         <Row className="NavBar-l3-color mx-auto">Filter Matches</Row>
                     </Link>
