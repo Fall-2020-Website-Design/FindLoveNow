@@ -20,15 +20,14 @@ export class Login extends React.Component {
       email: "",
       password: "",
       errors: [],
+      isAuthenticated: false,
     }
   }
-  componentDidUpdate() {
-    const {isAuthenicated } = this.context
-    console.log("this is the value of authenticated from CONTEXT " + isAuthenicated)
-    // const referer = window.location.state.referer || '/' why u no work :(
-      if (isAuthenicated) {
-        return this.props.history.push("/Home")
-        // return <Redirect to={referer} />;
+
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.isAuthenticated !== this.state.isAuthenticated ) {
+      this.props.history.push("/Home")
     }
   }
 
@@ -62,6 +61,9 @@ export class Login extends React.Component {
         setUser(decoded)
         setTokens(token)
         setAuthToken(token)
+        this.setState((prevState) => {
+          return { userID: decoded.id, email: decoded.email, isAuthenticated: true };
+          })
         }
       })
     .catch((errors) => {
