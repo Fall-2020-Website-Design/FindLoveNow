@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon app",
-    "generate-docs": "jsdoc -c ./config/jsDocConfig.json"
+    "generate-docs": "jsdoc -c ./config/jsDocConfig.json",
+    "test": "jest --detectOpenHandles --forceExit",
+    "test-coverage": "jest --detectOpenHandles --forceExit --coverage"
   },
   "repository": {
     "type": "git",
@@ -19,9 +21,11 @@
   "homepage": "https://github.com/Fall-2020-Website-Design/FindLoveNow#readme",
   "devDependencies": {
     "concurrently": "^5.3.0",
+    "jest": "^26.6.1",
     "nodemon": "^2.0.4"
   },
   "dependencies": {
+    "@types/jest": "^26.0.15",
     "axios": "^0.20.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
