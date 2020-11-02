@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import signupImg from '../../Images/signup.svg'
 import NavBar from '../NavBar/NavBar'
-import heartImg2 from '../../Images/heart2.svg'
-import heartImg from '../../Images/heart.svg'
 import "./Register.css";
 import * as API from "../../util/api"
 export class Register extends Component {

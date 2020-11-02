@@ -22,9 +22,9 @@ export class App extends Component {
             <Route exact path="/Register" component={Register} />
             <Route exact path="/About" component={About} />
             <PrivateRoute path="/Profile" component={Profile} />
-            <PrivateRoute path="/Fliter" component={Filter} />
-            <PrivateRoute path="/Chat" component={Chat} />
-            <PrivateRoute path="/Home" component={Matches} />
+            <PrivateRoute exact path="/Filter" component={Filter} />
+            <PrivateRoute exact path="/Chat" component={Chat} />
+            <PrivateRoute exact path="/Home" component={Matches} />
           </Switch>
         </Router>
       </AuthProvider>
