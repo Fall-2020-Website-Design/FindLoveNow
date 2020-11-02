@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
             validate: {
                  isAlpha : true
             }
@@ -33,6 +32,10 @@ module.exports = (sequelize, DataTypes) => {
         {
             freezeTableName: true,
         });
+
+    User.associate = models => {
+        User.hasOne(models.Match, { foreignKey: "userID" })
+    }
 
     return User;
 }; 
