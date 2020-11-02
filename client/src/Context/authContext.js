@@ -1,7 +1,6 @@
-import React, { Component, createContext, useContext } from "react";
+import React, { Component, createContext} from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-
 export const AuthContext = createContext();
 
 // export const AuthProvider = AuthContext.Provider
@@ -108,10 +107,7 @@ class AuthProvider extends Component {
     );
   }
 }
-export const AuthConsumer = AuthContext.Consumer;
 
+const AuthConsumer = AuthContext.Consumer;
 export default AuthContext;
-export { AuthProvider };
-// export function useAuth() {
-//   return useContext(AuthContext);
-// }
+export { AuthProvider, AuthConsumer }
