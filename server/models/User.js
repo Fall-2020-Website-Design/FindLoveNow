@@ -34,7 +34,9 @@ module.exports = (sequelize, DataTypes) => {
         });
 
     User.associate = models => {
-        User.hasOne(models.Match, { foreignKey: "userID" })
+        User.hasOne(models.Match, { foreignKey: "userID" }),
+        User.hasOne(models.Profile, { foreignKey: "userID" }),
+        User.hasOne(models.Filter, { foreignKey: "userID" })
     }
 
     return User;
