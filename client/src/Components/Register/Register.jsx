@@ -52,7 +52,7 @@ export class Register extends Component {
     <div>
       <NavBar/> 
     <div className="custom-base-container2">
-      <div className="signInHeader">
+      <div className="signInHeader2">
         <center><h3 style={{color:"red"}}>FindLoveNow LOGO</h3></center>
         <center><h3>Sign Up</h3></center>
         <center><h3 style={{fontFamily:"Snell Roundhand, cursive", fontSize:"22px"}}>you are one step closer to finding love</h3></center>

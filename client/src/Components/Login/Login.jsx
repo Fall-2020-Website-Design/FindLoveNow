@@ -4,6 +4,7 @@ import heartImg from '../../Images/heart.svg'
 import NavBar from '../NavBar/NavBar'
 import * as API from "../../util/api"
 import "./Login.css";
+import Logo from '../Animation/Logo'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import jwt_decode from "jwt-decode";
 import { AuthContext } from "../../Context/authContext";
@@ -78,22 +79,18 @@ export class Login extends React.Component {
     return (
       <div className="base-container" ref={this.props.containerRef}>
         <NavBar/>
+        <div className="CM_Login_padding">
         <div className="custom-base-container">
+        <div class="row-cm-login">
+        <div class="column-cm-login">
+        <div className="HeaderPadding">
         <div className="signInHeader">
-        <center><h3 style={{color:"red"}}>FindLoveNow LOGO</h3></center>
-        <center><img style={{width:"30px", height:"30px" }} src={heartImg}/></center>
+        <center><img style={{width:"30px", height:"30px" }} src={heartImg}/><Logo/></center>
         <center><h3>Sign In</h3></center>
         <center><h3 style={{fontFamily:"Snell Roundhand, cursive", fontSize:"25px"}}>to find your perfect match  <img style={{width:"10px", height:"10px" }} src={heartImg}/></h3></center>
         </div>
-
-        <div className="custom-content-cm">
-          <div className="custom-container-right-cm">
-          <div className="custom-img-eclipse-cm">
-            <img className="custom-image-cm" src={loginImg} />
-            <center><h5 className="logo-cm">FindLoveNow</h5></center>
-            </div>
-          </div>
-          <div className="custom-form-cm">
+        </div>
+        <div className="custom-form-cm">
             <div className="custom-form-group-cm">
               <label className="custom-label-cm" htmlFor="email">Email</label>
               <input className ="custom-input-cm" id="email" type="text" name="email" placeholder="Email Address"
@@ -106,14 +103,19 @@ export class Login extends React.Component {
               onChange={this.handleChange("password")}
               />
             </div>
-          </div>
-          <div className="custom-spacing-btn-cm">
-          <button type="button" className="custom-button-cm" onClick={this.handleSubmit}>
+        </div>
+          <center><button type="button" className="custom-button-cm" onClick={this.handleSubmit}>
             Login
           </button>
-          </div>
-
+          </center>
         </div>
+        <div class="column-cm-login">
+        <div className="custom-container-2-cm">
+        <center><img className="custom-img-cm" src={loginImg} /></center>
+        </div>
+        </div>
+      </div>
+      </div>
       </div>
       </div>
     );
