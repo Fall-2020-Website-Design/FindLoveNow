@@ -33,9 +33,5 @@ module.exports = (sequelize, DataTypes) => {
             freezeTableName: true,
         });
 
-    User.associate = models => {
-        User.hasOne(models.Match, { foreignKey: "userID" })
-    }
-
     return User;
 }; 
