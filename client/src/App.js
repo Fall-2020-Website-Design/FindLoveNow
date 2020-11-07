@@ -7,6 +7,7 @@ import Profile from "./Components/Profile/Profile";
 import Matches from "./Components/Matches/Matches";
 import Filter from "./Components/Filter/Filter";
 import Chat from "./Components/Chat/Chat";
+import BlindDate from "./Components/BlindDate/BlindDate";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthProvider } from "./Context/authContext";
 import PrivateRoute from "./privateRoute";
@@ -25,6 +26,7 @@ export class App extends Component {
             <PrivateRoute exact path="/Filter" component={Filter} />
             <PrivateRoute exact path="/Chat" component={Chat} />
             <PrivateRoute exact path="/Home" component={Matches} />
+            <Route exact path="/BlindDate" component={BlindDate} />
           </Switch>
         </Router>
       </AuthProvider>

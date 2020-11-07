@@ -1,101 +1,89 @@
 body{
   background-color:E5E3E3;
 }
+.CM_Login_padding{
+  padding: 70px;
+}
 
-.logo-cm {
-  padding-top: 5px;
-  color: red;
-  font-family: "Times New Roman", Times, serif;
+.HeaderPadding{
+  padding-top: 8%;
+}
+
+.signInHeader{
+  text-align: center;
+  display: inline;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.column-cm-login {
+  float: left;
+  width: 50%;
+}
+.row-cm-login:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .custom-base-container {
-  padding: 27px;
-  position: absolute;
-  width: 1047px;
-  height: 650px;
-  left: 196px;
-  top: 100px;
+  margin: auto;
+  width: 80%;
+  height: 100%;
   background: #FFFFFF;
   box-shadow: 0px 4px 25px #bdbdbd;
   border-radius: 10px;
 }
-  
-.signInHeader{
-  font-size: 15px;
-  font-family: "Times New Roman", Times, serif;
-  padding-top: 20px;
-  padding-right: 550px;
-  color: 484848;
+.custom-container-2-cm {
+    width: 100%;
+    height: 540px;
+    border-radius: 0px 10px 10px 0px;
+    background: linear-gradient(180deg, rgba(244, 121, 121, 0.83) 0%, rgba(231, 30, 30, 0) 100%);
+    padding-top: 15%;
+}
+.custom-img-eclipse-cm{
+  background: linear-gradient(180deg, rgba(244, 121, 121, 0.83) 0%, rgba(231, 30, 30, 0) 100%);
+  border-radius: 50%;
+  width: 40%;
+  margin: auto;
   padding-bottom: 20px;
-
+}
+.custom-img-cm{
+  width: 100%;
+  height: 280px;
+  opacity: 0.9;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  background-color: white;
+  border-radius: 50%;
 }
 
-
-
-.custom-content-cm {
-      display: flex;
-      flex-direction: column;
-    }
-        .custom-container-right-cm {
-          padding-top: 140px;
-          position: absolute;
-          width: 523px;
-          height: 644px;
-          left: 524px;
-          top: 0px;
-          border-radius: 10px;
-          background: linear-gradient(180deg, rgba(244, 121, 121, 0.83) 0%, rgba(231, 30, 30, 0) 100%);
-        }
-        .custom-image-cm{
-          border-radius: 50%;
-          width: 300px;
-          height: 300px;
-          opacity: 0.6;
-          vertical-align: "center";
-          vertical-align:middle;
-          margin:0px 25px;
-          background-color: white;
-        }
-        .custom-img-eclipse-cm{
-          background: linear-gradient(180deg, rgba(244, 121, 121, 0.83) 0%, rgba(231, 30, 30, 0) 100%);
-          border-radius: 50%;
-          width: 350px;
-          height: 350px;
-          vertical-align: "center";
-          vertical-align:middle;
-          margin:0px 85px; 
-          padding-top: 25px;
-        }
-    
-  
-      .custom-form-cm {
-        display: flex;
-        flex-direction: column;
-        align-items: left;
-        padding-left: 70px;
-        padding-bottom: 20px;
-      }
-  
+.custom-form-cm {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding-left: 45px;
+  padding-bottom: 20px;
+}
         .custom-form-group-cm{
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          width: fit-content;
           float: left;
         }
           .custom-label-cm {
             font-size: 16px;
-            font-family: Poppins;
+            font-family: 'Times New Roman', Times, serif;
             color: red;
           }
 
           .custom-input-cm {
             margin-top: 6px;
-            min-width: 20em;
-            height: 37px;
+            width: 89%;
+            height: 40px;
             padding: 0px 10px;
-            font-size: 16px;
-              font-family: Poppins;
+            font-size: 15px;
+            font-family: 'Times New Roman', Times, serif;
             background-color: #f3f3f3;
             border: 0;
             border-radius: 4px;
@@ -113,23 +101,44 @@ body{
             }
             
   
-    .custom-button-cm {
+.custom-button-cm {
 background: linear-gradient(91.29deg, #DC2323 3.02%, rgba(244, 121, 121, 0.83) 100%);
 color: #FFFFFF;
 padding: 12px;
 border: none;
-width: 38%;
+width: 50%;
 border-radius: 10px;
 cursor: pointer;
 font-style: normal;
 font-weight: bold;
 font-size: 24px;
 font-family: 'Times New Roman', Times, serif;
-    }
-    .custom-button-cm:hover{
-      background:#DC2323;
-  }
-.custom-spacing-btn-cm{
-padding-left: 50px;
 }
+.custom-button-cm:hover{
+  background:#DC2323;
+}
+
+@media (max-width: 800px) {
+  .custom-container-2-cm {
+    display: none;
+  }
+  .custom-base-container{
+    padding: 25px;
+    width: 100%;
+  }
+  .custom-form-cm {
+    padding-left: 10px;
+  }
+  .column-cm-login{
+    width: 100%;
+  }
+  .custom-input-cm{
+    width: 100%;
+  }
+  .HeaderPadding{
+    padding-top: 1% ;
+  }
+
+}
+
 
