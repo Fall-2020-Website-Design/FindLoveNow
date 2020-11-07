@@ -2,99 +2,104 @@ body{
   background-color:E5E3E3;
 }
 
-.logo-cm {
-  padding-top: 5px;
-  color: red;
-  font-family: "Times New Roman", Times, serif;
+.CM_Register_padding{
+  padding: 30px;
+}
+
+.HeaderPadding2{
+  padding-top: 20px;
+}
+
+.signInHeader2{
+  text-align: center;
+  display: inline;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.column-cm-register {
+  float: left;
+  width: 50%;
+}
+.row-cm-register:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .custom-base-container2 {
-  padding: 27px;
-  position: absolute;
-  width: 1047px;
-  height: 700px;
-  left: 196px;
-  top: 100px;
+  margin: auto;
+  width: 80%;
+  height: 100%;
   background: #FFFFFF;
   box-shadow: 0px 4px 25px #bdbdbd;
   border-radius: 10px;
+  padding-bottom: 30px;
 }
   
-.signInHeader{
+.signInHeader2{
   font-size: 15px;
   font-family: "Times New Roman", Times, serif;
   padding-top: 20px;
   padding-right: 550px;
   color: 484848;
   padding-bottom: 20px;
-
 }
 
-
-
-.custom-content-cm {
-      display: flex;
-      flex-direction: column;
-    }
         .custom-container-right-cm {
-          padding-top: 140px;
-          position: absolute;
-          width: 523px;
-          height: 644px;
-          left: 524px;
-          top: 0px;
-          border-radius: 10px;
+          width: 100%;
+          height: 575px;
+          border-radius: 0px 10px 10px 0px;
           background: linear-gradient(180deg, rgba(244, 121, 121, 0.83) 0%, rgba(231, 30, 30, 0) 100%);
-        }
-        .custom-image-cm{
-          border-radius: 50%;
-          width: 300px;
-          height: 300px;
-          opacity: 0.6;
-          vertical-align: "center";
-          vertical-align:middle;
-          margin:0px 25px;
-          background-color: white;
+          padding-top: 25%;
         }
         .custom-img-eclipse-cm{
           background: linear-gradient(180deg, rgba(244, 121, 121, 0.83) 0%, rgba(231, 30, 30, 0) 100%);
           border-radius: 50%;
-          width: 350px;
-          height: 350px;
-          vertical-align: "center";
-          vertical-align:middle;
-          margin:0px 85px; 
-          padding-top: 25px;
+          width: 75%;
+          margin: auto;
+          padding: 50px;
+          padding-bottom: 25px;
         }
+        .custom-image-cm{
+          width: 100%;
+          height: 300px;
+          opacity: 0.9;
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
+          background-color: white;
+          border-radius: 50%;
+        }
+
     
   
       .custom-form2-cm {
-        padding-left: 70px;
         display: flex;
         flex-direction: column;
         align-items: left;
+        padding-left: 45px;
+        padding-bottom: 20px;
       }
   
         .custom-form-group-cm2{
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          width: fit-content;
           float: left;
         }
           .custom-label-cm2 {
             font-size: 16px;
-            font-family: Poppins;
+            font-family: 'Times New Roman', Times, serif;
             color: red;
           }
 
           .custom-input-cm2 {
             margin-top: 6px;
-            min-width: 20em;
-            height: 37px;
+            width: 89%;
+            height: 40px;
             padding: 0px 10px;
-            font-size: 16px;
-              font-family: Poppins;
+            font-size: 15px;
+            font-family: 'Times New Roman', Times, serif;
             background-color: #f3f3f3;
             border: 0;
             border-radius: 4px;
@@ -116,7 +121,7 @@ body{
               color: #FFFFFF;
               padding: 12px;
               border: none;
-              width: 37%;
+              width: 50%;
               border-radius: 10px;
               cursor: pointer;
               font-style: normal;
@@ -124,11 +129,32 @@ body{
               font-size: 24px;
               font-family: 'Times New Roman', Times, serif;
                   }
-                  .custom-button2-cm:hover{
-                    background:#DC2323;
+              .custom-button2-cm:hover{
+                background:#DC2323;
+              } 
+
+              @media (max-width: 900px) {
+                .custom-container-right-cm {
+                  display: none;
                 }
-            .custom-spacing-btn2-cm{
-              padding-left: 55px;
-              padding-bottom: 20px;
-            }
+                .custom-base-container2{
+                  padding: 25px;
+                  width: 100%;
+                }
+                .custom-form-cm2 {
+                  padding-left: 10px;
+                }
+                .column-cm-register{
+                  width: 100%;
+                }
+                .custom-input-cm{
+                  width: 100%;
+                }
+                .HeaderPadding2{
+                  padding-top: 10px;
+                }
+                .CM_Register_padding{
+                  padding: 40px;
+                }
+              }
             
