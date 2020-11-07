@@ -6,7 +6,7 @@ body{
 }
 
 .HeaderPadding{
-  padding-top: 50px;
+  padding-top: 8%;
 }
 
 .signInHeader{
@@ -35,20 +35,27 @@ body{
 }
 .custom-container-2-cm {
     width: 100%;
-    height: 575px;
+    height: 540px;
     border-radius: 0px 10px 10px 0px;
     background: linear-gradient(180deg, rgba(244, 121, 121, 0.83) 0%, rgba(231, 30, 30, 0) 100%);
-    padding-top: 25%;
-
+    padding-top: 15%;
 }
-
+.custom-img-eclipse-cm{
+  background: linear-gradient(180deg, rgba(244, 121, 121, 0.83) 0%, rgba(231, 30, 30, 0) 100%);
+  border-radius: 50%;
+  width: 40%;
+  margin: auto;
+  padding-bottom: 20px;
+}
 .custom-img-cm{
   width: 100%;
-  height: 270px;
-  opacity: 0.8;
+  height: 280px;
+  opacity: 0.9;
   margin-left: auto;
   margin-right: auto;
   display: block;
+  background-color: white;
+  border-radius: 50%;
 }
 
 .custom-form-cm {
@@ -117,6 +124,7 @@ font-family: 'Times New Roman', Times, serif;
   }
   .custom-base-container{
     padding: 25px;
+    width: 100%;
   }
   .custom-form-cm {
     padding-left: 10px;
@@ -126,9 +134,11 @@ font-family: 'Times New Roman', Times, serif;
   }
   .custom-input-cm{
     width: 100%;
-  
-
   }
+  .HeaderPadding{
+    padding-top: 1% ;
+  }
+
 }
 
 

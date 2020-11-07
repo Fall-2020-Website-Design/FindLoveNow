@@ -1,10 +1,10 @@
 import React from "react";
 import loginImg from '../../Images/login.svg';
-import heartImg from '../../Images/heart.svg'
-import NavBar from '../NavBar/NavBar'
-import * as API from "../../util/api"
+import heartImg from '../../Images/heart.svg';
+import NavBar from '../NavBar/NavBar';
+import * as API from "../../util/api";
 import "./Login.css";
-import Logo from '../Animation/Logo'
+import Logo from '../Animation/Logo';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import jwt_decode from "jwt-decode";
 import { AuthContext } from "../../Context/authContext";
@@ -85,7 +85,7 @@ export class Login extends React.Component {
         <div class="column-cm-login">
         <div className="HeaderPadding">
         <div className="signInHeader">
-        <center><img style={{width:"30px", height:"30px" }} src={heartImg}/><Logo/></center>
+        <center><img style={{width:"30px", height:"30px"}} src={heartImg}/><Logo/></center>
         <center><h3>Sign In</h3></center>
         <center><h3 style={{fontFamily:"Snell Roundhand, cursive", fontSize:"25px"}}>to find your perfect match  <img style={{width:"10px", height:"10px" }} src={heartImg}/></h3></center>
         </div>
@@ -111,7 +111,10 @@ export class Login extends React.Component {
         </div>
         <div class="column-cm-login">
         <div className="custom-container-2-cm">
+        <div className="custom-img-eclipse-cm">
         <center><img className="custom-img-cm" src={loginImg} /></center>
+        <center><Logo/></center>
+        </div>
         </div>
         </div>
       </div>
