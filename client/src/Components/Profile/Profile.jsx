@@ -6,9 +6,8 @@ import Footer from '../Footer/Footer'
 import ProfileUser from './ProfileUser'
 import ProfileAlbumandInf from './ProfileAlbumAndInf'
 import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
-import ProfileInf from './ProfileInf'
+
 
 export class Profile extends Component {
     render() {

@@ -4,7 +4,6 @@ import CardDeck from 'react-bootstrap/CardDeck'
 import Card from 'react-bootstrap/Card'
 import Alex from '../../Images/Alex.png'
 import Row from 'react-bootstrap/Row'
-import Location from '../../Images/location.svg'
 import ProfileInf from './ProfileInf'
 
 
@@ -26,7 +25,7 @@ export class ProfileAlbumandInf extends Component {
                         <Card.Img variant="top" src={Alex} />
                     </Card>
                 </CardDeck>
-                
+
                 <Row className="mt-4">
                     <ProfileInf />
                 </Row>
