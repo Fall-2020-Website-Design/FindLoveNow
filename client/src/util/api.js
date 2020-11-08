@@ -16,11 +16,15 @@ const searchByEmail = (email) => {
   return axios.get(`http://localhost:8080/api/users/findByEmail/${email}`)
 }
 
+const Preferences = (userData) => {
+  return axios.post('http://localhost:8080/api/filter/preferences', userData)
+}
 
 export {
     LoginUser,
     Register,
     searchByEmail,
-    helloworldtest
+    helloworldtest,
+    Preferences
 }
 

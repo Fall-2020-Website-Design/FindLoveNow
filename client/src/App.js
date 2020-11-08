@@ -7,7 +7,10 @@ import Profile from "./Components/Profile/Profile";
 import Matches from "./Components/Matches/Matches";
 import Filter from "./Components/Filter/Filter";
 import Chat from "./Components/Chat/Chat";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Join from './Components/JoinChat/Join';
+
+import BlindDate from "./Components/BlindDate/BlindDate";
+import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router-dom";
 import { AuthProvider } from "./Context/authContext";
 import PrivateRoute from "./privateRoute";
 
@@ -22,9 +25,11 @@ export class App extends Component {
             <Route exact path="/Register" component={Register} />
             <Route exact path="/About" component={About} />
             <PrivateRoute path="/Profile" component={Profile} />
-            <PrivateRoute path="/Fliter" component={Filter} />
-            <PrivateRoute path="/Chat" component={Chat} />
-            <PrivateRoute path="/Home" component={Matches} />
+            <PrivateRoute exact path="/Filter" component={Filter} />
+            <Route path="/Chat" component={Chat} />
+            <Route path="/joinchat" component={Join} />
+            <PrivateRoute exact path="/Home" component={Matches} />
+            <Route exact path="/BlindDate" component={BlindDate} />
           </Switch>
         </Router>
       </AuthProvider>

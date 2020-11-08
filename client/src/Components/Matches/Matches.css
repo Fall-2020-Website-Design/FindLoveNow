@@ -124,3 +124,16 @@
     line-height: 18px;
     color: #EE7E7E;
 }
+
+.Matches-container {
+    padding: 30px;
+    position: auto;
+    width: auto;
+    height: auto;
+    left: auto;
+    top: auto;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+
+}

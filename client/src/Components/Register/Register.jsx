@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import signupImg from '../../Images/signup.svg'
-import NavBar from '../NavBar/NavBar'
-import heartImg2 from '../../Images/heart2.svg'
-import heartImg from '../../Images/heart.svg'
+import React, { Component } from 'react';
+import signupImg from '../../Images/signup.svg';
+import NavBar from '../NavBar/NavBar';
 import "./Register.css";
-import * as API from "../../util/api"
+import * as API from "../../util/api";
+import Logo from '../Animation/Logo';
+import heartImg from '../../Images/heart.svg';
 export class Register extends Component {
   constructor(props) {
     super(props);
@@ -53,20 +53,18 @@ export class Register extends Component {
     return (
     <div>
       <NavBar/> 
+    <div className="CM_Register_padding">
     <div className="custom-base-container2">
-      <div className="signInHeader">
-        <center><h3 style={{color:"red"}}>FindLoveNow LOGO</h3></center>
+        <div class="row-cm-register">
+        <div class="column-cm-register">
+        <div className="HeaderPadding2">
+      <div className="signInHeader2">
+        <center><img style={{width:"40px", height:"40px" }} src={heartImg}/><Logo/></center>
         <center><h3>Sign Up</h3></center>
-        <center><h3 style={{fontFamily:"Snell Roundhand, cursive", fontSize:"22px"}}>you are one step closer to finding love</h3></center>
+        <center><h3 style={{fontFamily:"Snell Roundhand, cursive", fontSize:"25px"}}>you are one step closer to finding love</h3></center>
       </div>
-        <div className="custom-content-cm">
-        <div className="custom-container-right-cm">
-          <div className="custom-img-eclipse-cm">
-            <img className="custom-image-cm" src={signupImg} />
-            <center><h5 className="logo-cm">FindLoveNow</h5></center>
-            </div>
-          </div>
-          <div className="custom-form2-cm">
+      </div>
+      <div className="custom-form2-cm">
             <div className="custom-form-group-cm2">
               <label className="custom-label-cm2" htmlFor="name">Name</label>
               <input className ="custom-input-cm2" type="text" name="name" placeholder="Full name"
@@ -92,14 +90,24 @@ export class Register extends Component {
               />
             </div>
           </div>
-          <div className="custom-spacing-btn2-cm">
+          <center>
           <button type="button" className="custom-button2-cm" onClick={this.handleSubmit}>
             Register
-          </button >
+          </button>
+          </center>
+          </div>
+        <div class="column-cm-register">
+        <div className="custom-container-right-cm">
+        <div className="custom-img-eclipse-cm">
+            <img className="custom-image-cm" src={signupImg} />
+            <center><Logo/></center>
+          </div>
           </div>
         </div>
       </div>
-    </div>     
+    </div>   
+    </div>
+    </div>
     )  
   }
 }

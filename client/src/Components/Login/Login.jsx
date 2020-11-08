@@ -1,15 +1,14 @@
 import React from "react";
 import loginImg from '../../Images/login.svg';
-import heartImg2 from '../../Images/heart2.svg'
-import heartImg from '../../Images/heart.svg'
-import NavBar from '../NavBar/NavBar'
-import * as API from "../../util/api"
+import heartImg from '../../Images/heart.svg';
+import NavBar from '../NavBar/NavBar';
+import * as API from "../../util/api";
 import "./Login.css";
-import { Navbar } from 'react-bootstrap';
+import Logo from '../Animation/Logo';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import jwt_decode from "jwt-decode";
 import { AuthContext } from "../../Context/authContext";
-import { Link, Redirect } from "react-router-dom";
+
 
 export class Login extends React.Component {
   
@@ -22,15 +21,14 @@ export class Login extends React.Component {
       email: "",
       password: "",
       errors: [],
+      isAuthenticated: false,
     }
   }
-  componentDidUpdate() {
-    const {isAuthenicated } = this.context
-    console.log("this is the value of authenticated from CONTEXT " + isAuthenicated)
-    // const referer = window.location.state.referer || '/' why u no work :(
-      if (isAuthenicated) {
-        return this.props.history.push("/Home")
-        // return <Redirect to={referer} />;
+
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.isAuthenticated !== this.state.isAuthenticated ) {
+      this.props.history.push("/Home")
     }
   }
 
@@ -64,6 +62,9 @@ export class Login extends React.Component {
         setUser(decoded)
         setTokens(token)
         setAuthToken(token)
+        this.setState((prevState) => {
+          return { userID: decoded.id, email: decoded.email, isAuthenticated: true };
+          })
         }
       })
     .catch((errors) => {
@@ -78,22 +79,18 @@ export class Login extends React.Component {
     return (
       <div className="base-container" ref={this.props.containerRef}>
         <NavBar/>
+        <div className="CM_Login_padding">
         <div className="custom-base-container">
+        <div class="row-cm-login">
+        <div class="column-cm-login">
+        <div className="HeaderPadding">
         <div className="signInHeader">
-        <center><h3 style={{color:"red"}}>FindLoveNow LOGO</h3></center>
-        <center><img style={{width:"30px", height:"30px" }} src={heartImg}/></center>
+        <center><img style={{width:"30px", height:"30px"}} src={heartImg}/><Logo/></center>
         <center><h3>Sign In</h3></center>
         <center><h3 style={{fontFamily:"Snell Roundhand, cursive", fontSize:"25px"}}>to find your perfect match  <img style={{width:"10px", height:"10px" }} src={heartImg}/></h3></center>
         </div>
-
-        <div className="custom-content-cm">
-          <div className="custom-container-right-cm">
-          <div className="custom-img-eclipse-cm">
-            <img className="custom-image-cm" src={loginImg} />
-            <center><h5 className="logo-cm">FindLoveNow</h5></center>
-            </div>
-          </div>
-          <div className="custom-form-cm">
+        </div>
+        <div className="custom-form-cm">
             <div className="custom-form-group-cm">
               <label className="custom-label-cm" htmlFor="email">Email</label>
               <input className ="custom-input-cm" id="email" type="text" name="email" placeholder="Email Address"
@@ -106,14 +103,22 @@ export class Login extends React.Component {
               onChange={this.handleChange("password")}
               />
             </div>
-          </div>
-          <div className="custom-spacing-btn-cm">
-          <button type="button" className="custom-button-cm" onClick={this.handleSubmit}>
+        </div>
+          <center><button type="button" className="custom-button-cm" onClick={this.handleSubmit}>
             Login
           </button>
-          </div>
-
+          </center>
         </div>
+        <div class="column-cm-login">
+        <div className="custom-container-2-cm">
+        <div className="custom-img-eclipse-cm">
+        <center><img className="custom-img-cm" src={loginImg} /></center>
+        <center><Logo/></center>
+        </div>
+        </div>
+        </div>
+      </div>
+      </div>
       </div>
       </div>
     );
