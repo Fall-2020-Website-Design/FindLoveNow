@@ -10,7 +10,7 @@ export class Footer extends Component {
     render() {
         return (
             <footer className="footer-size mt-5">
-                <Container fluid bg="light">
+                <Container fluid>
                     <Row className="border-top justify-content-md-center p-3">
                         <Col md="auto">
                             © 2020 

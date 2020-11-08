@@ -1,31 +1,16 @@
 import React, { Component } from 'react'
 import Col from 'react-bootstrap/Col'
-import CardDeck from 'react-bootstrap/CardDeck'
-import Card from 'react-bootstrap/Card'
-import Alex from '../../Images/Alex.png'
 import Row from 'react-bootstrap/Row'
 import ProfileInf from './ProfileInf'
-
+import { AuthContext } from "../../Context/authContext";
+import ProfileDeck from './ProfileDeck'
 
 export class ProfileAlbumandInf extends Component {
     render() {
+        const { email, isAuthenicated, } = this.context
         return (
-            <Col>
-                <CardDeck>
-                    <Card style={{ width: '20rem' }} >
-                        <Card.Img variant="top" src={Alex} />
-                    </Card>
-                    <Card style={{ width: '20rem' }} >
-                        <Card.Img variant="top" src={Alex} />
-                    </Card>
-                    <Card style={{ width: '20rem' }} >
-                        <Card.Img variant="top" src={Alex} />
-                    </Card>
-                    <Card style={{ width: '20rem' }}>
-                        <Card.Img variant="top" src={Alex} />
-                    </Card>
-                </CardDeck>
-
+            <Col lg={8}>
+                <ProfileDeck />
                 <Row className="mt-4">
                     <ProfileInf />
                 </Row>

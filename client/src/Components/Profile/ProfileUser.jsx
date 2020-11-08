@@ -8,17 +8,19 @@ import Location from '../../Images/location.svg'
 export class ProfileUser extends Component {
     render() {
         return (
-            <Col md="auto">
-                <Card style={{ width: '35rem' }} className="profile-card">
+            <Col lg={4}>
+                <Card className="profile-card mb-4">
                     <Card.Img variant="top" src={Alex} />
                     <Card.Body className="p-4">
                         <Card.Title className="title-size">Alex, 27</Card.Title>
-                        <Card.Text className="text-size">
+                        <Card.Text className="text-size text-muted">
                             I'm goofy and love puppies
                     </Card.Text>
-                        <Image src={Location} />
+                        <div className="text-size text-muted">
+                            <Image src={Location} />
                         Brooklyn, NY
-                </Card.Body>
+                        </div>
+                    </Card.Body>
                 </Card>
             </Col>
         )
