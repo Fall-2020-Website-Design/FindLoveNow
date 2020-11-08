@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import CardDeck from 'react-bootstrap/CardDeck'
 import Card from 'react-bootstrap/Card'
-import Col from 'react-bootstrap/Col'
 import Alex from '../../Images/Alex.png'
 
 export class ProfileDeck extends Component {
