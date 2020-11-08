@@ -1,10 +1,8 @@
 const path = require('path');
 const express = require('express');
-// const http = require('https');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
-// const socketio = require('socket.io');
 
 const db = require('./models');
 
@@ -18,17 +16,9 @@ const app = express();
 const options = {
   cors:true,
  origins:["http://127.0.0.1:8080"],
-
 }
-const server = require('http').createServer();
+const server = require('http').createServer(app);
 const io = require('socket.io')(server, options);
-
-// const server = require('http').Server(app)
-// const io = require('socket.io')(server)
-
-
-// const server = http.createServer(app);
-// const io = socketio(server, {origins: '*:*'});
 
 app.use(cors());
 app.use(express.json());
