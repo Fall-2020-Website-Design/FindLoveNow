@@ -18,12 +18,12 @@ export class NonUserBar extends Component {
 
                 <Form inline className="NavBar-b-color">
                     <Link to="/Login">
-                        <div className="NavBar-l-color">Login
+                        <div className="NavBar-l-color p-2">Login
                         </div>
                     </Link>
                     <div className="NavBar-l-color">|</div>
                     <Link to="/Register">
-                        <div className="NavBar-l-color">Register
+                        <div className="NavBar-l-color p-2">Register
                         </div>
                     </Link>
                 </Form>

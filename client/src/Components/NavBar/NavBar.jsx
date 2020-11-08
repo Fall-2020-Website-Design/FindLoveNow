@@ -16,7 +16,7 @@ export class NavBar extends Component {
     static contextType = AuthContext
 
     render() {
-        const { email, isAuthenicated, } = this.context
+        const { email, isAuthenicated } = this.context
         return (
             <Navbar collapseOnSelect expand="md" bg="light" className="justify-content-between">
                 <Navbar.Brand>

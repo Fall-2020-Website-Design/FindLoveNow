@@ -3,9 +3,11 @@ import FilterImg from '../../Images/filter.png';
 import "./Filter.css";
 import NavBar from "../NavBar/NavBar";
 import * as API from "../../util/api"
+import Footer from '../Footer/Footer'
 
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/authContext";
+import Container from "react-bootstrap/esm/Container";
 
 
 export default class Filter extends React.Component {
@@ -84,6 +86,7 @@ export default class Filter extends React.Component {
         
         <div>
             < NavBar />
+            <Container>
         <div className="filter-padding pt-4">
         <div className="custom-filter-container">
     <center><h1 className="Filter-Header">Filter Matches {this.state.userID}</h1></center>
@@ -168,7 +171,10 @@ export default class Filter extends React.Component {
 
         </div>
         </div>
+        </Container>
+        <Footer />
         </div>
+        
     );
   }
 }
