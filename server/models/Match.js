@@ -4,10 +4,16 @@ var Sequelize = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
     const Match = sequelize.define('Match', {
-        userID: {
+        matchID: {
             type: DataTypes.INTEGER,
-            primaryKey: true
+            primaryKey: true,
+            references: {
+                model: 'User',
+                key: 'userID'
+            }
         },
+
+        // array that contains userID for accepted and rejected.
         accepted: {
             type: DataTypes.ARRAY(DataTypes.INTEGER)
         },
@@ -22,9 +28,9 @@ module.exports = (sequelize, DataTypes) => {
         freezeTableName: true,
     });
 
-    Match.associate = models => {
-        Match.belongsTo(models.User, { foreignKey: "userID" })
-    }
+    // Match.associate = models => {
+    //     Match.belongsTo(models.User, { foreignKey: "matchID" })
+    // }
 
     return Match;
 }; 
