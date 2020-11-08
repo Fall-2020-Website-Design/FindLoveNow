@@ -15,10 +15,21 @@ const { addUser, removeUser, getUser, getUsersInRoom } = require('./services/cha
 
 
 const app = express();
-const server = require('http').Server(app)
-const io = require('socket.io')(server)
+const options = {
+  cors:true,
+ origins:["http://127.0.0.1:8080"],
+
+}
+const server = require('http').createServer();
+const io = require('socket.io')(server, options);
+
+// const server = require('http').Server(app)
+// const io = require('socket.io')(server)
+
+
 // const server = http.createServer(app);
 // const io = socketio(server, {origins: '*:*'});
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extendd: false}));
@@ -99,8 +110,8 @@ db.sequelize
   
 // Test the connection
 // start up the server
-app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+server.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 
 
-module.exports = {app: app, server: server};
+module.exports = app;
