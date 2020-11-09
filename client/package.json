@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^26.0.15",
     "@types/react": "^16.9.53",
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
@@ -25,6 +26,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test-coverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -43,6 +45,9 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "^4.14.1"
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "node-sass": "^4.14.1",
+    "react-test-renderer": "^17.0.1"
   }
 }

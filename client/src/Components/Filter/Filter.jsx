@@ -7,7 +7,7 @@ import Footer from '../Footer/Footer'
 
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/authContext";
-import Container from "react-bootstrap/esm/Container";
+import  Container from "react-bootstrap/Container";
 
 
 export default class Filter extends React.Component {
