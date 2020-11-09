@@ -26,7 +26,7 @@ export class App extends Component {
             <PrivateRoute exact path="/Filter" component={Filter} />
             <PrivateRoute exact path="/Chat" component={Chat} />
             <PrivateRoute exact path="/Home" component={Matches} />
-            <Route exact path="/BlindDate" component={BlindDate} />
+            <PrivateRoute exact path="/BlindDate" component={BlindDate} />
           </Switch>
         </Router>
       </AuthProvider>
