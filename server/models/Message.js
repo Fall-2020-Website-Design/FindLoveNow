@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             references: {
                 model: 'Match',
-                key: 'userID'
+                key: 'matchID'
             }
         },
         message: {
