@@ -47,15 +47,17 @@ jobs:
 
     - name: go to client directory 
       run: cd client
-
+    - name : echo the path
+      run: echo $PWD
+      
     - name: Install dependencies
-      run: npm install
-  
+      run: npm ci
+
     - name: Run the tests
-      run: npm run test
+      run: npm run test-coverage
   
-    - name: Build
-      run: npm run build
+    # - name: Build
+    #   run: npm run build
     # - name: npm install, build, and test
     
       # run: | 
@@ -63,5 +65,5 @@ jobs:
       # npm ci
       # npm run build --if-present 
       # npm run test-coverage
-    env:
-      CI: true 
+      env:
+        CI: true 
