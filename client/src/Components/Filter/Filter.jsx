@@ -50,7 +50,6 @@ export default class Filter extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const { userID, gender, location, minAge, maxAge, maxDistance, height, ethnicity } = this.state
-
         API.Preferences({
           userID,
           gender,
@@ -78,7 +77,11 @@ export default class Filter extends React.Component {
   render() {
       const ages = []
       for (let age=18; age <= 30; age++) {
-        ages.push(<option key={age}>{age}</option>)
+        ages.push(<option key={age} value={age}>{age}</option>)
+      }
+      const distance = []
+      for (let miles=1; miles <= 10; miles++) {
+        distance.push(<option key={miles*10} value={miles*10}>{miles*10} miles</option>)
       }
 
     return (
@@ -95,6 +98,7 @@ export default class Filter extends React.Component {
             <div className="Filter-Selection">
             <label>I’m Interested In:</label>
             <select onChange={this.handleChange("gender")}>
+                <option selected disabled>Choose Gender</option>
                 <option value="men">Men</option>
                 <option value="women">Women</option>
                 <option value="both">Both</option>
@@ -113,22 +117,24 @@ export default class Filter extends React.Component {
             <div className="Filter-Selection">
             <label>Age Range: (Min)</label>
             <select onChange={this.handleChange("minAge")}>
+            <option selected disabled>Choose Min Age</option>
                 {ages}
             </select>
             <label>Age Range: (Max)</label>
             <select onChange={this.handleChange("maxAge")}>
+                <option selected disabled>Choose Max Age</option>
                 {ages}
             </select>
             </div>
-            <div className="Filter-Submit">
- 
-            <label>Max Distance:</label>
-            <input type="text" list="Distance"  onChange={this.handleChange("distance")}/>
-                <datalist id="Distance">
-                    <option value="10">10 miles</option>
-                    <option value="20">20 miles</option>
-                </datalist>
+            <div className="Filter-Ethnicity">
+        
+                <label>Max Distance:</label>
 
+                <select onChange={this.handleChange("maxDistance")}>
+                    <option selected disabled>Choose Max Distance</option>
+                    {distance}
+                </select>
+      
             </div>
             <div className="Filter-Ethnicity">
          
@@ -146,7 +152,7 @@ export default class Filter extends React.Component {
             <div className="Filter-Ethnicity">
             <label>Ethnicity:</label>
             <select onChange={this.handleChange("ethnicity")}>
-                <option selected disabled>Choose an ethnicity</option>
+                <option selected disabled>Choose An Ethnicity</option>
                 <option value="null">No Preferences</option>
                 <option>American Indian or Alaska Native</option>
                 <option>Asian</option>
