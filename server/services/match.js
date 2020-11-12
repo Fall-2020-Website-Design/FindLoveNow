@@ -1,9 +1,8 @@
-// In the services folder, we want to be able to query data from our database,
-// in this case we will be querying data from the user 
+
 const db = require("../models");
 
 /**
- * @param {Integer} userID 
+ * @param {Object} data 
  * @returns {Promise<Model>} match model instance  
  */
 const createMatch = async (data) => {

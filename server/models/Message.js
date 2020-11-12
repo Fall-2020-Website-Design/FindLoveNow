@@ -6,28 +6,26 @@ module.exports = (sequelize, DataTypes) => {
     const Message = sequelize.define('Message', {
         messageID: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             primaryKey: true,
-            references: {
-                model: 'Match',
-                key: 'matchID'
-            }
+            autoIncrement: true
         },
         message: {
             type: DataTypes.STRING
         },
     
-        sender: {
-            type: DataTypes.STRING
+        sender_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'Match',
+                key: 'requesterID'
+            }
         },
     },
     {
         freezeTableName: true,
     });
-
-    
-    // Message.associate = models => {
-    //     Message.belongsTo(models.Match, { foreignKey: "matchID" })
-    // }
 
     return Message;
 }; 
