@@ -8,17 +8,19 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
+            autoIncrement: true
+        },
+        requesterID: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
             references: {
                 model: 'User',
                 key: 'userID'
             }
         },
-
-        // The person that your currently looking at 
         addresseeID: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            primaryKey: true,
             references: {
                 model: 'User',
                 key: 'userID'
