@@ -51,4 +51,4 @@ module.exports = {
     createMatch,
     findAllMatches,
     loadPotentialMatches
-} 
+}
