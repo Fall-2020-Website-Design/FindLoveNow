@@ -64,11 +64,6 @@ const createUser = async (data) => {
     
     const id = await findUserByEmail(data.email)
 
-    // when user is created userID is added to Match table
-    const newMatch = await db.Match.create({
-        matchID: id.dataValues.userID
-    })
-
     // when user is created userID is added to Profile table
     const newProfile = await db.Profile.create({
         userID: id.dataValues.userID
