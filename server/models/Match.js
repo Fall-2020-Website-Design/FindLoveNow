@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     const Match = sequelize.define('Match', {
         matchID: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             primaryKey: true,
             references: {
                 model: 'User',
@@ -13,15 +14,24 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
 
-        // array that contains userID for accepted and rejected.
-        accepted: {
-            type: DataTypes.ARRAY(DataTypes.INTEGER)
+        // The person that your currently looking at 
+        addresseeID: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            references: {
+                model: 'User',
+                key: 'userID'
+            }
         },
-        rejeceted: {
-            type: DataTypes.ARRAY(DataTypes.INTEGER)
-        },
-        previous: {
-            type: DataTypes.INTEGER
+        // 1 for success
+        // 0 for rejected
+        status: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: {
+                isIn: [[0, 1]]
+            }
         }
     },
     {

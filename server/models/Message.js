@@ -15,11 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         message: {
             type: DataTypes.STRING
         },
-        
-
-        // I don't think sender is necessary
-        // since we can get the userID of the match which will allow us to 
-        // check the sender ..... 
+    
         sender: {
             type: DataTypes.STRING
         },
