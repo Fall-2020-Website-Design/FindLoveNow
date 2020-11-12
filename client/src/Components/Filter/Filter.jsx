@@ -5,7 +5,6 @@ import NavBar from "../NavBar/NavBar";
 import * as API from "../../util/api"
 import Footer from '../Footer/Footer'
 
-import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/authContext";
 import Container from "react-bootstrap/esm/Container";
 
