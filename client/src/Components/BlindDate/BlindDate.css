@@ -1,0 +1,100 @@
+body{
+    background-color:E5E3E3;
+  }
+  .CM_BD_padding{
+    padding: 3%;
+  }
+  .custom-container-BD{
+    margin: auto;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(244, 121, 121, 0.83) 0%, rgba(231, 30, 30, 0) 100%);
+    box-shadow: 0px 4px 25px #bdbdbd;
+    border-radius: 10px;
+    padding: 2%;
+
+  }
+  .custom-container-BD-2{
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    background:white;
+    opacity: 0.7;
+    box-shadow: 0px 4px 25px #bdbdbd;
+  }
+  .BD-img{
+      width: 10%;
+  }
+  .BD-img2{
+    width: 35%;
+}
+  .BB-SubHeader{
+    color: #EE7E7E;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    padding: 20px;
+    text-decoration-line: underline;
+}
+.BB-Ruler{
+    border: 2px solid rgba(253, 0, 0, 0.42);
+    width: 50%;
+    border-radius: 10px;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.BB-Selection select{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    width: 30%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #9F9F9F 3px;
+    border-radius: 3px;
+    color: #9F9F9F;
+  }
+.interest-BD{
+    color: #9F9F9F;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: normal;
+    font-weight: bold;
+}
+.custom-button-cm-BD {
+    background: linear-gradient(91.29deg, #DC2323 3.02%, rgba(244, 121, 121, 0.83) 100%);
+    color: #FFFFFF;
+    padding: 8px;
+    border: none;
+    width: 17%;
+    border-radius: 10px;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 100%;
+    font-family: 'Times New Roman', Times, serif;
+    }
+    .custom-button-cm-BD:hover{
+      background:#DC2323;
+}
+@media (max-width: 800px) {
+    .CM_BD_padding{
+        padding: 5%;
+        padding-top: 20%;
+      }
+    .BD-img{
+        width: 100%;
+    }
+    .BD-img2{
+      display: none;
+  }
+    .custom-button-cm-BD{
+        width: 30%;  
+    }
+  
+  }

@@ -9,13 +9,31 @@ const db = require('./models');
 const PORT = process.env.PORT || 8080;
 
 const apiRoutes = require('./routes/api/index');
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./services/chat');
 
 
 const app = express();
+const options = {
+  cors:true,
+ origins:["http://127.0.0.1:8080"],
+}
+const server = require('http').createServer(app);
+const io = require('socket.io')(server, options);
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extendd: false}));
 app.use(bodyParser.json());
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
+  next();
+});
+
+
 
 // for production use, we serve the static react build folder
 if(process.env.NODE_ENV==='production') {
@@ -34,7 +52,6 @@ if(process.env.NODE_ENV==='production') {
 // NOTE: toggling this to true drops all tables (including data)
 db.sequelize.sync({ force: false });
 
-
 db.sequelize
   .authenticate()
   .then(() => {
@@ -43,10 +60,82 @@ db.sequelize
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
+
+
+  io.on('connect', (socket) => {
+    console.log(`This is calling socket right after io connect on the server side ${socket}`)
+    socket.on('join', ({ name, room }, callback) => {
+      const { error, user } = addUser({ id: socket.id, name, room });
+
+
+      if(error) return callback(error);
+
+
+      console.log(`Socket ${socket.id} joining ${room}`);
+      socket.join(user.room);
+  
+      socket.emit('message', { user: 'admin', text: `${user.name}, welcome to room ${user.room}.`});
+      socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined!` });
+  
+      io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
+  
+      callback();
+    });
+  
+    socket.on('sendMessage', (message, callback) => {
+      const user = getUser(socket.id);
+      console.log(`Getting the sendMessage data on the event sendMessage ${message}` )
+      io.to(user.room).emit('message', { user: user.name, text: message });
+  
+      callback();
+    });
+  
+    socket.on('disconnect', () => {
+      console.log(`Disconnected: ${socket.id}`)
+      const user = removeUser(socket.id);
+      if(user) {
+        io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.` });
+        io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room)});
+      }
+    })
+   });
+
+
+//   const socketHistory = {};
+
+//   io.on('connection', (socket) => {
+//     let socketRoom;
+//     console.log(`Connected: ${socket.id}`);
+//     socket.on('disconnect', () =>
+//        console.log(`Disconnected: ${socket.id}`));
+
+
+//     socket.on('join', (room) => {
+//        console.log(`Socket ${socket.id} joining ${room}`);
+//        socket.join(room);
+//        socketRoom = room;
+//        socket.emit('joinResponse', socketHistory[room])
+//     });
+//     socket.on('chat', (data) => {
+//        const { message, room } = data;
+//        console.log(`msg: ${message}, room: ${room}`);
+//        socket.broadcast.to(socketRoom).emit('chat', message) 
+//        socketHistory[socketRoom] = socketHistory[socketRoom] ?
+//        [message, ...socketHistory[socketRoom]] : [message]
+//          });
+//     socket.on('switch', (data) => {
+//       const { prevRoom, nextRoom } = data;
+//       if (prevRoom) socket.leave(prevRoom);
+//       if (nextRoom) socket.join(nextRoom);
+//       socketRoom = nextRoom;
+//     });
+//  });
+
+
   
 // Test the connection
 // start up the server
-app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+server.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 
 
