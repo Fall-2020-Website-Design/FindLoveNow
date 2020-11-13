@@ -15,6 +15,8 @@ import Chrystal from '../../Images/Chrystal.png'
 import LinkedIn from '../../Images/LinkedIn.png'
 import GitHub from '../../Images/GitHub.svg'
 import Email from '../../Images/Email.png'
+import Logo from '../Animation/Logo';
+import heartImg from '../../Images/heart.svg';
 
 
 
@@ -26,26 +28,27 @@ export class About extends Component {
                 <div className="pt-4 pb-4">
                     <Container className="About-container">
                         <h1 className="About-color text-center my-auto">About Us</h1>
-                        <hr />
+                        <hr className="About-Ruler"/>
                         <Row>
                             <Col>
                                 <Form inline>
-                                    <p className="About-FindLoveNow-color mr-2" >FindLoveNow</p>
-                                    <p className="About-text">is a dating web application meant for helping people from all around the world, find their perfect match in love.</p>
+                                <center><img style={{width:"30px", height:"30px"}} src={heartImg}/><Logo/>
+                                <br/>
+                                    <p className="About-text">FindLoveNow was created in 2020, as a final project for CSC 47300, Website Design, at City College. The purpose of this web application called FindLoveNow is to help adults from all around the world, find their perfect match in love.</p>
+                                </center>
                                 </Form>
                             </Col>
                         </Row>
-                        <hr />
+                        <hr className="About-Ruler"/>
                         <h1 className="About-color text-center my-auto">Developers</h1>
-                        <hr />
-
+                        <hr className="About-Ruler"/>
+                        <center>
                         <Row>
-                            <Col md={4}>
+                            <Col md={5}>
                                 <Image src={YuBin} className="About-image d-block mx-auto" />
                                 <br />
                                 <h5 className="About-text text-center">Yu Bin Liu (Jacky)</h5>
                             </Col>
-
                             <Col className="my-auto">
                                 <Row className="my-auto">
                                     <Col>
@@ -66,10 +69,10 @@ export class About extends Component {
                                 </Row>
                             </Col>
                         </Row>
-                        <hr />
-
+                        <hr className="about-transition-ruler"/>
+                        
                         <Row>
-                            <Col md={4}>
+                            <Col md={5}>
                                 <Image src={Chrystal} className="About-image d-block mx-auto" />
                                 <br />
                                 <h5 className="About-text text-center">Chrystal Mingo</h5>
@@ -95,10 +98,10 @@ export class About extends Component {
                                 </Row>
                             </Col>
                         </Row>
-                        <hr />
-
+                        <hr className="about-transition-ruler"/>
+                        
                         <Row>
-                            <Col md={4}>
+                            <Col md={5}>
                                 <Image src={Edgar} className="About-image d-block mx-auto" />
                                 <br />
                                 <h5 className="About-text text-center">Edgar Pineda</h5>
@@ -123,11 +126,12 @@ export class About extends Component {
                                     </Col>
                                 </Row>
                             </Col>
+
                         </Row>
-                        <hr />
+                        <hr className="about-transition-ruler"/>
 
                         <Row>
-                            <Col md={4}>
+                            <Col md={5}>
                                 <Image src={Alex} className="About-image d-block mx-auto" />
                                 <br />
                                 <h5 className="About-text text-center">Jia Peng Zhen (Alex)</h5>
@@ -153,6 +157,7 @@ export class About extends Component {
                                 </Row>
                             </Col>
                         </Row>
+                        </center>
                     </Container>
                 </div>
                 <Footer />
