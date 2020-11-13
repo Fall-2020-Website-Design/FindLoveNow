@@ -10,6 +10,7 @@ import Chat from "./Components/Chat/Chat";
 import Join from './Components/JoinChat/Join';
 
 import BlindDate from "./Components/BlindDate/BlindDate";
+import RequiredForm from "./Components/RequiredForm/RequiredForm";
 import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router-dom";
 import { AuthProvider } from "./Context/authContext";
 import PrivateRoute from "./privateRoute";
@@ -20,6 +21,7 @@ export class App extends Component {
       <AuthProvider>
         <Router>
           <Switch>
+          <Route exact path="/Form" component={RequiredForm} />
             <Route exact path="/" component={Login} />
             <Route exact path="/Login" component={Login} />
             <Route exact path="/Register" component={Register} />
