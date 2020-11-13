@@ -1,7 +1,11 @@
 'use strict';
 
 var Sequelize = require('sequelize');
+const user = require('../services/user');
 
+
+
+// https://stackoverflow.com/questions/35020618/one-to-one-user-messaging-database-schema
 module.exports = (sequelize, DataTypes) => {
     const Message = sequelize.define('Message', {
         messageID: {
@@ -13,15 +17,27 @@ module.exports = (sequelize, DataTypes) => {
         message: {
             type: DataTypes.STRING
         },
-    
+
+        // can we grab the matchID and use 
+        // that to look at the requesterID?
         sender_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'Match',
-                key: 'requesterID'
+                model: 'User',
+                key: 'userID',
+                as: 'sender_id'
             }
         },
+        recipient_id : {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'User',
+                key: 'userID',
+                as: 'recipient_id'
+            }
+        }
     },
     {
         freezeTableName: true,
