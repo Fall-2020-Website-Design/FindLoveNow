@@ -21,9 +21,7 @@ export default class Filter extends React.Component {
             location: null,
             minAge: null,
             maxAge: null,
-            maxDistance: null,
             height: null,
-            ethnicity: null,
             errors: []
         }
     }
@@ -92,7 +90,7 @@ export default class Filter extends React.Component {
             <Container>
         <div className="filter-padding pt-4">
         <div className="custom-filter-container">
-    <center><h1 className="Filter-Header">Filter Matches {this.state.userID}</h1></center>
+    <center><h1 className="Filter-Header">Filter Matches</h1></center>
             <h2 className="Filter-SubHeader">Basic Preferences:</h2>
             <hr className="Filter-Ruler"></hr>
             <div className="Filter-Selection">
@@ -126,16 +124,7 @@ export default class Filter extends React.Component {
                 {ages}
             </select>
             </div>
-            <div className="Filter-Ethnicity">
-        
-                <label>Max Distance:</label>
 
-                <select onChange={this.handleChange("maxDistance")}>
-                    <option selected disabled>Choose Max Distance</option>
-                    {distance}
-                </select>
-      
-            </div>
             <div className="Filter-Ethnicity">
          
                 <label>Height:</label>
@@ -148,19 +137,6 @@ export default class Filter extends React.Component {
                     <option value="50">6'5+</option>
                 </select>
       
-            </div>
-            <div className="Filter-Ethnicity">
-            <label>Ethnicity:</label>
-            <select onChange={this.handleChange("ethnicity")}>
-                <option selected disabled>Choose An Ethnicity</option>
-                <option value="null">No Preferences</option>
-                <option>American Indian or Alaska Native</option>
-                <option>Asian</option>
-                <option>Black or African American</option>
-                <option>Hispanic or Latino</option>
-                <option>Native Hawaiian or Other Pacific Islander.</option>
-                <option>White</option>
-            </select>
             </div>
             <hr className="Filter-Ruler"></hr>
             <center>
