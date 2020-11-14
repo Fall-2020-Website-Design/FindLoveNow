@@ -5,6 +5,7 @@
 const express = require('express');
 const router = new express.Router();
 const matchController = require('../../controllers/match.js');
+const validatorErrors = require('../../middleware/validatorErrors');
 
 
 /**
@@ -15,9 +16,9 @@ const matchController = require('../../controllers/match.js');
  */
 router.post('/response',
     [
-
+        validatorErrors
     ]
-, matchController.reponse)
+, matchController.response)
 
 /**
  * 
@@ -25,10 +26,23 @@ router.post('/response',
  * @memberof module:api/match
  * @name GET /find
  */
-router.post('/find',
+router.get('/find',
     [
-
+        validatorErrors
     ]
 , matchController.loadPotentialMatches)
+
+
+/**
+ * 
+ *
+ * @memberof module:api/match
+ * @name GET /allMatches/:userID
+ */
+router.get('/AllMatches',
+    [
+        validatorErrors
+    ]
+, matchController.allMatches)
 
 module.exports = router;

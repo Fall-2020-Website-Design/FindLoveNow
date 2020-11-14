@@ -1,5 +1,6 @@
 
 const db = require("../models");
+const { Op } = require("sequelize");
 const filterServices = require("./filter.js");
 
 /**
@@ -19,14 +20,18 @@ const createMatch = async (data) => {
 };
 
 /**
+ * Finds all your matches
  * @param {Integer} userID 
  * @returns {Promise<Model>} matches model instance  
  */
 const findAllMatches = async (userID) => {
     const matches = await db.Match.findAll({
         where: {
-            requesterID: userID,
-            status: 1
+            [Op.or]: [
+             {requesterID: userID },
+             { addresseeID: userID},
+             { status: 1 }
+            ]
         }
     });
 

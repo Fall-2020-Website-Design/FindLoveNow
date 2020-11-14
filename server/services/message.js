@@ -1,4 +1,5 @@
 const db = require("../models");
+const { Op } = require("sequelize");
 
 
 /**
@@ -19,17 +20,17 @@ const createMessage = async (data) => {
 
 
 /**
- * @param {Integer} matchID 
+ * @param {Integer} userID 
  * @returns {Promise<Model>} Find all message instance  
  */
 
 const findAllMessages = async (userID) => {
     const allMessages = await db.Message.findAll({
         where: {
-            [Op.or]: [{  
-            sender_id : userID,
-            recipient_id: userID
-            }]
+            [Op.or]: [
+             { sender_id : userID } ,
+             { recipient_id: userID }
+            ]
         }
     })
     console.log(`${allMessages} is from service`)

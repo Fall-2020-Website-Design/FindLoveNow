@@ -1,11 +1,7 @@
 'use strict';
 
 var Sequelize = require('sequelize');
-const user = require('../services/user');
 
-
-
-// https://stackoverflow.com/questions/35020618/one-to-one-user-messaging-database-schema
 module.exports = (sequelize, DataTypes) => {
     const Message = sequelize.define('Message', {
         messageID: {
