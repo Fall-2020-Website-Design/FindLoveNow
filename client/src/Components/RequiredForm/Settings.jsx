@@ -7,6 +7,8 @@ import Card from 'react-bootstrap/Card'
 import YuBin from '../../Images/YuBin.png'
 import './RequiredForm.css'
 import { AuthContext } from "../../Context/authContext";
+import * as API from "../../util/api";
+
 
 
 export class Settings extends Component {
@@ -14,10 +16,11 @@ export class Settings extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userID: null,
+            userID: this.props.userID,
             Age: null,
             Gender: null,
-            Location: null,
+            City: null,
+            States: null,
             Interested: null,
             Height: null,
             Education: null,
@@ -26,6 +29,17 @@ export class Settings extends Component {
             Phrase: null,
         }
     }
+
+    handleChange = (input) => (e) => {
+        this.setState({ [input]: e.target.value })
+    };
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const { Age , Gender , City , States , Interested , Height , Education , Hobby , Work , Phrase } = this.state;
+
+    }
+
 
 
     render() {
@@ -133,7 +147,8 @@ export class Settings extends Component {
                                     <Col sm={4}>
                                         <Form.Control as="select" id="Interested">
                                             <option value="M">Man</option>
-                                            <option value="W">women</option>
+                                            <option value="W">Woman</option>
+                                            <option value="B">Both</option>
                                             <option value="Select" selected="true">Choose</option>
                                         </Form.Control>
                                     </Col>
@@ -146,8 +161,11 @@ export class Settings extends Component {
                             <Form.Group>
                                 <Form.Row>
                                     <Form.Label column="sm" sm={2} >Height:</Form.Label>
-                                    <Col sm={2}>
-                                        <Form.Control type="text" placeholder="" id="Height" maxlength="4" />
+                                    <Col sm={1}>
+                                        <Form.Control type="number" placeholder="Feet" id="Height" max="6" min="0" />
+                                    </Col>
+                                    <Col sm={1}>
+                                        <Form.Control type="number" placeholder="Inches" id="Height" max="11" min="0" />
                                     </Col>
                                     <Col sm={2}>
                                         <Form.Label column="sm" sm={2} className="text-muted">(Optional)</Form.Label>
