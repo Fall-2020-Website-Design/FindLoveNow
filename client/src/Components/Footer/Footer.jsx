@@ -12,10 +12,10 @@ export class Footer extends Component {
             <footer className="footer-size mt-5">
                 <Container fluid>
                     <Row className="border-top justify-content-md-center p-3">
-                        <Col md="auto">
+                        <Col sm="auto">
                             © 2020 
                         </Col>
-                        <Col md="auto">
+                        <Col sm="auto">
                         <Link to="/About" className="Contact-color">
                             Contact Us
                         </Link>

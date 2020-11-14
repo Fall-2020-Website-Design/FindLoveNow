@@ -1,0 +1,44 @@
+.requiredform-container {
+    padding: 30px;
+    position: auto;
+    width: auto;
+    height: auto;
+    left: auto;
+    top: auto;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+.requiredform-color {
+    color: #737373;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    padding: 20px;
+    text-decoration-line: underline;
+}
+
+.image-setting {
+    object-fit: cover;
+    
+}
+
+.setting-button-color {
+    background: linear-gradient(91.29deg, #DC2323 3.02%, rgba(244, 121, 121, 0.83) 100%);
+    color: #FFFFFF;
+    padding: 12px;
+    border: none;
+    width: 20%;
+    border-radius: 10px;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.setting-button-color:hover {
+    background:#DC2323;
+}

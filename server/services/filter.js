@@ -7,7 +7,7 @@ const db = require("../models");
  */
 const getPreferences = async (id) => {
     const preferences = await db.Filter.findByPk(id);
-    return preferences;
+    return preferences.dataValues;
 }
 
 
