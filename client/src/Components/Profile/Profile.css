@@ -41,3 +41,7 @@
 .profileinf-button-color:hover {
     background:#DC2323;
 }
+
+.image-deck {
+    object-fit: cover;
+}
