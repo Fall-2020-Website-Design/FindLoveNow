@@ -8,9 +8,9 @@ const {check, param, header} = require('express-validator');
  * Post filter form to DB
  *
  * @memberof module:api/filter
- * @name POST /settings
+ * @name PUT /preferences
  */
-router.post('/preferences',
+router.put('/preferences',
 [
     check('gender',"Gender input field required")
     .isLength( {min : 1 } ),
@@ -20,11 +20,7 @@ router.post('/preferences',
     .isLength( {min : 1 } ),
     check('maxAge', "Max Age input field required")
     .isLength( {min : 1 } ),
-    check('distance', "Distance input field required")
-    .isLength( {min : 1 } ),
     check('height', "Height input field required")
-    .isLength( {min : 1 } ),
-    check('ethnicity', "Ethnicity input field required")
     .isLength( {min : 1 } ),
     validatorErrors
 ], filterController.preferences)

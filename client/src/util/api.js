@@ -17,7 +17,7 @@ const searchByEmail = (email) => {
 }
 
 const Preferences = (userData) => {
-  return axios.post('http://localhost:8080/api/filter/preferences', userData)
+  return axios.put('http://localhost:8080/api/filter/preferences', userData)
 }
 
 export {

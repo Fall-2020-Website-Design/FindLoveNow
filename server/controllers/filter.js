@@ -5,7 +5,17 @@ const FilterServices = require("../services/filter.js");
     @type {RequestHandler}
  */
 const preferences =  async (req, res, next) => {
-    return FilterServices.updatePreferences(req.body)
+    const { userID, gender, location, minAge, maxAge, height } = req.body;
+    const preferences = { 
+        userID, 
+        gender, 
+        location, 
+        minAge, 
+        maxAge, 
+        height 
+    };
+    
+    return FilterServices.updatePreferences(preferences)
         .then((filter) => {
             res.json(filter)
         })

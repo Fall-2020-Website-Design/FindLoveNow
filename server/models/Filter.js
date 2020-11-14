@@ -21,15 +21,9 @@ module.exports = (sequelize, DataTypes) => {
         maxAge: {
             type: DataTypes.INTEGER
         },
-        maxDistance: {
-            type: DataTypes.INTEGER
-        },
         height: {
             type: DataTypes.INTEGER
         },
-        ethinicity: {
-            type: DataTypes.STRING
-        }
     },
         {
             freezeTableName: true,
