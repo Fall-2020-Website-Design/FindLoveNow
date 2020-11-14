@@ -1,10 +1,10 @@
-// In the services folder, we want to be able to query data from our database,
-// in this case we will be querying data from the user 
+
 const db = require("../models");
+const { Op } = require("sequelize");
 const filterServices = require("./filter.js");
 
 /**
- * @param {Integer} userID 
+ * @param {Object} data 
  * @returns {Promise<Model>} match model instance  
  */
 const createMatch = async (data) => {
@@ -20,14 +20,18 @@ const createMatch = async (data) => {
 };
 
 /**
+ * Finds all your matches
  * @param {Integer} userID 
  * @returns {Promise<Model>} matches model instance  
  */
 const findAllMatches = async (userID) => {
     const matches = await db.Match.findAll({
         where: {
-            requesterID: userID,
-            status: 1
+            [Op.or]: [
+             {requesterID: userID },
+             { addresseeID: userID},
+             { status: 1 }
+            ]
         }
     });
 
