@@ -11,7 +11,7 @@ const ProfileServices = require("../services/profile.js");
 /**
     @type {RequestHandler}
 */
-const reponse = async (req, res, next) => {
+const response = async (req, res, next) => {
     const { requesterID , addresseeID , status } = req.body;
 
     match = {
@@ -56,9 +56,28 @@ const previousMatch = async (req, res, next) => {
     }
 }
 
+/**
+    @type {RequestHandler}
+*/
+const allMatches = async(req,res,next) => {
+    const { userID } = req.body
+    try {
+        const matches = await MatchServices.findAllMatches(userID)
+        return res.json(matches);
+    }
+    catch(error) {
+        next(error)
+    }
+} 
 
 module.exports = {
+<<<<<<< HEAD
     reponse,
     loadPotentialMatches,
     previousMatch
+=======
+    response,
+    loadPotentialMatches,
+    allMatches
+>>>>>>> e51c23693f70fdde6a312530b0fb1b480cf174e5
 }

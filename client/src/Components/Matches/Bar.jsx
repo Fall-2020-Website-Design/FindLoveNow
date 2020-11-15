@@ -17,7 +17,7 @@ export class Bar extends Component {
         this.state = {
             total: this.props.total,
             bars: [],
-            barSize: (30 / this.props.total).toString() + "rem"
+            barSize: (80 / this.props.total).toString() + "%"
         }
     }
 

@@ -23,7 +23,7 @@ export class About extends Component {
         return (
             <div>
                 <NavBar />
-                <div className="pt-4 pb-4">
+                <div className="p-4">
                     <Container className="About-container">
                         <h1 className="About-color text-center my-auto">About Us</h1>
                         <hr />

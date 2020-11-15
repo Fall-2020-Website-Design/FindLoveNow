@@ -5,37 +5,46 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        age: {
+        Gender: {
+            type: DataTypes.STRING,
+            validate: {
+                isAlpha : true
+            }
+        },
+        Age: {
             type: DataTypes.INTEGER
         },
-        location: {
+        Location: {
             type: DataTypes.STRING,
             validate: {
                 isAlpha : true
             }
         },
-        height: {
+        Interested: {
+            type: DataTypes.STRING
+        },
+        Height: {
             type: DataTypes.INTEGER
         },
-        education: {
+        Education: {
             type: DataTypes.STRING,
             validate: {
                 isAlpha : true
             }
         },
-        bio: {
+        Hobby: {
             type: DataTypes.STRING,
             validate: {
                 isAlpha : true
             }
         },
-        ethnicity: {
-            type: DataTypes.STRING,
-            validate: {
-                isAlpha : true
-            }
+        Work: {
+            type: DataTypes.STRING
         },
-        picture: {
+        Phrase: {
+            type: DataTypes.STRING
+        },
+        Picture: {
             type: DataTypes.ARRAY(DataTypes.INTEGER)
         }
     },
