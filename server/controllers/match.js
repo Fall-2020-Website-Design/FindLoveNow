@@ -3,6 +3,7 @@
 // in this case, this is the controller for match
 
 const MatchServices = require("../services/match.js");
+const ProfileServices = require("../services/profile.js");
 
 /**
  * @typedef {import('express').RequestHandler} RequestHandler}
@@ -41,9 +42,23 @@ const loadPotentialMatches = async (req, res, next) => {
     }
 }
 
+/**
+    @type {RequestHandler}
+*/
+const previousMatch = async (req, res, next) => {
+    const { previousUserID } = req.body;
+    try {
+        const profile = await ProfileServices.getProfile(previousUserID);
+        return res.json(profile);
+    }
+    catch (error) {
+        next(error);
+    }
+}
 
 
 module.exports = {
     reponse,
-    loadPotentialMatches
+    loadPotentialMatches,
+    previousMatch
 }
