@@ -37,7 +37,6 @@ router.get('/find',
  * 
  *
  * @memberof module:api/match
-<<<<<<< HEAD
  * @name GET /previous
  */
 router.get('/previous',
@@ -45,7 +44,10 @@ router.get('/previous',
         validatorErrors
     ]
 , matchController.previousMatch)
-=======
+
+/**
+ * 
+ *
  * @name GET /allMatches/:userID
  */
 router.get('/AllMatches',
@@ -53,6 +55,5 @@ router.get('/AllMatches',
         validatorErrors
     ]
 , matchController.allMatches)
->>>>>>> e51c23693f70fdde6a312530b0fb1b480cf174e5
 
 module.exports = router;

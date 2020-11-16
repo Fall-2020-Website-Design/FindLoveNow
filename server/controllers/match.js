@@ -4,6 +4,7 @@
 
 const MatchServices = require("../services/match.js");
 const ProfileServices = require("../services/profile.js");
+const FilterServices = require("../services/filter.js")
 
 /**
  * @typedef {import('express').RequestHandler} RequestHandler}
@@ -32,10 +33,19 @@ const response = async (req, res, next) => {
     @type {RequestHandler}
 */
 const loadPotentialMatches = async (req, res, next) => {
-    const { userID } = req.body;
+    const { gender, location, minAge, maxAge, height } = req.body;
+    
+    preferences = {
+        gender, 
+        location, 
+        minAge, 
+        maxAge, 
+        height
+    }
+
     try {
-        const matches = await MatchServices.loadPotentialMatches(userID)
-        return res.json(matches);
+        const potentialMatches = await ProfileServices.getFilteredProfiles(preferences)
+        return res.json(potentialMatches);
     }
     catch (error) {
         next(error);
@@ -71,13 +81,8 @@ const allMatches = async(req,res,next) => {
 } 
 
 module.exports = {
-<<<<<<< HEAD
-    reponse,
-    loadPotentialMatches,
-    previousMatch
-=======
     response,
     loadPotentialMatches,
+    previousMatch,
     allMatches
->>>>>>> e51c23693f70fdde6a312530b0fb1b480cf174e5
 }
