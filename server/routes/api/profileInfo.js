@@ -9,6 +9,6 @@ const validatorErrors = require('../../middleware/validatorErrors');
 const {check, param, header} = require('express-validator');
 
 // should match with "/api/ProfileInfo"
-router.put('/updatePersonalInfo/', [validatorErrors], ProfileInfoControllers.updatePersonalInfo);
+router.put('/updatePersonalInfo', [validatorErrors], ProfileInfoController.updatePersonalInfo);
 
 module.exports = router;

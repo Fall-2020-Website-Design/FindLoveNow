@@ -152,9 +152,6 @@ export class Settings extends Component {
                                             <option value="Select" selected="true">Choose</option>
                                         </Form.Control>
                                     </Col>
-                                    <Col sm={2}>
-                                        <Form.Label column="sm" sm={2} className="text-muted">(Optional)</Form.Label>
-                                    </Col>
                                 </Form.Row>
                             </Form.Group>
 
