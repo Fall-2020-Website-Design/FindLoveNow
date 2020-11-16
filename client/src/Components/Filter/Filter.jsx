@@ -87,7 +87,7 @@ export default class Filter extends React.Component {
         <div>
             < NavBar />
             <Container>
-        <div className="filter-padding pt-4">
+        <div className="filter-padding">
         <div className="custom-filter-container">
     <center><h1 className="Filter-Header">Filter Matches</h1></center>
             <h2 className="Filter-SubHeader">Basic Preferences:</h2>

@@ -18,36 +18,53 @@ html, body {
     text-align: center;
     height: 100vh;
     align-items: center;
-    background-color: #1A1A1D;
+    background-color: #EAEAEA;
   }
   
   .joinInnerContainer {
-    width: 20%;
+    margin: auto;
+    width: 30%;
+    padding-bottom: 35px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
   }
   
   .joinInput {
-    border-radius: 0;
-    padding: 15px 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
     width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid black;
+    border-radius: 3px;
   }
   
-  .heading {
-    color: white;
-    font-size: 2.5em;
-    padding-bottom: 10px;
-    border-bottom: 2px solid white;
+  .joinheading {
+    color: #EE7E7E;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    padding: 20px;
+    text-decoration-line: underline;
   }
   
-  .button {
+  .custom-join-button {
       color: #fff !important;
       text-transform: uppercase;
       text-decoration: none;
-      background: #2979FF;
+      background: #EE7E7E;
       padding: 20px;
       border-radius: 5px;
       display: inline-block;
       border: none;
       width: 100%;
+  }
+  .custom-join-button:hover{
+    background: linear-gradient(91.29deg, #DC2323 3.02%, rgba(244, 121, 121, 0.83) 100%);
   }
   
   .mt-20 {
@@ -66,6 +83,6 @@ html, body {
   
   }
   
-  button:focus {
+  .custom-join-button:focus {
     outline: 0;
   }
