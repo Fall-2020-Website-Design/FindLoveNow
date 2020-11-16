@@ -24,9 +24,6 @@ export class Bar extends Component {
     componentDidMount () {
         let bar = []
         
-        console.log(this.state.barSize)
-        console.log(window.innerWidth )
-        
         for(let i=0; i < this.state.total; i++) {
             bar.push(
                 <SingleBar key={i} size={this.state.barSize} color={0 === i ? "#FF0000" : "#808080"} onClick={() => this.props.click(i)}/>

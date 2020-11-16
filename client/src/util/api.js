@@ -16,8 +16,12 @@ const searchByEmail = (email) => {
   return axios.get(`http://localhost:8080/api/users/findByEmail/${email}`)
 }
 
-const Preferences = (userData) => {
+const setPreferences = (userData) => {
   return axios.put('http://localhost:8080/api/filter/preferences', userData)
+}
+
+const getPreferences = (userID) => {
+  return axios.get('http://localhost:8080/api/filter/' + userID);
 }
 
 export {
@@ -25,6 +29,7 @@ export {
     Register,
     searchByEmail,
     helloworldtest,
-    Preferences
+    setPreferences,
+    getPreferences
 }
 
