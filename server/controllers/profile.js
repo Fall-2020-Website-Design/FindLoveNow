@@ -10,7 +10,40 @@ const update = (req, res, next) => {
     .catch(error => next(error))
 }
 
+const filterProfiles = async (req, res, next) => {
+    const { gender, minAge, maxAge, location, height } = req.body;
+    const preferences = { 
+        gender, 
+        minAge, 
+        maxAge, 
+        location, 
+        height 
+    };
+    
+    try {
+        const profiles = await ProfileServices.getFilteredProfiles(preferences);
+        res.json(profiles);
+    }
+    catch (error) {
+        next(error);
+    }
+}
+
+const getProfile = async (req, res, next) => {
+    const { userID } = req.params;
+
+    try {
+        const profile = await ProfileServices.getProfileByID(userID);
+        res.json(profile);
+    }
+    catch (error) {
+        next(error);
+    }
+}
+
 
 module.exports = {
-    update 
+    update,
+    filterProfiles,
+    getProfile
 }

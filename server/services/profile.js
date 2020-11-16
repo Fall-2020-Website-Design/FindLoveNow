@@ -1,4 +1,5 @@
 const db = require("../models");
+const { Op } = require("sequelize");
 
 /**
  * @param {Integer} userID 
@@ -57,8 +58,15 @@ const updateProfile = async (data) => {
 }
 
 
+const getProfileByID = async (id) => {
+    const profile = await db.Profile.findByPk(id);
+    return profile.dataValues;
+}
+
+
 module.exports = {
     getProfile,
     getFilteredProfiles,
-    updateProfile
+    updateProfile,
+    getProfileByID
 }
