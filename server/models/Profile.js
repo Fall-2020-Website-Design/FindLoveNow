@@ -16,9 +16,6 @@ module.exports = (sequelize, DataTypes) => {
         },
         Location: {
             type: DataTypes.STRING,
-            validate: {
-                isAlpha : true
-            }
         },
         Interested: {
             type: DataTypes.STRING
@@ -28,15 +25,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         Education: {
             type: DataTypes.STRING,
-            validate: {
-                isAlpha : true
-            }
         },
         Hobby: {
             type: DataTypes.STRING,
-            validate: {
-                isAlpha : true
-            }
         },
         Work: {
             type: DataTypes.STRING

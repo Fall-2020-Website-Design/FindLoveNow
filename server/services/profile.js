@@ -33,7 +33,32 @@ const getFilteredProfiles = async (data) => {
 }
 
 
+/**
+ * 
+ * @param {Object} data 
+ * @returns {Promise<Model>} Profile model instance  
+ */
+const updateProfile = async (data) => {
+    const personalInfo = await db.Profile.update(
+        {
+            Age: data.Age,
+            Gender: data.Gender,
+            Location: data.Location,
+            Interested: data.Interested,
+            Height: data.Height,
+            Education: data.Education,
+            Hobby: data.Hobby,
+            Work: data.Work,
+            Phrase: data.Phrase,
+        },
+        {returning: true, where: {userID: data.userID} }
+    )
+    console.log('update form')
+}
+
+
 module.exports = {
     getProfile,
-    getFilteredProfiles
+    getFilteredProfiles,
+    updateProfile
 }
