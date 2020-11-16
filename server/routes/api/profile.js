@@ -8,11 +8,36 @@ const ProfileControllers = require('../../controllers/profile.js')
 const validatorErrors = require('../../middleware/validatorErrors');
 const {check, param, header} = require('express-validator');
 
-// should match with "/api/ProfileInfo"
+/**
+ * 
+ *
+ * @memberof module:api/profile
+ * @name PUT /update
+ */
 router.put('/update', 
     [
         validatorErrors
     ],
     ProfileControllers.update);
+
+module.exports = router;
+
+/**
+ * 
+ *
+ * @memberof module:api/profile
+ * @name GET /filterprofiles
+ */
+router.get('/filterprofiles',
+    [
+        validatorErrors
+    ],
+    ProfileControllers.filterProfiles)
+
+router.get('/:userID',
+    [
+        validatorErrors
+    ],
+    ProfileControllers.getProfile)
 
 module.exports = router;
