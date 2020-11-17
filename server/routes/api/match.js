@@ -26,7 +26,7 @@ router.post('/response',
  * @memberof module:api/match
  * @name GET /find
  */
-router.get('/find',
+router.get('/find/:userID',
     [
         validatorErrors
     ]
@@ -37,9 +37,9 @@ router.get('/find',
  * 
  *
  * @memberof module:api/match
- * @name GET /previous
+ * @name GET /previous/:userID
  */
-router.get('/previous',
+router.get('/previous/:userID',
     [
         validatorErrors
     ]
@@ -47,7 +47,7 @@ router.get('/previous',
 
 /**
  * 
- *
+ * @memberof module:api/match
  * @name GET /allMatches/:userID
  */
 router.get('/AllMatches',
@@ -55,5 +55,18 @@ router.get('/AllMatches',
         validatorErrors
     ]
 , matchController.allMatches)
+
+
+/**
+ * 
+ * @memberof module:api/match
+ * @name GET /allMatches/:userID
+ *
+ */
+router.get('/all/:userID',
+    [
+        validatorErrors
+    ],
+    matchController.userMatches)
 
 module.exports = router;

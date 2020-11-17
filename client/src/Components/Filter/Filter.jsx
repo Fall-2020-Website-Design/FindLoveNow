@@ -47,8 +47,7 @@ export default class Filter extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const { userID, gender, location, minAge, maxAge, maxDistance, height, ethnicity } = this.state
-        API.setPreferences({
-          userID,
+        API.setPreferences(userID, {
           gender,
           location,
           minAge,

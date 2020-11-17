@@ -16,12 +16,12 @@ const searchByEmail = (email) => {
   return axios.get(`http://localhost:8080/api/users/findByEmail/${email}`)
 }
 
-const setPreferences = (userData) => {
-  return axios.put('http://localhost:8080/api/filter/preferences', userData)
+const setPreferences = (userID, userData) => {
+  return axios.put('http://localhost:8080/api/filter/update/' + userID, userData)
 }
 
 const getPreferences = (userID) => {
-  return axios.get('http://localhost:8080/api/filter/' + userID);
+  return axios.get('http://localhost:8080/api/filter/get/' + userID);
 }
 
 export {
