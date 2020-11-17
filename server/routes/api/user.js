@@ -48,6 +48,7 @@ router.post('/login',
     ]
 , userController.login)
 
+router.get('/:userID', [validatorErrors], userController.getName)
 
 
 

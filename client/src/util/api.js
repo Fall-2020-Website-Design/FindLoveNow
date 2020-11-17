@@ -24,12 +24,16 @@ const getPreferences = (userID) => {
   return axios.get('http://localhost:8080/api/filter/get/' + userID);
 }
 
+const getName = (userID) => {
+  return axios.get('http://localhost:8080/api/users/' + userID);
+}
 export {
     LoginUser,
     Register,
     searchByEmail,
     helloworldtest,
     setPreferences,
-    getPreferences
+    getPreferences,
+    getName
 }
 
