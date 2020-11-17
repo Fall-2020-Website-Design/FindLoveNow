@@ -60,7 +60,7 @@ export class Cards extends Component {
 
                             <div className="location">
                                 <Row>
-                                    <Image alt="" src={location_image} /> {this.state.miles} miles away
+                                    <Image alt="" src={location_image} /> {this.state.miles}
                                 </Row>
                             </div>
                         </Card.Body>

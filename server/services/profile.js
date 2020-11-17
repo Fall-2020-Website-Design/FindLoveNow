@@ -7,7 +7,7 @@ const { Op } = require("sequelize");
  */
 const getProfile = async (userID) => {
     const profile = await db.Profile.findByPk(userID);
-    console.log(profile)
+ 
     return profile;
 }
 
@@ -29,7 +29,7 @@ const getFilteredProfiles = async (data) => {
             }
         }
     })
-    console.log(profiles)
+
     return profiles;
 }
 
@@ -45,12 +45,12 @@ const updateProfile = async (data) => {
             Age: data.Age,
             Gender: data.Gender,
             Location: data.Location,
-            Interested: data.Interested,
+            // Interested: data.Interested,
             Height: data.Height,
-            Education: data.Education,
-            Hobby: data.Hobby,
-            Work: data.Work,
-            Phrase: data.Phrase,
+            // Education: data.Education,
+            // Hobby: data.Hobby,
+            // Work: data.Work,
+            // Phrase: data.Phrase,
         },
         {returning: true, where: {userID: data.userID} }
     )

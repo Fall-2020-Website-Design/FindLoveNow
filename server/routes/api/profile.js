@@ -20,20 +20,24 @@ router.put('/update',
     ],
     ProfileControllers.update);
 
-module.exports = router;
-
 /**
  * 
  *
  * @memberof module:api/profile
- * @name GET /filterprofiles
+ * @name GET /filtered
  */
-router.get('/filterprofiles',
+router.get('/filtered',
     [
         validatorErrors
     ],
     ProfileControllers.filterProfiles)
 
+/**
+ * 
+ *
+ * @memberof module:api/profile
+ * @name GET /:userID
+ */
 router.get('/:userID',
     [
         validatorErrors

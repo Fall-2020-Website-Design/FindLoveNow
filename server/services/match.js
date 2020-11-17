@@ -51,8 +51,24 @@ const loadPotentialMatches = async (userID) => {
     return userPreferences;
 }
 
+/**
+ * @param {Integer} userID 
+ * @returns {Promise<Model>} Match model instances of a user
+ */
+const userMatches = async (userID) => {
+    
+    const matches = await db.Match.findAll({
+        where: {
+            requesterID: userID
+        }
+    })
+
+    return matches;
+}
+
 module.exports = {
     createMatch,
     findAllMatches,
-    loadPotentialMatches
+    loadPotentialMatches,
+    userMatches
 }

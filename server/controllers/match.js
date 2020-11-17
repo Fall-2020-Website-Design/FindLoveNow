@@ -4,7 +4,9 @@
 
 const MatchServices = require("../services/match.js");
 const ProfileServices = require("../services/profile.js");
-const FilterServices = require("../services/filter.js")
+const FilterServices = require("../services/filter.js");
+const MatchMiddleWares = require("../middleware/match.js");
+const match = require("../services/match.js");
 
 /**
  * @typedef {import('express').RequestHandler} RequestHandler}
@@ -15,11 +17,12 @@ const FilterServices = require("../services/filter.js")
 const response = async (req, res, next) => {
     const { requesterID , addresseeID , status } = req.body;
 
-    match = {
+    const match = {
         requesterID,
         addresseeID,
         status
     }
+
     try {
         const newMatch = await MatchServices.createMatch(match)
         return res.json(newMatch);
@@ -34,8 +37,9 @@ const response = async (req, res, next) => {
 */
 const loadPotentialMatches = async (req, res, next) => {
     const { gender, location, minAge, maxAge, height } = req.body;
+    const { userID } = req.params;
     
-    preferences = {
+    const preferences = {
         gender, 
         location, 
         minAge, 
@@ -44,8 +48,13 @@ const loadPotentialMatches = async (req, res, next) => {
     }
 
     try {
-        const potentialMatches = await ProfileServices.getFilteredProfiles(preferences)
-        return res.json(potentialMatches);
+        const potentialMatches = await ProfileServices.getFilteredProfiles(preferences);
+        
+        const usersMatches = await MatchServices.userMatches(userID);
+
+        const result = MatchMiddleWares.retrieveProfile(potentialMatches, usersMatches);
+
+        return res.json(result);
     }
     catch (error) {
         next(error);
@@ -56,9 +65,10 @@ const loadPotentialMatches = async (req, res, next) => {
     @type {RequestHandler}
 */
 const previousMatch = async (req, res, next) => {
-    const { previousUserID } = req.body;
+    const { userID } = req.params;
+
     try {
-        const profile = await ProfileServices.getProfile(previousUserID);
+        const profile = await ProfileServices.getProfile(userID);
         return res.json(profile);
     }
     catch (error) {
@@ -80,9 +90,25 @@ const allMatches = async(req,res,next) => {
     }
 } 
 
+/**
+    @type {RequestHandler}
+*/
+const userMatches = async(req, res, next) => {
+    const { userID } = req.params;
+    
+    try {
+        const matches = await MatchServices.userMatches(userID);
+        return res.json(matches);
+    }
+    catch (error) {
+        next(error);
+    }
+}
+
 module.exports = {
     response,
     loadPotentialMatches,
     previousMatch,
-    allMatches
+    allMatches,
+    userMatches
 }
