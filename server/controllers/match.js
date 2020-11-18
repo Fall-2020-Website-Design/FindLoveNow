@@ -37,8 +37,6 @@ const response = async (req, res, next) => {
 const loadPotentialMatches = async (req, res, next) => {
     const { userID } = req.params;
 
-
-
     try {
         const userPreferences = await FilterServices.getPreferences(userID);
 
@@ -58,7 +56,7 @@ const loadPotentialMatches = async (req, res, next) => {
         
         const usersMatches = await MatchServices.userMatches(userID);
 
-        const result = MatchMiddleWares.retrieveProfile(potentialMatches, usersMatches);
+        const result = MatchMiddleWares.retrieveProfile(userID, potentialMatches, usersMatches);
 
         return res.json(result);
     }
@@ -71,10 +69,11 @@ const loadPotentialMatches = async (req, res, next) => {
     @type {RequestHandler}
 */
 const previousMatch = async (req, res, next) => {
-    const { userID } = req.params;
+    const { userID, previousID }  = req.query;
 
     try {
-        const profile = await ProfileServices.getProfile(userID);
+        MatchServices.deleteMatch(userID, previousID);
+        const profile = await ProfileServices.getProfile(previousID);
         return res.json(profile);
     }
     catch (error) {
@@ -86,7 +85,8 @@ const previousMatch = async (req, res, next) => {
     @type {RequestHandler}
 */
 const allMatches = async(req,res,next) => {
-    const { userID } = req.body
+    const { userID } = req.body;
+
     try {
         const matches = await MatchServices.findAllMatches(userID)
         return res.json(matches);

@@ -40,19 +40,6 @@ const findAllMatches = async (userID) => {
 
 /**
  * @param {Integer} userID 
- * @returns {Promise<Model>} Profile model instance  
- */
-const loadPotentialMatches = async (userID) => {
-    const userPreferences = await filterServices.getPreferences(userID);
-    // will take the users preferences and look at profile db to see if there are any other users with the preferences this user is looking for
-    // after it gets the users with matching preferences it will look in the users matches to see if they have been paired up before
-    // and filter out the ones that have been paired up before and return the ones that have not
-    // console.log(userPreferences);
-    return userPreferences;
-}
-
-/**
- * @param {Integer} userID 
  * @returns {Promise<Model>} Match model instances of a user
  */
 const userMatches = async (userID) => {
@@ -66,9 +53,22 @@ const userMatches = async (userID) => {
     return matches;
 }
 
+/**
+ * @param {Integer} userID 
+ * @returns {Promise<Model>} Match model instances of a user
+ */
+const deleteMatch = async (userID, prevID) => {
+    await db.Match.destroy({
+        where: {
+            requesterID: userID,
+            addresseeID: prevID
+        }
+    })
+}
+
 module.exports = {
     createMatch,
     findAllMatches,
-    loadPotentialMatches,
-    userMatches
+    userMatches,
+    deleteMatch
 }
