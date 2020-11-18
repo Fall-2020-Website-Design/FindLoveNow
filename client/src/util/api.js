@@ -27,6 +27,15 @@ const getPreferences = (userID) => {
 const getName = (userID) => {
   return axios.get('http://localhost:8080/api/users/' + userID);
 }
+
+const response = (matchData) => {
+  return axios.post('http://localhost:8080/api/match/response', matchData);
+}
+
+const findMatch = (userID) => {
+  return axios.get(`http://localhost:8080/api/match/find/${userID}`);
+}
+
 export {
     LoginUser,
     Register,
@@ -34,6 +43,8 @@ export {
     helloworldtest,
     setPreferences,
     getPreferences,
-    getName
+    getName,
+    response,
+    findMatch
 }
 

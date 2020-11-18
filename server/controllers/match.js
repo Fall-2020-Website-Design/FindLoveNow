@@ -4,9 +4,8 @@
 
 const MatchServices = require("../services/match.js");
 const ProfileServices = require("../services/profile.js");
-const FilterServices = require("../services/filter.js");
 const MatchMiddleWares = require("../middleware/match.js");
-const match = require("../services/match.js");
+const FilterServices = require("../services/filter.js")
 
 /**
  * @typedef {import('express').RequestHandler} RequestHandler}
@@ -36,18 +35,25 @@ const response = async (req, res, next) => {
     @type {RequestHandler}
 */
 const loadPotentialMatches = async (req, res, next) => {
-    const { gender, location, minAge, maxAge, height } = req.body;
     const { userID } = req.params;
-    
-    const preferences = {
-        gender, 
-        location, 
-        minAge, 
-        maxAge, 
-        height
-    }
+
+
 
     try {
+        const userPreferences = await FilterServices.getPreferences(userID);
+
+        const gender1 = (userPreferences.gender === "both") ? "male": userPreferences.gender;
+        const gender2 = (userPreferences.gender === "both") ? "female": userPreferences.gender;
+    
+        const preferences = {
+            gender1,
+            gender2, 
+            location: userPreferences.location, 
+            minAge: userPreferences.minAge, 
+            maxAge: userPreferences.maxAge, 
+            height: userPreferences.height
+        }
+
         const potentialMatches = await ProfileServices.getFilteredProfiles(preferences);
         
         const usersMatches = await MatchServices.userMatches(userID);
