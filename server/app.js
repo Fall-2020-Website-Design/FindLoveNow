@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
-
+global.__basedir = __dirname;
 const db = require('./models');
 
 const PORT = process.env.PORT || 8080;
@@ -44,7 +44,8 @@ if(process.env.NODE_ENV==='production') {
       res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
     });
   }
-  
+
+  app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
   app.use('/api', apiRoutes)
   
   

@@ -54,8 +54,6 @@ export class Settings extends Component {
         })
     }
 
-
-
     handleChange = (input) => (e) => {
         this.setState({ [input]: e.target.value })
     };
@@ -80,7 +78,7 @@ export class Settings extends Component {
                                 <Form.Row>
                                 <Col md={3} className="mx-auto">
                                     <Card>
-                                        <Card.Img variant="top" className="image-setting d-block" src={YuBin} rounded />
+                                        <Card.Img variant="top" type="file" className="image-setting d-block" src={YuBin} rounded />
                                     </Card>
                                 </Col>
                                 </Form.Row>
