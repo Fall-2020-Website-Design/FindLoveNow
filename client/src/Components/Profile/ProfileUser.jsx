@@ -10,7 +10,7 @@ export class ProfileUser extends Component {
         return (
             <Col lg={4}>
                 <Card className="profile-card mb-4">
-                    <Card.Img variant="top" src={Alex} />
+                    <Card.Img variant="top" className="image-deck d-block" style={{height: '100%' }} src={Alex} rounded />
                     <Card.Body className="p-4">
                         <Card.Title className="title-size">Alex, 27</Card.Title>
                         <Card.Text className="text-size text-muted">
