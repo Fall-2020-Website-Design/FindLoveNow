@@ -18,10 +18,11 @@ export default class Matches extends Component {
         super(props);
         this.state = {
             userID: null,
+            previousID: 2,
             preferences: null,
-            previousID: null,
             user: {
                 /* object will be loaded from db with info */
+                userID: 2,
                 currentPicture: 0,
                 name: "John",
                 age: 25,
@@ -43,6 +44,7 @@ export default class Matches extends Component {
             this.setState({
                 userID: userID
             });
+            console.log(userID);
     
             this.getMatch();
         }, 10)
@@ -75,6 +77,7 @@ export default class Matches extends Component {
         }).then((result) => {
             if (result.status === 200) {
                 this.updatePrevious(this.state.userID);
+                this.getMatch();
             }
         })
         .catch((errors) => {
@@ -93,7 +96,7 @@ export default class Matches extends Component {
         }).then((result) => {
             if (result.status === 200) {
                 this.updatePrevious(this.state.userID);
-
+                this.getMatch();
             }
         })
         .catch((errors) => {
@@ -105,6 +108,19 @@ export default class Matches extends Component {
     }
 
     prevUser = () => {
+        const { userID, previousID } = this.state;
+        console.log(userID, previousID);
+
+        API.previousMatch(userID, previousID)
+        .then((result) => {
+            if (result.status === 200) {
+                console.log(result.data);
+                /*
+                this.setState({
+                    user: result.data.match
+                })*/
+            }
+        })
         console.log("Prev button clicked!")
     }
 

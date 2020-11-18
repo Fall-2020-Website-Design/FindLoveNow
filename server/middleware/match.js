@@ -4,18 +4,22 @@
  * @returns {Set} - Set of userIDs that the user has responsed to 
  */
 
-const retrieveAddresseeID = (data) => {
-    let addresseeIDs = new Set([]);
+const retrieveAddresseeID = (userID, data) => {
+    let filterOutIDs = new Set([]);
 
+    // adds the user requesting match in case it the user 
+    // has the preferences it is looking for 
+    filterOutIDs.add(parseInt(userID, 10));
+    
     for (let index=0; index < data.length; index++) {
         // gets the addresseeID for each object in the array and add
-        const userID = data[index].dataValues.addresseeID
-        if (!addresseeIDs.has(userID)) {
-            addresseeIDs.add(userID);
+        const id = data[index].dataValues.addresseeID
+        if (!filterOutIDs.has(id)) {
+            filterOutIDs.add(id);
         }
     }
 
-    return addresseeIDs;
+    return filterOutIDs;
 }
 
 /**
@@ -26,8 +30,9 @@ const retrieveAddresseeID = (data) => {
 const filterPotentialMatches = (IDs, profiles) => {
 
     for(let index=0; index < profiles.length; index++) {
-        const userID = profiles[index].dataValues.userID;
-        if (!IDs.has(userID)) {
+        const id = profiles[index].dataValues.userID;
+
+        if (!IDs.has(id)) {
             return profiles[index];
         }
     }
@@ -40,9 +45,9 @@ const filterPotentialMatches = (IDs, profiles) => {
  * @param {Array of Objects} matches - Profiles that have the users preferences
  * @returns {Object} - Profile that has the <userID> peferences
  */
-const retrieveProfile = (profiles, matches) => {
+const retrieveProfile = (userID, profiles, matches) => {
     let matchFound = true;
-    const previousMatchesIDs = retrieveAddresseeID(matches);
+    const previousMatchesIDs = retrieveAddresseeID(userID, matches);
     const potentialMatch = filterPotentialMatches(previousMatchesIDs, profiles);
     
     if (potentialMatch.userID === 0) {

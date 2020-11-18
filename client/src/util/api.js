@@ -36,6 +36,10 @@ const findMatch = (userID) => {
   return axios.get(`http://localhost:8080/api/match/find/${userID}`);
 }
 
+const previousMatch = (userID, previousID) => {
+  return axios.get(`http://localhost:8080/api/match/previous?userID=${userID}&previousID=${previousID}`);
+}
+
 export {
     LoginUser,
     Register,
@@ -45,6 +49,7 @@ export {
     getPreferences,
     getName,
     response,
-    findMatch
+    findMatch,
+    previousMatch
 }
 
