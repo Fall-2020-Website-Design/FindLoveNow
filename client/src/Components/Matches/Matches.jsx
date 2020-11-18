@@ -18,7 +18,7 @@ export default class Matches extends Component {
         super(props);
         this.state = {
             userID: null,
-            previousID: 2,
+            previousID: null,
             preferences: null,
             user: {
                 /* object will be loaded from db with info */
