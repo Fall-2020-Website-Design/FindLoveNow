@@ -11,8 +11,7 @@ const retrieveAddresseeID = (data) => {
         // gets the addresseeID for each object in the array and add
         const userID = data[index].dataValues.addresseeID
         if (!addresseeIDs.has(userID)) {
-            addresseeIDs.add(userID)
-            console.log(`${userID} has been added`)
+            addresseeIDs.add(userID);
         }
     }
 
@@ -52,7 +51,7 @@ const retrieveProfile = (profiles, matches) => {
 
     const result = {
         found: matchFound,
-        data: potentialMatch
+        match: potentialMatch
     }
     
     return result;

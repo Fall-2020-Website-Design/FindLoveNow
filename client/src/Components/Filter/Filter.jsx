@@ -95,8 +95,8 @@ export default class Filter extends React.Component {
             <label>I’m Interested In:</label>
             <select onChange={this.handleChange("gender")}>
                 <option selected disabled>Choose Gender</option>
-                <option value="men">Men</option>
-                <option value="women">Women</option>
+                <option value="male">Men</option>
+                <option value="female">Women</option>
                 <option value="both">Both</option>
             </select>
             </div>

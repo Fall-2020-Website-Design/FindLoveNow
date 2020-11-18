@@ -19,6 +19,7 @@ export default class Matches extends Component {
         this.state = {
             userID: null,
             preferences: null,
+            previousID: null,
             user: {
                 /* object will be loaded from db with info */
                 currentPicture: 0,
@@ -37,37 +38,80 @@ export default class Matches extends Component {
     }
 
     componentDidMount() {
-        const { userID } = this.context;
-        this.setState({
-            userID: userID
-        });
-        this.getPreferences(userID);
+        setTimeout(() =>{
+            const { userID } = this.context;
+            this.setState({
+                userID: userID
+            });
+    
+            this.getMatch();
+        }, 10)
     }
 
-    getPreferences = (userID) => {
-        API.getPreferences(userID).then((result) => {
+    getMatch = () => {
+        API.findMatch(this.state.userID).then((result) => {
             if (result.status === 200) {
-                this.setState({
-                    preferences: result.data
-                })
+                if (result.data.found){
+                    console.log(result.data.match);
+                    /*
+                    this.setState({
+                        user: result.data.match
+                    })*/
+                }
             }
         }).catch((errors) => {
             this.setState({
               errors
             })
-        })
+        });
+
     }
 
     acceptUser = () => {
-        console.log("Checkmark clicked!")
+        API.response({
+            requesterID: this.state.userID,
+            addresseeID: this.state.user.userID,
+            status: 0
+        }).then((result) => {
+            if (result.status === 200) {
+                this.updatePrevious(this.state.userID);
+            }
+        })
+        .catch((errors) => {
+            this.setState({
+                errors
+            })
+        })
+        console.log("Checkmark clicked!");
     }
 
     rejectedUser = () => {
+        API.response({
+            requesterID: this.state.userID,
+            addresseeID: this.state.user.userID,
+            status: 1
+        }).then((result) => {
+            if (result.status === 200) {
+                this.updatePrevious(this.state.userID);
+
+            }
+        })
+        .catch((errors) => {
+            this.setState({
+                errors
+            })
+        })
         console.log("X button clicked!")
     }
 
     prevUser = () => {
         console.log("Prev button clicked!")
+    }
+
+    updatePrevious = (id) => {
+        this.setState({
+            previousID: id
+        })
     }
 
     render() {
