@@ -29,7 +29,7 @@ router.put('/preferences',
 * Post filter form to DB
 *
 * @memberof module:api/filter
-* @name PUT /:userID
+* @name GET /:userID
 */
 router.get('/:userID', 
     [

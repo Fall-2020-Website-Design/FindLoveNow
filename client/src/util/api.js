@@ -27,6 +27,11 @@ const getPreferences = (userID) => {
 const getName = (userID) => {
   return axios.get('http://localhost:8080/api/users/' + userID);
 }
+
+const uploadImage = () => {
+  return axios.post('http://localhost:8080/api/image/upload' )
+}
+
 export {
     LoginUser,
     Register,
@@ -34,6 +39,7 @@ export {
     helloworldtest,
     setPreferences,
     getPreferences,
-    getName
+    getName,
+    uploadImage
 }
 
