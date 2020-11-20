@@ -86,7 +86,7 @@ const previousMatch = async (req, res, next) => {
     @type {RequestHandler}
 */
 const allMatches = async(req,res,next) => {
-    const { userID } = req.body
+    const { userID } = req.params
     try {
         const matches = await MatchServices.findAllMatches(userID)
         return res.json(matches);

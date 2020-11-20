@@ -6,6 +6,8 @@ const express = require('express');
 const router = new express.Router();
 const matchController = require('../../controllers/match.js');
 const validatorErrors = require('../../middleware/validatorErrors');
+const userMiddleware = require('../../middleware/user.js')
+const {check, param, header} = require('express-validator');
 
 
 /**
@@ -50,9 +52,9 @@ router.get('/previous/:userID',
  * @memberof module:api/match
  * @name GET /allMatches/:userID
  */
-router.get('/AllMatches',
-    [
-        validatorErrors
+router.get('/AllMatches/:userID',
+    [  
+    validatorErrors
     ]
 , matchController.allMatches)
 
