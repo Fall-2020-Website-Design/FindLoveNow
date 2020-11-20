@@ -41,7 +41,7 @@ router.get('/find/:userID',
  * @memberof module:api/match
  * @name GET /previous/:userID
  */
-router.get('/previous/:userID',
+router.get('/previous',
     [
         validatorErrors
     ]
