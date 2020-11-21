@@ -50,9 +50,9 @@ router.get('/previous',
 /**
  * 
  * @memberof module:api/match
- * @name GET /allMatches/:userID
+ * @name GET /allmatches/:userID
  */
-router.get('/AllMatches/:userID',
+router.get('/allmatches/:userID',
     [  
     validatorErrors
     ]

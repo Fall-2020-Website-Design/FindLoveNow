@@ -30,8 +30,8 @@ const findAllMatches = async (userID) => {
             [Op.or]: [
              {requesterID: userID },
              { addresseeID: userID},
-             { status: 1 }
-            ]
+            ],
+            status: 1 
         }
     });
 
