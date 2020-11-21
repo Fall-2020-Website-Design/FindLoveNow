@@ -40,6 +40,10 @@ const previousMatch = (userID, previousID) => {
   return axios.get(`http://localhost:8080/api/match/previous?userID=${userID}&previousID=${previousID}`);
 }
 
+const getallMatches = (userID) => {
+  return axios.get(`http://localhost:8080/api/match/allmatches/${userID}`)
+}
+
 export {
     LoginUser,
     Register,
@@ -50,6 +54,7 @@ export {
     getName,
     response,
     findMatch,
-    previousMatch
+    previousMatch,
+    getallMatches
 }
 
