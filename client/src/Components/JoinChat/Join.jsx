@@ -11,16 +11,11 @@ export class JoinChat extends Component {
     this.state = {
       userID: null,
       name: null, 
-      match : {
-        matchID: null,
-        requesterID: null,
-        addresseeID: null, 
-      },
+      match : [],
     }
   }
 
   /*
-
   match: {
     matchID: 1,
     requesterID: 2
@@ -61,10 +56,17 @@ getAllMatches = () => {
   .then((res) => {
     if (res.status == 200) {
       for (let i = 0; i < res.data.length ; i++ ) {
-        // const { matchID , requesterID, addresseeID} = res.data[i]
-        let match = Object.assign(res.data[i], this.state.match)
+        const { matchID , requesterID, addresseeID, name } = res.data[i]
+        const match = {
+          matchID,
+          requesterID,
+          addresseeID,
+        }
+        // name is undefined when I call it here ....
+        this.setState(prevState => {
+          return { match: [...prevState.match, match]}
+        })
       }
-      console.log(this.state)
     }
   })
 }
@@ -77,10 +79,20 @@ getAllMatches = () => {
    }
  }  
  render() {
+   const matchItem = this.state.match
    return (
      <div>
        <NavBar />
-       <h1 onClick={this.getName}> hello world</h1>
+       <h1> Your list of matches</h1>
+        <div>
+          <ul>
+            {matchItem.map((element) => (
+              <li key={element.matchID}>
+                {element.addresseeID}
+              </li>  
+            ))}
+          </ul>
+        </div>
      </div>
    )
  }

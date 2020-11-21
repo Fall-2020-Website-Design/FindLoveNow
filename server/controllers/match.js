@@ -6,6 +6,7 @@ const MatchServices = require("../services/match.js");
 const ProfileServices = require("../services/profile.js");
 const MatchMiddleWares = require("../middleware/match.js");
 const FilterServices = require("../services/filter.js")
+const UserServices = require("../services/user.js")
 
 /**
  * @typedef {import('express').RequestHandler} RequestHandler}
@@ -88,6 +89,11 @@ const allMatches = async(req,res,next) => {
     const { userID } = req.params
     try {
         const matches = await MatchServices.findAllMatches(userID)
+        for (let i = 0 ; i < matches.length; i++) {
+            const addresseeUser=  await UserServices.findUser(matches[i].addresseeID)
+            //console.log(addresseeUser)
+            matches[i].name = addresseeUser.name 
+        }
         return res.json(matches);
     }
     catch(error) {

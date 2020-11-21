@@ -62,6 +62,12 @@ const retrieveProfile = (userID, profiles, matches) => {
     return result;
 }
 
+// const mapAddresseeIDToName = (data) => {
+//     for(let i = 0; i < data.length; i++) {
+        
+//     }
+// }
+
 module.exports = {
     retrieveAddresseeID,
     filterPotentialMatches,
