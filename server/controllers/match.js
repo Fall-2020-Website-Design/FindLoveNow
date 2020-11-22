@@ -88,11 +88,12 @@ const previousMatch = async (req, res, next) => {
 const allMatches = async(req,res,next) => {
     const { userID } = req.params
     try {
-        const matches = await MatchServices.findAllMatches(userID)
+        let matches = await MatchServices.findAllMatches(userID)
+        console.log(matches)
         for (let i = 0 ; i < matches.length; i++) {
-            const addresseeUser=  await UserServices.findUser(matches[i].addresseeID)
+            const { name } =  await UserServices.findUser(matches[i].addresseeID)
+            matches[i].dataValues["name"] = name 
             //console.log(addresseeUser)
-            matches[i].name = addresseeUser.name 
         }
         return res.json(matches);
     }
