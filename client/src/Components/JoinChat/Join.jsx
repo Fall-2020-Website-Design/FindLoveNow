@@ -2,6 +2,7 @@ import React, { useState, Component  } from 'react';
 import NavBar from '../NavBar/NavBar';
 import * as API from "../../util/api"
 import { AuthContext } from "../../Context/authContext";
+import { Link } from 'react-router-dom';
 
 
 export class JoinChat extends Component {
@@ -61,6 +62,7 @@ getAllMatches = () => {
           matchID,
           requesterID,
           addresseeID,
+          name
         }
         // name is undefined when I call it here ....
         this.setState(prevState => {
@@ -77,7 +79,8 @@ getAllMatches = () => {
    if (prevState.userID !== this.state.userID) {
     console.log(this.state)
    }
- }  
+ } 
+
  render() {
    const matchItem = this.state.match
    return (
@@ -88,7 +91,9 @@ getAllMatches = () => {
           <ul>
             {matchItem.map((element) => (
               <li key={element.matchID}>
-                {element.addresseeID}
+                <Link to={`/chat?name=${this.state.name}&room=${element.matchID}`}>
+                  {element.name} 
+                </Link>
               </li>  
             ))}
           </ul>
