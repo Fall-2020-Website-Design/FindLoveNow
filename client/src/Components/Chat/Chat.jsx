@@ -20,11 +20,10 @@ import './Chat.css';
 //const ENDPOINT = 'URL'; we will put our website as the endpoint link here once we deploy it on herokuapp
 let socket;
 const ENDPOINT = 'http://127.0.0.1:8080/'
-const Chat = ({ location }) => {
+const Chat = () => {
   const currentPath = useLocation() // Chat/K/1 
-  const url_params = useParams() // get the params
-  console.log(currentPath)
-  console.log(url_params)
+  const urlParams = useParams() // get the params
+
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
   const [userID, setUserID] = useState('');
@@ -33,7 +32,7 @@ const Chat = ({ location }) => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    const { name, matchID } = url_params ;
+    const { name, matchID } = urlParams ;
     
     // socket = io(ENDPOINT);
     const room = matchID
@@ -45,7 +44,7 @@ const Chat = ({ location }) => {
         alert(error);
       }
     });
-  }, [ENDPOINT, url_params]);
+  }, [ENDPOINT, urlParams]);
   
   useEffect(() => {
     socket.on('message', message => {
