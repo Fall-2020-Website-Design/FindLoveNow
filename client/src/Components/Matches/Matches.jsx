@@ -17,23 +17,25 @@ export default class Matches extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading: true,
+            found: false,
             userID: null,
             previousID: null,
-            preferences: null,
-            user: {
+            name: null, // comes from user Table
+            profile: { // comes form profile Table
                 /* object will be loaded from db with info */
-                userID: 2,
+                userID: 3,
                 currentPicture: 0,
                 name: "John",
-                age: 25,
-                bio: "Human Resources at CitiBank",
-                miles: "New York, New York",
-                images: [require('../../Images/samplepicture.svg'),
-                    'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80',
-                    'https://images.unsplash.com/photo-1470341223622-1019832be824?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2288&q=80',
-                    'https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2094&q=80',
-                    'https://images.unsplash.com/photo-1534161308652-fdfcf10f62c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2174&q=80']
+                Age: 25,
+                Phrase: "Human Resources at CitiBank",
+                Location: "New York, New York",
             },
+            pictures: [require('../../Images/samplepicture.svg'),
+                'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80',
+                'https://images.unsplash.com/photo-1470341223622-1019832be824?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2288&q=80',
+                'https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2094&q=80',
+                'https://images.unsplash.com/photo-1534161308652-fdfcf10f62c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2174&q=80'],
             errors: []
         }
     }
@@ -43,22 +45,29 @@ export default class Matches extends Component {
             const { userID } = this.context;
             this.setState({
                 userID: userID
+            }, () => {
+                console.log(userID);
+                this.getMatch();
             });
-            console.log(userID);
-    
-            this.getMatch();
         }, 10)
     }
 
     getMatch = () => {
         API.findMatch(this.state.userID).then((result) => {
             if (result.status === 200) {
-                if (result.data.found){
-                    console.log(result.data.match);
-                    /*
+                console.log(result.data);
+                if (result.data.found) {
                     this.setState({
-                        user: result.data.match
-                    })*/
+                        profile: result.data.match,
+                        found: true,
+                        loading: false
+                    })
+                }
+                else {
+                    this.setState({
+                        loading: false,
+                        found: false
+                    })
                 }
             }
         }).catch((errors) => {
@@ -70,13 +79,15 @@ export default class Matches extends Component {
     }
 
     acceptUser = () => {
+        const { userID, profile } = this.state;
+
         API.response({
-            requesterID: this.state.userID,
-            addresseeID: this.state.user.userID,
+            requesterID: userID,
+            addresseeID: profile.userID,
             status: 0
         }).then((result) => {
             if (result.status === 200) {
-                this.updatePrevious(this.state.userID);
+                this.updatePrevious(userID);
                 this.getMatch();
             }
         })
@@ -85,17 +96,18 @@ export default class Matches extends Component {
                 errors
             })
         })
-        console.log("Checkmark clicked!");
     }
 
     rejectedUser = () => {
+        const { userID, profile } = this.state;
+
         API.response({
-            requesterID: this.state.userID,
-            addresseeID: this.state.user.userID,
+            requesterID: userID,
+            addresseeID: profile.userID,
             status: 1
         }).then((result) => {
             if (result.status === 200) {
-                this.updatePrevious(this.state.userID);
+                this.updatePrevious(userID);
                 this.getMatch();
             }
         })
@@ -104,7 +116,6 @@ export default class Matches extends Component {
                 errors
             })
         })
-        console.log("X button clicked!")
     }
 
     prevUser = () => {
@@ -115,13 +126,12 @@ export default class Matches extends Component {
         .then((result) => {
             if (result.status === 200) {
                 console.log(result.data);
-                /*
+                
                 this.setState({
-                    user: result.data.match
-                })*/
+                    profile: result.data.match
+                })
             }
         })
-        console.log("Prev button clicked!")
     }
 
     updatePrevious = (id) => {
@@ -131,20 +141,39 @@ export default class Matches extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <NavBar />
-                <div className="p-4">
-                    <Container className="Matches-container">
+        const { pictures, profile, loading, found } = this.state;
+        let body = null;
+        
 
-                        <Cards user={this.state.user} />
-
-                        <Buttons prev={this.prevUser} reject={this.rejectedUser} accept={this.acceptUser} />
-
-                    </Container>
-                </div>
-                <Footer />
+        if (loading) {
+            body = <div>
+                Please wait finding a match!
             </div>
+        }
+        else {
+            if(found) {
+               body = <div>
+                    <Cards profile={profile} images={pictures} />
+                    <Buttons prev={this.prevUser} reject={this.rejectedUser} accept={this.acceptUser} />
+               </div>
+            }
+            else {
+                body = <div>
+                    No Match found go to update your preferences to get a match
+                </div>
+            }
+        }
+
+        return (
+            <>
+                <NavBar />
+                    <div className="p-4">
+                        <Container className="Matches-container">
+                            { body }
+                        </Container>
+                    </div>
+                <Footer />
+            </>
         )
     }
 }
