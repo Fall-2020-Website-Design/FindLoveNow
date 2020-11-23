@@ -1,3 +1,4 @@
+const UserServices = require("../services/user.js")
 
 /**
  * @param {Object} data - Data from mtach table from user where requesterID = userID
@@ -65,5 +66,5 @@ const retrieveProfile = (userID, profiles, matches) => {
 module.exports = {
     retrieveAddresseeID,
     filterPotentialMatches,
-    retrieveProfile
+    retrieveProfile,
 } 
