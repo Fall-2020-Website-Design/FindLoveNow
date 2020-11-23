@@ -16,12 +16,12 @@ const searchByEmail = (email) => {
   return axios.get(`http://localhost:8080/api/users/findByEmail/${email}`)
 }
 
-const setPreferences = (userData) => {
-  return axios.put('http://localhost:8080/api/filter/preferences', userData)
+const setPreferences = (userID, userData) => {
+  return axios.put('http://localhost:8080/api/filter/update/' + userID, userData)
 }
 
 const getPreferences = (userID) => {
-  return axios.get('http://localhost:8080/api/filter/' + userID);
+  return axios.get('http://localhost:8080/api/filter/get/' + userID);
 }
 
 const getName = (userID) => {
@@ -32,6 +32,27 @@ const uploadImage = () => {
   return axios.post('http://localhost:8080/api/image/upload' )
 }
 
+const response = (matchData) => {
+  return axios.post('http://localhost:8080/api/match/response', matchData);
+}
+
+const findMatch = (userID) => {
+  return axios.get(`http://localhost:8080/api/match/find/${userID}`);
+}
+
+const previousMatch = (userID, previousID) => {
+  return axios.get(`http://localhost:8080/api/match/previous?userID=${userID}&previousID=${previousID}`);
+}
+
+const setProfile = (userData) => {
+  return axios.put('http://localhost:8080/api/profile/update/', userData );
+}
+
+const getProfile = (userData) => {
+  return axios.put('http://localhost:8080/api/profile/get/' + userID);
+}
+
+
 export {
     LoginUser,
     Register,
@@ -40,6 +61,12 @@ export {
     setPreferences,
     getPreferences,
     getName,
-    uploadImage
+    uploadImage,
+    response,
+    findMatch,
+    previousMatch,
+    setProfile,
+    getProfile
+    
 }
 

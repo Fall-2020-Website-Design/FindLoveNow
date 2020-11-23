@@ -21,11 +21,11 @@ export class App extends Component {
       <AuthProvider>
         <Router>
           <Switch>
-          <Route exact path="/Form" component={RequiredForm} />
             <Route exact path="/" component={Login} />
             <Route exact path="/Login" component={Login} />
             <Route exact path="/Register" component={Register} />
             <Route exact path="/About" component={About} />
+            <Route path="/Form" component={RequiredForm} />
             <PrivateRoute path="/Profile" component={Profile} />
             <PrivateRoute exact path="/Filter" component={Filter} />
             <Route path="/Chat" component={Chat} />

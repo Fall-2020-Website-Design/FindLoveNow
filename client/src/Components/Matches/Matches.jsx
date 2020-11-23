@@ -18,14 +18,16 @@ export default class Matches extends Component {
         super(props);
         this.state = {
             userID: null,
+            previousID: null,
             preferences: null,
             user: {
                 /* object will be loaded from db with info */
+                userID: 2,
                 currentPicture: 0,
                 name: "John",
                 age: 25,
                 bio: "Human Resources at CitiBank",
-                miles: 20,
+                miles: "New York, New York",
                 images: [require('../../Images/samplepicture.svg'),
                     'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80',
                     'https://images.unsplash.com/photo-1470341223622-1019832be824?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2288&q=80',
@@ -37,37 +39,95 @@ export default class Matches extends Component {
     }
 
     componentDidMount() {
-        const { userID } = this.context;
-        this.setState({
-            userID: userID
-        });
-        this.getPreferences(userID);
+        setTimeout(() =>{
+            const { userID } = this.context;
+            this.setState({
+                userID: userID
+            });
+            console.log(userID);
+    
+            this.getMatch();
+        }, 10)
     }
 
-    getPreferences = (userID) => {
-        API.getPreferences(userID).then((result) => {
+    getMatch = () => {
+        API.findMatch(this.state.userID).then((result) => {
             if (result.status === 200) {
-                this.setState({
-                    preferences: result.data
-                })
+                if (result.data.found){
+                    console.log(result.data.match);
+                    /*
+                    this.setState({
+                        user: result.data.match
+                    })*/
+                }
             }
         }).catch((errors) => {
             this.setState({
               errors
             })
-        })
+        });
+
     }
 
     acceptUser = () => {
-        console.log("Checkmark clicked!")
+        API.response({
+            requesterID: this.state.userID,
+            addresseeID: this.state.user.userID,
+            status: 0
+        }).then((result) => {
+            if (result.status === 200) {
+                this.updatePrevious(this.state.userID);
+                this.getMatch();
+            }
+        })
+        .catch((errors) => {
+            this.setState({
+                errors
+            })
+        })
+        console.log("Checkmark clicked!");
     }
 
     rejectedUser = () => {
+        API.response({
+            requesterID: this.state.userID,
+            addresseeID: this.state.user.userID,
+            status: 1
+        }).then((result) => {
+            if (result.status === 200) {
+                this.updatePrevious(this.state.userID);
+                this.getMatch();
+            }
+        })
+        .catch((errors) => {
+            this.setState({
+                errors
+            })
+        })
         console.log("X button clicked!")
     }
 
     prevUser = () => {
+        const { userID, previousID } = this.state;
+        console.log(userID, previousID);
+
+        API.previousMatch(userID, previousID)
+        .then((result) => {
+            if (result.status === 200) {
+                console.log(result.data);
+                /*
+                this.setState({
+                    user: result.data.match
+                })*/
+            }
+        })
         console.log("Prev button clicked!")
+    }
+
+    updatePrevious = (id) => {
+        this.setState({
+            previousID: id
+        })
     }
 
     render() {

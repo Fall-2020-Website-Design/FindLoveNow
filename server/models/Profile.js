@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         Gender: {
             type: DataTypes.STRING,
             validate: {
-                isAlpha : true
+                isIn: [['male', 'female']]
             }
         },
         Age: {
@@ -16,9 +16,6 @@ module.exports = (sequelize, DataTypes) => {
         },
         Location: {
             type: DataTypes.STRING,
-        },
-        Interested: {
-            type: DataTypes.STRING
         },
         Height: {
             type: DataTypes.INTEGER
@@ -34,9 +31,6 @@ module.exports = (sequelize, DataTypes) => {
         },
         Phrase: {
             type: DataTypes.STRING
-        },
-        Picture: {
-            type: DataTypes.ARRAY(DataTypes.INTEGER)
         }
     },
         {

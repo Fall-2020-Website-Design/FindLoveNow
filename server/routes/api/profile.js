@@ -12,7 +12,7 @@ const {check, param, header} = require('express-validator');
  * 
  *
  * @memberof module:api/profile
- * @name PUT /update
+ * @name PUT /update Profile information
  */
 router.put('/update', 
     [
@@ -20,24 +20,40 @@ router.put('/update',
     ],
     ProfileControllers.update);
 
-module.exports = router;
+/**
+ * 
+ *
+ * @memberof module:api/profile
+ * @name Get /Get Profile information
+ */
+router.get('/get', 
+    [
+        validatorErrors
+    ],
+    ProfileControllers.getProfile);
+
+module.exports = router;    
 
 /**
  * 
  *
  * @memberof module:api/profile
- * @name GET /filterprofiles
+ * @name GET /filtered
  */
-router.get('/filterprofiles',
+router.get('/filtered',
     [
         validatorErrors
     ],
-    ProfileControllers.filterProfiles)
+    ProfileControllers.filterProfiles);
 
+/**
+ * 
+ *
+ * @memberof module:api/profile
+ * @name GET /:userID
+ */
 router.get('/:userID',
     [
         validatorErrors
     ],
-    ProfileControllers.getProfile)
-
-module.exports = router;
+    ProfileControllers.getProfile);

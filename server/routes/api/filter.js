@@ -8,9 +8,9 @@ const {check, param, header} = require('express-validator');
  * Post filter form to DB
  *
  * @memberof module:api/filter
- * @name PUT /preferences
+ * @name PUT /update
  */
-router.put('/preferences',
+router.put('/update/:userID',
 [
     check('gender',"Gender input field required")
     .isLength( {min : 1 } ),
@@ -31,7 +31,7 @@ router.put('/preferences',
 * @memberof module:api/filter
 * @name GET /:userID
 */
-router.get('/:userID', 
+router.get('/get/:userID', 
     [
         validatorErrors
     ],

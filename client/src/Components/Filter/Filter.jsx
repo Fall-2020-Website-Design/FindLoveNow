@@ -47,8 +47,7 @@ export default class Filter extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const { userID, gender, location, minAge, maxAge, maxDistance, height, ethnicity } = this.state
-        API.setPreferences({
-          userID,
+        API.setPreferences(userID, {
           gender,
           location,
           minAge,
@@ -96,8 +95,8 @@ export default class Filter extends React.Component {
             <label>I’m Interested In:</label>
             <select onChange={this.handleChange("gender")}>
                 <option selected disabled>Choose Gender</option>
-                <option value="men">Men</option>
-                <option value="women">Women</option>
+                <option value="male">Men</option>
+                <option value="female">Women</option>
                 <option value="both">Both</option>
             </select>
             </div>
