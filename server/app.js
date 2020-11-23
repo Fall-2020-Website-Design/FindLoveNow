@@ -67,7 +67,7 @@ db.sequelize
     console.log(`This is calling socket right after io connect on the server side ${socket}`)
     socket.on('join', ({ name, room }, callback) => {
       const socketID = socket.id
-      const { error, user } = addUser({ sockerID : userID , name, room });
+      const { error, user } = addUser({ socketID : userID , name, room });
 
 
       if(error) return callback(error);
