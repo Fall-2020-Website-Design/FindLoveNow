@@ -16,19 +16,6 @@ export class JoinChat extends Component {
     }
   }
 
-  /*
-  match: {
-    matchID: 1,
-    requesterID: 2
-    addresseeID: 3
-  },
-  {
-   matchID: 2,
-   requesterID: 2,
-   addresseeID: 4 
-  }
-  */
-
  componentDidMount() {
   setTimeout(() => {
     const { userID } = this.context

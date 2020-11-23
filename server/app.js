@@ -66,7 +66,8 @@ db.sequelize
   io.on('connect', (socket) => {
     console.log(`This is calling socket right after io connect on the server side ${socket}`)
     socket.on('join', ({ name, room }, callback) => {
-      const { error, user } = addUser({ id: socket.id, name, room });
+      const socketID = socket.id
+      const { error, user } = addUser({ sockerID : userID , name, room });
 
 
       if(error) return callback(error);
@@ -74,15 +75,23 @@ db.sequelize
 
       console.log(`Socket ${socket.id} joining ${room}`);
       socket.join(user.room);
-  
+      
+      // Welcome current user
       socket.emit('message', { user: 'admin', text: `${user.name}, welcome to room ${user.room}.`});
-      socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined!` });
-  
-      io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
+
+      // Broadcoast when a user connects
+      socket.broadcast.
+      to(user.room).
+      emit('message', { user: 'admin', text: `${user.name} has joined!` });
+      
+      // Send users and room info
+      io.to(user.room)
+      .emit('roomUsers', { room: user.room, users: getUsersInRoom(user.room) });
   
       callback();
     });
-  
+
+    // Listen for chat Message 
     socket.on('sendMessage', (message, callback) => {
       const user = getUser(socket.id);
       console.log(`Getting the sendMessage data on the event sendMessage ${message}` )
@@ -90,51 +99,27 @@ db.sequelize
   
       callback();
     });
-  
+    
+    // Run when Client disconnects
     socket.on('disconnect', () => {
       console.log(`Disconnected: ${socket.id}`)
       const user = removeUser(socket.id);
       if(user) {
-        io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.` });
-        io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room)});
+
+        io.to(user.room)
+        .emit('message', { user: 'Admin', text: `${user.name} has left.` });
+
+
+        //Send users and room info 
+        io.to(user.room)
+        .emit('roomUsers', { room: user.room, users: getUsersInRoom(user.room)});
       }
     })
    });
 
 
-//   const socketHistory = {};
-
-//   io.on('connection', (socket) => {
-//     let socketRoom;
-//     console.log(`Connected: ${socket.id}`);
-//     socket.on('disconnect', () =>
-//        console.log(`Disconnected: ${socket.id}`));
-
-
-//     socket.on('join', (room) => {
-//        console.log(`Socket ${socket.id} joining ${room}`);
-//        socket.join(room);
-//        socketRoom = room;
-//        socket.emit('joinResponse', socketHistory[room])
-//     });
-//     socket.on('chat', (data) => {
-//        const { message, room } = data;
-//        console.log(`msg: ${message}, room: ${room}`);
-//        socket.broadcast.to(socketRoom).emit('chat', message) 
-//        socketHistory[socketRoom] = socketHistory[socketRoom] ?
-//        [message, ...socketHistory[socketRoom]] : [message]
-//          });
-//     socket.on('switch', (data) => {
-//       const { prevRoom, nextRoom } = data;
-//       if (prevRoom) socket.leave(prevRoom);
-//       if (nextRoom) socket.join(nextRoom);
-//       socketRoom = nextRoom;
-//     });
-//  });
-
 
   
-// Test the connection
 // start up the server
 server.listen(PORT, () => console.log(`Listening on ${PORT}`));
 

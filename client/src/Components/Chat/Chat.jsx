@@ -22,6 +22,7 @@ const ENDPOINT = 'http://127.0.0.1:8080/'
 const Chat = ({ location }) => {
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
+  const [userID, setUserID] = useState('');
   const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
@@ -47,7 +48,7 @@ const Chat = ({ location }) => {
       setMessages(messages => [ ...messages, message ]);
     });
     
-    socket.on("roomData", ({ users }) => {
+    socket.on("roomUsers", ({ users }) => {
       setUsers(users);
     });
 }, []);
