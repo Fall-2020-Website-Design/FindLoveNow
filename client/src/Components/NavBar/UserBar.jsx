@@ -28,7 +28,11 @@ export class UserBar extends Component {
                     </Link>
 
                     <Col />
+<<<<<<< HEAD
                     <Link to="/Form">
+=======
+                    <Link to="/joinchat">
+>>>>>>> 655cdc805d1445dde287af6584a009996a3d1ac1
                         <Image src={ChatImg} id="ChatImg" alt="Chat Image" width="39" className="d-block mx-auto" />
                         <Row className="NavBar-l3-color mx-auto">Chat</Row>
                     </Link>

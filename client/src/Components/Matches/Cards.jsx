@@ -13,14 +13,15 @@ export class Cards extends Component {
 
     constructor(props) {
         super(props);
+        const {profile, images} = this.props;
         this.state = { 
-            currentPicture: this.props.user.currentPicture,
-            name: this.props.user.name,
-            age: this.props.user.age,
-            bio: this.props.user.bio,
-            miles: this.props.user.miles,
-            images: this.props.user.images
-        }     
+            currentPicture: 0,
+            name: profile.name,
+            age: profile.Age,
+            bio: profile.Phrase,
+            location: profile.Location,
+            images: images
+        };     
     }
 
     handleToUpdate = (index) => {
@@ -42,25 +43,27 @@ export class Cards extends Component {
     }
 
     render() {
+        const { bio, images, location, age, name, currentPicture } = this.state;
+
         return (
             <div>
                 <Col className="d-inline-flex justify-content-center pt-4">
                     <Card className="matches-card">
                         <Card.Body className="card-body">
-                            <Bar total={this.state.images.length} current={this.state.currentPicture} click={this.handleToUpdate} />
+                            <Bar total={images.length} current={currentPicture} click={this.handleToUpdate} />
 
                             <Arrows prev={this.prevImage} next={this.nextImage}/>
 
-                            <Images image={this.state.images[this.state.currentPicture]} className="d-inline-flex justify-content-center " />
+                            <Images image={images[currentPicture]} className="d-inline-flex justify-content-center " />
 
                             <Col className="info" >
-                                <div className="name-age"> {this.state.name}, {this.state.age} </div>
-                                <div className="bio"> {this.state.bio} </div> 
+                                <div className="name-age"> { name }, { age } </div>
+                                <div className="bio"> { bio } </div> 
                             </Col>  
 
                             <div className="location">
                                 <Row>
-                                    <Image alt="" src={location_image} /> {this.state.miles}
+                                    <Image alt="" src={location_image} /> { location }
                                 </Row>
                             </div>
                         </Card.Body>
