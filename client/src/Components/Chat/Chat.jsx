@@ -5,7 +5,7 @@
 import NavBar from "../NavBar/NavBar";
 import React, { useState, useEffect, useRef } from "react";
 import queryString from 'query-string';
-import io from "socket.io-client";
+ import io from "socket.io-client";
 
 import TextContainer from '../TextContainer/TextContainer';
 import Messages from '../Messages/Messages';

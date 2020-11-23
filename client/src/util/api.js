@@ -16,8 +16,32 @@ const searchByEmail = (email) => {
   return axios.get(`http://localhost:8080/api/users/findByEmail/${email}`)
 }
 
-const Preferences = (userData) => {
-  return axios.put('http://localhost:8080/api/filter/preferences', userData)
+const setPreferences = (userID, userData) => {
+  return axios.put('http://localhost:8080/api/filter/update/' + userID, userData)
+}
+
+const getPreferences = (userID) => {
+  return axios.get('http://localhost:8080/api/filter/get/' + userID);
+}
+
+const getName = (userID) => {
+  return axios.get('http://localhost:8080/api/users/' + userID);
+}
+
+const response = (matchData) => {
+  return axios.post('http://localhost:8080/api/match/response', matchData);
+}
+
+const findMatch = (userID) => {
+  return axios.get(`http://localhost:8080/api/match/find/${userID}`);
+}
+
+const previousMatch = (userID, previousID) => {
+  return axios.get(`http://localhost:8080/api/match/previous?userID=${userID}&previousID=${previousID}`);
+}
+
+const getallMatches = (userID) => {
+  return axios.get(`http://localhost:8080/api/match/allmatches/${userID}`)
 }
 
 export {
@@ -25,6 +49,12 @@ export {
     Register,
     searchByEmail,
     helloworldtest,
-    Preferences
+    setPreferences,
+    getPreferences,
+    getName,
+    response,
+    findMatch,
+    previousMatch,
+    getallMatches
 }
 

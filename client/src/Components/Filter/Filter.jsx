@@ -1,3 +1,4 @@
+
 import React from "react";
 import FilterImg from '../../Images/filter.png';
 import "./Filter.css";
@@ -47,8 +48,7 @@ export default class Filter extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const { userID, gender, location, minAge, maxAge, maxDistance, height, ethnicity } = this.state
-        API.Preferences({
-          userID,
+        API.setPreferences(userID, {
           gender,
           location,
           minAge,
@@ -58,12 +58,10 @@ export default class Filter extends React.Component {
           ethnicity
         }).then((result) => {
             if (result.status === 200) {
-                console.log(result);
+                alert("Preferences are now updated!");
             }
-            alert("Preferences are now updated!")
         })
         .catch((errors) => {
-            console.log(errors)
             this.setState({
               errors
             })
@@ -87,7 +85,7 @@ export default class Filter extends React.Component {
         <div>
             < NavBar />
             <Container>
-        <div className="filter-padding">
+        <div className="filter-padding pt-4">
         <div className="custom-filter-container">
     <center><h1 className="Filter-Header">Filter Matches</h1></center>
             <h2 className="Filter-SubHeader">Basic Preferences:</h2>
@@ -96,8 +94,8 @@ export default class Filter extends React.Component {
             <label>I’m Interested In:</label>
             <select onChange={this.handleChange("gender")}>
                 <option selected disabled>Choose Gender</option>
-                <option value="men">Men</option>
-                <option value="women">Women</option>
+                <option value="male">Men</option>
+                <option value="female">Women</option>
                 <option value="both">Both</option>
             </select>
             </div>
