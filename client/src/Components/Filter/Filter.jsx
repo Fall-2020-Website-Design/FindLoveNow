@@ -57,12 +57,10 @@ export default class Filter extends React.Component {
           ethnicity
         }).then((result) => {
             if (result.status === 200) {
-                console.log(result);
+                alert("Preferences are now updated!");
             }
-            alert("Preferences are now updated!")
         })
         .catch((errors) => {
-            console.log(errors)
             this.setState({
               errors
             })
