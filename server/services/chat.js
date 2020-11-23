@@ -1,11 +1,12 @@
 const users = [];
 
 
-const addUser = ({ socketID, name, room }) => {
+const addUser = ({ id , name, room }) => {
+  // Take out userID on line 4 temporary
   name = name.trim().toLowerCase();
   room = room.trim().toLowerCase();
 
-  const user = { socketID , name, room };
+  const user = { id, name, room };
 
   users.push(user);
   console.log(users)

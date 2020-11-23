@@ -6,6 +6,7 @@ import NavBar from "../NavBar/NavBar";
 import React, { useState, useEffect, useRef } from "react";
 import queryString from 'query-string';
  import io from "socket.io-client";
+ import { useLocation, useParams } from "react-router-dom";
 
 import TextContainer from '../TextContainer/TextContainer';
 import Messages from '../Messages/Messages';
@@ -20,6 +21,10 @@ import './Chat.css';
 let socket;
 const ENDPOINT = 'http://127.0.0.1:8080/'
 const Chat = ({ location }) => {
+  const currentPath = useLocation() // Chat/K/1 
+  const url_params = useParams() // get the params
+  console.log(currentPath)
+  console.log(url_params)
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
   const [userID, setUserID] = useState('');
@@ -28,20 +33,19 @@ const Chat = ({ location }) => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    const { name, room } = queryString.parse(location.search);
-
+    const { name, matchID } = url_params ;
+    
     // socket = io(ENDPOINT);
-    socket = io.connect(ENDPOINT)
-
+    const room = matchID
     setRoom(room);
     setName(name)
-    console.log(socket)
+    socket = io.connect(ENDPOINT)
     socket.emit('join', { name, room }, (error) => {
       if(error) {
         alert(error);
       }
     });
-  }, [ENDPOINT, location.search]);
+  }, [ENDPOINT, url_params]);
   
   useEffect(() => {
     socket.on('message', message => {

@@ -28,7 +28,7 @@ export class App extends Component {
             <Route exact path="/About" component={About} />
             <PrivateRoute path="/Profile" component={Profile} />
             <PrivateRoute exact path="/Filter" component={Filter} />
-            <Route path="/Chat" component={Chat} />
+            <Route path="/Chat/:name/:matchID" component={Chat} />
             <Route path="/joinchat" component={Join} />
             <PrivateRoute exact path="/Home" component={Matches} />
             <PrivateRoute exact path="/BlindDate" component={BlindDate} />

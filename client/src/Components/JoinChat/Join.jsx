@@ -61,13 +61,6 @@ getAllMatches = () => {
 }
 
 
-
- componentDidUpdate(prevProps,prevState) {
-   if (prevState.userID !== this.state.userID) {
-    console.log(this.state)
-   }
- } 
-
  render() {
    const matchItem = this.state.match
    return (
@@ -78,7 +71,7 @@ getAllMatches = () => {
           <ul>
             {matchItem.map((element) => (
               <li key={element.matchID}>
-                <Link to={`/chat?name=${this.state.name}&room=${element.matchID}`}>
+                <Link to={`/chat/${this.state.name}/${element.matchID}`}>
                   {element.name} 
                 </Link>
               </li>  
