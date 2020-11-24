@@ -4,6 +4,9 @@
 
 const MatchServices = require("../services/match.js");
 const ProfileServices = require("../services/profile.js");
+const MatchMiddleWares = require("../middleware/match.js");
+const FilterServices = require("../services/filter.js")
+const UserServices = require("../services/user.js")
 
 /**
  * @typedef {import('express').RequestHandler} RequestHandler}
@@ -14,11 +17,12 @@ const ProfileServices = require("../services/profile.js");
 const response = async (req, res, next) => {
     const { requesterID , addresseeID , status } = req.body;
 
-    match = {
+    const match = {
         requesterID,
         addresseeID,
         status
     }
+
     try {
         const newMatch = await MatchServices.createMatch(match)
         return res.json(newMatch);
@@ -32,10 +36,30 @@ const response = async (req, res, next) => {
     @type {RequestHandler}
 */
 const loadPotentialMatches = async (req, res, next) => {
-    const { userID } = req.body;
+    const { userID } = req.params;
+
     try {
-        const matches = await MatchServices.loadPotentialMatches(userID)
-        return res.json(matches);
+        const userPreferences = await FilterServices.getPreferences(userID);
+
+        const gender1 = (userPreferences.gender === "both") ? "male": userPreferences.gender;
+        const gender2 = (userPreferences.gender === "both") ? "female": userPreferences.gender;
+    
+        const preferences = {
+            gender1,
+            gender2, 
+            location: userPreferences.location, 
+            minAge: userPreferences.minAge, 
+            maxAge: userPreferences.maxAge, 
+            height: userPreferences.height
+        }
+
+        const potentialMatches = await ProfileServices.getFilteredProfiles(preferences);
+        
+        const usersMatches = await MatchServices.userMatches(userID);
+
+        const result = MatchMiddleWares.retrieveProfile(userID, potentialMatches, usersMatches);
+
+        return res.json(result);
     }
     catch (error) {
         next(error);
@@ -46,9 +70,11 @@ const loadPotentialMatches = async (req, res, next) => {
     @type {RequestHandler}
 */
 const previousMatch = async (req, res, next) => {
-    const { previousUserID } = req.body;
+    const { userID, previousID }  = req.query;
+
     try {
-        const profile = await ProfileServices.getProfile(previousUserID);
+        MatchServices.deleteMatch(userID, previousID);
+        const profile = await ProfileServices.getProfile(previousID);
         return res.json(profile);
     }
     catch (error) {
@@ -60,9 +86,15 @@ const previousMatch = async (req, res, next) => {
     @type {RequestHandler}
 */
 const allMatches = async(req,res,next) => {
-    const { userID } = req.body
+    const { userID } = req.params
     try {
-        const matches = await MatchServices.findAllMatches(userID)
+        let matches = await MatchServices.findAllMatches(userID)
+        console.log(matches)
+        for (let i = 0 ; i < matches.length; i++) {
+            const { name } =  await UserServices.findUser(matches[i].addresseeID)
+            matches[i].dataValues["name"] = name 
+            //console.log(addresseeUser)
+        }
         return res.json(matches);
     }
     catch(error) {
@@ -70,14 +102,25 @@ const allMatches = async(req,res,next) => {
     }
 } 
 
+/**
+    @type {RequestHandler}
+*/
+const userMatches = async(req, res, next) => {
+    const { userID } = req.params;
+    
+    try {
+        const matches = await MatchServices.userMatches(userID);
+        return res.json(matches);
+    }
+    catch (error) {
+        next(error);
+    }
+}
+
 module.exports = {
-<<<<<<< HEAD
-    reponse,
-    loadPotentialMatches,
-    previousMatch
-=======
     response,
     loadPotentialMatches,
-    allMatches
->>>>>>> e51c23693f70fdde6a312530b0fb1b480cf174e5
+    previousMatch,
+    allMatches,
+    userMatches
 }

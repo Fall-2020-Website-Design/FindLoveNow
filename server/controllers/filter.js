@@ -4,8 +4,10 @@ const FilterServices = require("../services/filter.js");
 /**
     @type {RequestHandler}
  */
-const preferences =  async (req, res, next) => {
-    const { userID, gender, location, minAge, maxAge, height } = req.body;
+const setPreferences =  async (req, res, next) => {
+    const { gender, location, minAge, maxAge, height } = req.body;
+    const { userID } = req.params;
+    
     const preferences = { 
         userID, 
         gender, 
@@ -22,6 +24,19 @@ const preferences =  async (req, res, next) => {
         .catch(error => next(error))
 }
 
+const userPreferences = async (req, res, next) => {
+    const { userID } = req.params;
+
+    try {
+        const preferences = await FilterServices.getPreferences(userID);
+        return res.json(preferences);
+    }
+    catch (error) {
+        next(error);
+    }
+}
+
 module.exports = { 
-    preferences
+    setPreferences,
+    userPreferences
 }

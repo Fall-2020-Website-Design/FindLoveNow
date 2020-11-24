@@ -16,7 +16,8 @@ export class Settings extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userID: this.props.userID,
+            userID: null,
+            Name: null,
             Age: null,
             Gender: null,
             City: null,
@@ -27,7 +28,30 @@ export class Settings extends Component {
             Hobby: null,
             Work: null,
             Phrase: null,
-        }
+            errors: [],
+        };
+    }
+
+    componentDidMount () {
+        const { userID } = this.context;
+        this.setState({
+            userID: userID
+        });
+        this.getUserName(userID)
+    };
+
+    getUserName = (id) => {
+        API.getName(id).then((result) => {
+            if (result.status === 200) {
+                this.setState({
+                    Name: result.data
+                })
+            }
+        }).catch((errors) => {
+            this.setState({
+              errors
+            })
+        })
     }
 
     handleChange = (input) => (e) => {
@@ -43,8 +67,7 @@ export class Settings extends Component {
 
 
     render() {
-
-
+        const { isAuthenicated } = this.context
         return (
 
             <Container className="requiredform-container">
@@ -55,7 +78,7 @@ export class Settings extends Component {
                                 <Form.Row>
                                 <Col md={3} className="mx-auto">
                                     <Card>
-                                        <Card.Img variant="top" className="image-setting d-block" src={YuBin} rounded />
+                                        <Card.Img variant="top" type="file" className="image-setting d-block" src={YuBin} rounded />
                                     </Card>
                                 </Col>
                                 </Form.Row>
@@ -63,7 +86,7 @@ export class Settings extends Component {
 
                             <Form.Group>
                                 <Form.Row>
-                                    <Form.Label column="sm" >Name:</Form.Label>
+                                    <Form.Label column="sm" >Name: {this.state.Name}</Form.Label>
                                     <Col>
                                         {}
                                     </Col>
@@ -152,9 +175,6 @@ export class Settings extends Component {
                                             <option value="Select" selected="true">Choose</option>
                                         </Form.Control>
                                     </Col>
-                                    <Col sm={2}>
-                                        <Form.Label column="sm" sm={2} className="text-muted">(Optional)</Form.Label>
-                                    </Col>
                                 </Form.Row>
                             </Form.Group>
 
@@ -162,7 +182,7 @@ export class Settings extends Component {
                                 <Form.Row>
                                     <Form.Label column="sm" sm={2} >Height:</Form.Label>
                                     <Col sm={1}>
-                                        <Form.Control type="number" placeholder="Feet" id="Height" max="6" min="0" />
+                                        <Form.Control type="number" placeholder="Feet" id="Height" max="6" min="4" />
                                     </Col>
                                     <Col sm={1}>
                                         <Form.Control type="number" placeholder="Inches" id="Height" max="11" min="0" />
