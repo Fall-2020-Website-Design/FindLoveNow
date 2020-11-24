@@ -44,13 +44,18 @@ const previousMatch = (userID, previousID) => {
   return axios.get(`http://localhost:8080/api/match/previous?userID=${userID}&previousID=${previousID}`);
 }
 
+const getallMatches = (userID) => {
+  return axios.get(`http://localhost:8080/api/match/allmatches/${userID}`)
+}
+
 const setProfile = (userData) => {
   return axios.put('http://localhost:8080/api/profile/update/', userData );
 }
 
-const getProfile = (userData) => {
-  return axios.put('http://localhost:8080/api/profile/get/' + userID);
+const getProfile = (userID) => {
+  return axios.get(`http://localhost:8080/api/profile/${userID}`);
 }
+
 
 
 
@@ -66,8 +71,9 @@ export {
     response,
     findMatch,
     previousMatch,
+    getallMatches,
     setProfile,
     getProfile
-    
+  
 }
 

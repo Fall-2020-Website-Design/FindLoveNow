@@ -10,8 +10,8 @@ import { AuthContext } from "../../Context/authContext";
 import * as API from "../../util/api";
 
 
-
 export class Settings extends Component {
+
     static contextType = AuthContext;
     constructor(props) {
         super(props);
@@ -65,7 +65,7 @@ export class Settings extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const { userID, Age, Gender, City, States, Interested, Height, Education, Hobby, Work, Phrase } = this.state;
-        const H = Height === ""? null: Height;
+        const H = Height === "" ? null : Height;
         const userData = {
             userID,
             Age,
@@ -85,7 +85,7 @@ export class Settings extends Component {
             }
             alert("Profile Form set!")
         })
-        
+
             .catch((errors) => {
                 console.log(errors)
                 this.setState({
@@ -99,161 +99,159 @@ export class Settings extends Component {
 
 
     render() {
-        const { isAuthenicated } = this.context
         return (
 
             <Container className="requiredform-container">
                 <h1 className="requiredform-color text-center mb-4">Basic Information</h1>
+                    <Form >
+                        <Form.Group action="/upload" method="POST" enctype="multipart/form-data">
+                            <Form.Row>
+                                <Col md={3} className="mx-auto">
+                                    <Card className="image-upload">
+                                        <label for="file-input">
+                                            <Card.Img variant="top" className="image-setting d-block" style={{ height: '100%' }} src={add} rounded />
+                                        </label>
+                                        <input id="file-input" type="file" />
+                                    </Card>
+                                </Col>
+                            </Form.Row>
+                        </Form.Group>
 
-                <Form >
-                    <Form.Group action="/upload" method="POST" enctype="multipart/form-data">
-                        <Form.Row>
-                            <Col md={3} className="mx-auto">
-                                <Card className="image-upload">
-                                    <label for="file-input">
-                                        <Card.Img variant="top" className="image-setting d-block" style={{ height: '100%' }} src={add} rounded />
-                                    </label>
-                                    <input id="file-input" type="file" />
-                                </Card>
-                            </Col>
-                        </Form.Row>
-                    </Form.Group>
-
-                    <Form.Group>
-                        <Form.Row>
-                            <Form.Label column="sm" >Name: {this.state.Name}</Form.Label>
-                        </Form.Row>
-                    </Form.Group>
-
-                    <Form.Group>
-                        <Form.Row>
-                            <Form.Label column="sm" sm={2} >Age:</Form.Label>
-                            <Col sm={4}>
-                                <Form.Control type="number" style={{ width: 100 }} min="18" onChange={this.handleChange("Age")} />
-                            </Col>
-                        </Form.Row>
-                    </Form.Group>
-
-                    <Form.Group>
-                        <Form.Row className="p-2">
-                            <Form.Check
-                                className="text-muted"
-                                required
-                                name="terms"
-                                label="By checking this box I agree that the I'm over 18"
-                                feedback="You must agree before proceeding"
-                                id="ageValidation"
-                            />
-                        </Form.Row>
-                    </Form.Group>
-
-                    <fieldset aria-required>
                         <Form.Group>
-                            <Form.Row inline>
-                                <Form.Label column="md" md={2} >Gender</Form.Label>
-                                <Col md={2}>
-                                    <Form.Control as="select" onChange={this.handleChange("Gender")}>
+                            <Form.Row>
+                                <Form.Label column="sm" >Name: {this.state.Name}</Form.Label>
+                            </Form.Row>
+                        </Form.Group>
+
+                        <Form.Group>
+                            <Form.Row>
+                                <Form.Label column="sm" sm={2} >Age:</Form.Label>
+                                <Col sm={4}>
+                                    <Form.Control type="number" style={{ width: 100 }} min="18" onChange={this.handleChange("Age")} />
+                                </Col>
+                            </Form.Row>
+                        </Form.Group>
+
+                        <Form.Group>
+                            <Form.Row className="p-2">
+                                <Form.Check
+                                    className="text-muted"
+                                    required
+                                    name="terms"
+                                    label="By checking this box I agree that the I'm over 18"
+                                    feedback="You must agree before proceeding"
+                                    id="ageValidation"
+                                />
+                            </Form.Row>
+                        </Form.Group>
+
+                        <fieldset aria-required>
+                            <Form.Group>
+                                <Form.Row inline>
+                                    <Form.Label column="md" md={2} >Gender</Form.Label>
+                                    <Col md={2}>
+                                        <Form.Control as="select" onChange={this.handleChange("Gender")}>
+                                            <option selected disabled>Choose</option>
+                                            <option value="male">Man</option>
+                                            <option value="female">Woman</option>
+                                        </Form.Control>
+                                    </Col>
+                                </Form.Row>
+                            </Form.Group>
+                        </fieldset>
+
+                        <Form.Group>
+                            <Form.Row>
+                                <Form.Label column="sm" sm={2} >Location:</Form.Label>
+                                <Col sm={4}>
+                                    <Form.Control type="text" placeholder="City" id="City" onChange={this.handleChange("City")} />
+                                </Col>
+                                <Col sm={4}>
+                                    <Form.Control type="text" placeholder="State" id="State" onChange={this.handleChange("States")} />
+                                </Col>
+                                <Col sm={2}>
+                                    <Form.Label column="sm" sm={2} className="text-muted">(Optional)</Form.Label>
+                                </Col>
+                            </Form.Row>
+                        </Form.Group>
+
+                        <Form.Group>
+                            <Form.Row>
+                                <Form.Label column="sm" sm={2} >I'm Interested in:</Form.Label>
+                                <Col sm={4}>
+                                    <Form.Control as="select" id="Interested" onChange={this.handleChange("Interested")}>
                                         <option selected disabled>Choose</option>
-                                        <option value="male">Man</option>
-                                        <option value="female">Woman</option>
+                                        <option value="Man">Man</option>
+                                        <option value="Woman">Woman</option>
+                                        <option value="Both">Both</option>
                                     </Form.Control>
                                 </Col>
                             </Form.Row>
                         </Form.Group>
-                    </fieldset>
 
-                    <Form.Group>
-                        <Form.Row>
-                            <Form.Label column="sm" sm={2} >Location:</Form.Label>
-                            <Col sm={4}>
-                                <Form.Control type="text" placeholder="City" id="City" onChange={this.handleChange("City")} />
-                            </Col>
-                            <Col sm={4}>
-                                <Form.Control type="text" placeholder="State" id="State" onChange={this.handleChange("State")} />
-                            </Col>
-                            <Col sm={2}>
-                                <Form.Label column="sm" sm={2} className="text-muted">(Optional)</Form.Label>
-                            </Col>
-                        </Form.Row>
-                    </Form.Group>
+                        <Form.Group>
+                            <Form.Row>
+                                <Form.Label column="sm" sm={2} >Height:</Form.Label>
+                                <Col sm={1}>
+                                    <Form.Control type="number" placeholder="Feet" id="Height" max="6" min="4" onChange={this.handleChange("Height")} />
+                                </Col>
+                                {/* <Col sm={1}>
+                                    <Form.Control type="number" placeholder="Inches" id="Height" max="11" min="0" onChange={this.handleChange("Height")} />
+                                </Col> */}
+                            </Form.Row>
+                        </Form.Group>
 
-                    <Form.Group>
-                        <Form.Row>
-                            <Form.Label column="sm" sm={2} >I'm Interested in:</Form.Label>
-                            <Col sm={4}>
-                                <Form.Control as="select" id="Interested" onChange={this.handleChange("Interested")}>
-                                    <option selected disabled>Choose</option>
-                                    <option value="M">Man</option>
-                                    <option value="W">Woman</option>
-                                    <option value="B">Both</option>
-                                </Form.Control>
-                            </Col>
-                        </Form.Row>
-                    </Form.Group>
+                        <Form.Group>
+                            <Form.Row>
+                                <Form.Label column="sm" sm={2} >Education:</Form.Label>
+                                <Col sm={8}>
+                                    <Form.Control type="text" id="Education" maxlength="255" onChange={this.handleChange("Education")} />
+                                </Col>
+                                <Col sm={2}>
+                                    <Form.Label column="sm" sm={2} className="text-muted">(Optional)</Form.Label>
+                                </Col>
+                            </Form.Row>
+                        </Form.Group>
 
-                    <Form.Group>
-                        <Form.Row>
-                            <Form.Label column="sm" sm={2} >Height:</Form.Label>
-                            <Col sm={1}>
-                                <Form.Control type="number" placeholder="Feet" id="Height" maxlength="4" onChange={this.handleChange("Height")} />
-                            </Col>
-                            <Col sm={2}>
-                                <Form.Label className="text-muted">(Optional)</Form.Label>
-                            </Col>
-                        </Form.Row>
-                    </Form.Group>
+                        <Form.Group>
+                            <Form.Row>
+                                <Form.Label column="sm" sm={2} >I love:</Form.Label>
+                                <Col sm={8}>
+                                    <Form.Control type="text" id="Hobby" maxlength="255" onChange={this.handleChange("Hobby")} />
+                                </Col>
+                                <Col sm={2}>
+                                    <Form.Label column="sm" sm={2} className="text-muted">(Optional)</Form.Label>
+                                </Col>
+                            </Form.Row>
+                        </Form.Group>
 
-                    <Form.Group>
-                        <Form.Row>
-                            <Form.Label column="sm" sm={2} >Education:</Form.Label>
-                            <Col sm={8}>
-                                <Form.Control type="text" id="Education" maxlength="30" onChange={this.handleChange("Education")} />
-                            </Col>
-                            <Col sm={2}>
-                                <Form.Label column="sm" sm={2} className="text-muted">(Optional)</Form.Label>
-                            </Col>
-                        </Form.Row>
-                    </Form.Group>
+                        <Form.Group>
+                            <Form.Row>
+                                <Form.Label column="sm" sm={2} >Work at:</Form.Label>
+                                <Col sm={8}>
+                                    <Form.Control type="text" id="Work" maxlength="255" onChange={this.handleChange("Work")} />
+                                </Col>
+                                <Col sm={2}>
+                                    <Form.Label column="sm" sm={2} className="text-muted">(Optional)</Form.Label>
+                                </Col>
+                            </Form.Row>
+                        </Form.Group>
 
-                    <Form.Group>
-                        <Form.Row>
-                            <Form.Label column="sm" sm={2} >I love:</Form.Label>
-                            <Col sm={8}>
-                                <Form.Control type="text" id="Hobby" maxlength="30" onChange={this.handleChange("Hobby")} />
-                            </Col>
-                            <Col sm={2}>
-                                <Form.Label column="sm" sm={2} className="text-muted">(Optional)</Form.Label>
-                            </Col>
-                        </Form.Row>
-                    </Form.Group>
-
-                    <Form.Group>
-                        <Form.Row>
-                            <Form.Label column="sm" sm={2} >Work at:</Form.Label>
-                            <Col sm={8}>
-                                <Form.Control type="text" id="Work" maxlength="255" onChange={this.handleChange("Work")} />
-                            </Col>
-                            <Col sm={2}>
-                                <Form.Label column="sm" sm={2} className="text-muted">(Optional)</Form.Label>
-                            </Col>
-                        </Form.Row>
-                    </Form.Group>
-
-                    <Form.Group>
-                        <Form.Row>
-                            <Form.Label column="sm" sm={2} >Catch Phrase:</Form.Label>
-                            <Col sm={8}>
-                                <Form.Control as="textarea" id="Phrase" maxlength="255" onChange={this.handleChange("Phrase")} />
-                            </Col>
-                            <Col sm={2}>
-                                <Form.Label column="sm" sm={2} className="text-muted">(Optional)</Form.Label>
-                            </Col>
-                        </Form.Row>
-                    </Form.Group>
-                    <center className="mb-4">
-                        <Button bsPrefix="setting-button-color" onClick={this.handleSubmit}>Submit</Button>
-                    </center>
-                </Form>
+                        <Form.Group>
+                            <Form.Row>
+                                <Form.Label column="sm" sm={2} >Catch Phrase:</Form.Label>
+                                <Col sm={8}>
+                                    <Form.Control as="textarea" id="Phrase" maxlength="255" onChange={this.handleChange("Phrase")} />
+                                </Col>
+                                <Col sm={2}>
+                                    <Form.Label column="sm" sm={2} className="text-muted">(Optional)</Form.Label>
+                                </Col>
+                            </Form.Row>
+                        </Form.Group>
+                        <center className="mb-4">
+                            <Button bsPrefix="setting-button-color" onClick={this.handleSubmit}>Submit</Button>
+                        </center>
+                    </Form>
             </Container>
         )
     }
