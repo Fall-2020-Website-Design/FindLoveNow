@@ -30,7 +30,7 @@
   .sentText {
     display: flex;
     align-items: center;
-    font-family: Helvetica;
+    font-family: 'Times New Roman', Times, serif;
     color: #828282;
     letter-spacing: 0.3px;
   }
