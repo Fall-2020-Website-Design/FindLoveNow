@@ -38,7 +38,7 @@ export class ProfileInf extends Component {
                 Age: profile.Age,
                 Location: Location[0].charAt(0).toUpperCase() + Location[0].slice(1) + ", " +Location[1].charAt(0).toUpperCase() + Location[1].slice(1),
                 Interested: profile.Interested.charAt(0).toUpperCase() + profile.Interested.slice(1),
-                Height: profile.Height,
+                Height: `${Math.floor(profile.Height/12)} ' ${profile.Height % 12}''`,
                 Education: profile.Education,
                 Hobby: profile.Hobby, 
                 Work: profile.Work,
@@ -48,7 +48,8 @@ export class ProfileInf extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        const { userID, Age, City, States, Interested, Height, Education, Hobby, Work } = this.state;
+        const { userID, Age, City, States, Interested, Feet, Inches, Education, Hobby, Work } = this.state;
+        const Height = parseInt(Feet)*12 + parseInt(Inches);
         const userData = {
             userID,
             Age,
@@ -229,11 +230,11 @@ export class ProfileInf extends Component {
                                                 <InputGroup>
                                                     <p>Height:</p>
                                                     <Col sm={4}>
-                                                        <FormControl placeholder="Feet" type="number" id="Height" max="6" min="4" onChange={this.handleChange("Height")} />
+                                                        <FormControl placeholder="Feet" type="number" id="Height" max="6" min="4" onChange={this.handleChange("Feet")} />
                                                     </Col>
-                                                    {/* <Col sm={4}>
-                                                <FormControl placeholder="Inches" type="number" max="11" min="0" />
-                                            </Col> */}
+                                                    <Col sm={4}>
+                                                <FormControl placeholder="Inches" type="number" id="Height" max="11" min="0" onChange={this.handleChange("Inches")}/>
+                                            </Col>
                                                 </InputGroup>
                                             </Col>
                                         </Row>

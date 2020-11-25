@@ -8,6 +8,8 @@ import add from '../../Images/add.svg'
 import './RequiredForm.css'
 import { AuthContext } from "../../Context/authContext";
 import * as API from "../../util/api";
+import { withRouter } from 'react-router-dom';
+
 
 
 export class Settings extends Component {
@@ -64,8 +66,14 @@ export class Settings extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+       this.updateProfile();
+       this.updatePreference();
+
+    };
+
+    updateProfile = () => {
         const { userID, Age, Gender, City, States, Interested, Feet, Inches, Education, Hobby, Work, Phrase } = this.state;
-        const Height = Feet*12 + Inches;
+        const Height = parseInt(Feet)*12 + parseInt(Inches);
         const userData = {
             userID,
             Age,
@@ -93,9 +101,33 @@ export class Settings extends Component {
                 })
                 alert("Filled out requiere fields")
             })
+    }
 
-    };
-
+    updatePreference = () => {
+        const { userID, Interested, City, States }  = this.state;
+        const userData = {
+            userID, 
+            Interested, 
+            City, 
+            States
+        }
+        API.formPreference(userData).then((result) => {
+            if (result.status === 200) {
+                console.log(result);
+                this.props.history.push('/Home');
+            }
+        })
+        .catch((errors) => {
+            console.log(errors)
+            this.setState({
+                errors
+            })
+        })
+    }
+    
+    // uploadImage = () => {
+    //     const { userID, file}
+    // }
 
 
     render() {
@@ -257,4 +289,4 @@ export class Settings extends Component {
     }
 }
 
-export default Settings
+export default withRouter(Settings); 

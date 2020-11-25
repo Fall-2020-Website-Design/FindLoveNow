@@ -22,6 +22,14 @@ router.put('/update',
             .isLength({ min: 1 }),
         check('States', "State input field required")
             .isLength({ min: 1 }),
+        check('Phrase', "Phrase input field required")
+            .isLength({ min: 1 }),
+        check('Height', "Height input field required")
+            .isLength({ min: 1 }),
+        check('file', "file input field required")
+            .isLength({ min: 1 }),
+        check('Interested', "Interested input field required")
+            .isLength({ min: 1 }),
         validatorErrors
     ],
     ProfileControllers.update);
