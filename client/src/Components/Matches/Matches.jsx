@@ -22,20 +22,8 @@ export default class Matches extends Component {
             userID: null,
             previousID: null,
             name: null, // comes from user Table
-            profile: { // comes form profile Table
-                /* object will be loaded from db with info */
-                userID: 3,
-                currentPicture: 0,
-                name: "John",
-                Age: 25,
-                Phrase: "Human Resources at CitiBank",
-                Location: "New York, New York",
-            },
-            pictures: [require('../../Images/samplepicture.svg'),
-                'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80',
-                'https://images.unsplash.com/photo-1470341223622-1019832be824?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2288&q=80',
-                'https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2094&q=80',
-                'https://images.unsplash.com/photo-1534161308652-fdfcf10f62c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2174&q=80'],
+            profile: null,
+            pictures: [],
             errors: []
         }
     }
@@ -46,21 +34,24 @@ export default class Matches extends Component {
             this.setState({
                 userID: userID
             }, () => {
-                console.log(userID);
                 this.getMatch();
             });
         }, 10)
     }
 
     getMatch = () => {
-        API.findMatch(this.state.userID).then((result) => {
+        const { userID } = this.state;
+        API.findMatch(userID).then((result) => {
             if (result.status === 200) {
-                console.log(result.data);
                 if (result.data.found) {
+                    const resultID = result.data.match.userID
+                    this.getImages(resultID);
+                    this.getUserName(resultID);
+
                     this.setState({
                         profile: result.data.match,
                         found: true,
-                        loading: false
+                        loading: false,
                     })
                 }
                 else {
@@ -77,6 +68,35 @@ export default class Matches extends Component {
         });
 
     }
+
+
+    getImages = (id) => {
+        API.getUserImages(id).then((results) => {
+            if (results.status === 200) {
+                this.setState({
+                    pictures: results.data
+                })
+            }
+        }).catch((errors) => {
+            this.setState({
+              errors: errors
+            })
+        });
+    }
+
+    getUserName = (id) => {
+        API.getName(id).then((result) => {
+            if (result.status === 200) {
+                this.setState({
+                    name: result.data
+                })
+            }
+        }).catch((errors) => {
+            this.setState({
+                errors
+            })
+        })
+    };
 
     acceptUser = () => {
         const { userID, profile } = this.state;
@@ -120,18 +140,24 @@ export default class Matches extends Component {
 
     prevUser = () => {
         const { userID, previousID } = this.state;
-        console.log(userID, previousID);
-
-        API.previousMatch(userID, previousID)
-        .then((result) => {
-            if (result.status === 200) {
-                console.log(result.data);
-                
+        if (previousID === null) {
+            alert("You have no pervious match for this session");
+        }
+        else {
+            API.previousMatch(userID, previousID)
+            .then((result) => {
+                if (result.status === 200) {
+                    this.setState({
+                        profile: result.data.match
+                    })
+                }
+            }).catch((errors) => {
                 this.setState({
-                    profile: result.data.match
+                    errors
                 })
-            }
-        })
+            });
+        }
+        
     }
 
     updatePrevious = (id) => {
@@ -141,9 +167,8 @@ export default class Matches extends Component {
     }
 
     render() {
-        const { pictures, profile, loading, found } = this.state;
+        const { pictures, profile, loading, found, name } = this.state;
         let body = null;
-        
 
         if (loading) {
             body = <div>
@@ -153,7 +178,7 @@ export default class Matches extends Component {
         else {
             if(found) {
                body = <div>
-                    <Cards profile={profile} images={pictures} />
+                    <Cards profile={profile} pictures={pictures} name={name} />
                     <Buttons prev={this.prevUser} reject={this.rejectedUser} accept={this.acceptUser} />
                </div>
             }

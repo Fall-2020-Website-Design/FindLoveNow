@@ -65,13 +65,16 @@ const createUser = async (data) => {
     const id = await findUserByEmail(data.email)
 
     // when user is created userID is added to Profile table
-    const newProfile = await db.Profile.create({
+    await db.Profile.create({
         userID: id.dataValues.userID
     })
 
     // when user is created userID is added to Filter table
-    const newFilter = await db.Filter.create({
-        userID: id.dataValues.userID
+    await db.Filter.create({
+        userID: id.dataValues.userID,
+        minAge: 18,
+        maxAge: 65,
+        height: 0
     })
 
     console.log(`${newUser} has been created in the function createUser`)

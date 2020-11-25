@@ -6,12 +6,35 @@ import './Matches.css';
 
 export class Images extends Component {
 
+    constructor(props) {
+        super(props);
+      
+        this.state = { 
+            image: require('../../Images/samplepicture.svg'),
+            type: null
+        };     
+    }
+
+    static getDerivedStateFromProps (props, state) {
+        const { image } = props;
+        
+        if (image) {
+            return {
+                image: image.data,
+                type: image
+            }
+        }
+        return null;
+    } 
+
     render() {
+        const { image, type } = this.state;
+
         return (
             <div>
                 <Row className="justify-content-md-center">
                     <Col>
-                        <Image src={this.props.image} className="card-img" />
+                        <Image src={URL.createObjectURL(new Blob([Buffer.from(image)], {'type': type}))} className="card-img" />
                     </Col>
                 </Row>
             </div>
