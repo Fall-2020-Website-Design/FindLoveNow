@@ -34,6 +34,17 @@ const updatePreferences = async (data) => {
     return filter[1][0];
 }
 
+const updateGender = async (data) => {
+    const filter = await db.Filter.update(
+        {
+            gender: data.gender,
+            
+        },
+        {returning: true, where: {userID: data.userID} }
+    )
+    
+    return filter[1][0];
+}
 module.exports = {
     updatePreferences,
     getPreferences

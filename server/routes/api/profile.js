@@ -6,7 +6,7 @@ const express = require('express');
 const router = new express.Router();
 const ProfileControllers = require('../../controllers/profile.js')
 const validatorErrors = require('../../middleware/validatorErrors');
-const {check, param, header} = require('express-validator');
+const { check, param, header } = require('express-validator');
 
 /**
  * 
@@ -14,8 +14,14 @@ const {check, param, header} = require('express-validator');
  * @memberof module:api/profile
  * @name PUT /update
  */
-router.put('/update', 
+router.put('/update',
     [
+        check('Gender', "Gender input field required")
+            .isLength({ min: 1 }),
+        check('City', "City input field required")
+            .isLength({ min: 1 }),
+        check('States', "State input field required")
+            .isLength({ min: 1 }),
         validatorErrors
     ],
     ProfileControllers.update);
@@ -43,5 +49,6 @@ router.get('/:userID',
         validatorErrors
     ],
     ProfileControllers.getProfile)
+
 
 module.exports = router;

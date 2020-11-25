@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import CardDeck from 'react-bootstrap/CardDeck'
 import Card from 'react-bootstrap/Card'
-import Alex from '../../Images/Alex.png'
-import abc from '../../Images/abc.jpg'
-import YuBin from '../../Images/YuBin.png'
-import Chrystal from '../../Images/Chrystal.png'
+import add from '../../Images/add.svg'
 
 
 export class ProfileDeck extends Component {
@@ -12,20 +9,35 @@ export class ProfileDeck extends Component {
         return (
             <div>
                 <CardDeck>
-                    <Card>
-                        <Card.Img variant="top" className="image-deck d-block" style={{height: '100%' }} src={abc} rounded/>
+                    <Card className="image-upload-profile">
+                        <label for="file-input">
+                            <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={add} rounded />
+                        </label>
+                        <input id="file-input" type="file" />
                     </Card>
-                    <Card>
-                        <Card.Img variant="top" className="image-deck d-block" style={{height: '100%' }} src={Alex} rounded/>
+
+                    <Card className="image-upload-profile">
+                        <label for="file-input">
+                            <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={add} rounded />
+                        </label>
+                        <input id="file-input" type="file" />
                     </Card>
-                    <Card>
-                        <Card.Img variant="top" className="image-deck d-block" style={{height: '100%' }} src={YuBin} rounded/>
+
+                    <Card className="image-upload-profile">
+                        <label for="file-input">
+                            <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={add} rounded />
+                        </label>
+                        <input id="file-input" type="file" />
                     </Card>
-                    <Card>
-                        <Card.Img variant="top" className="image-deck d-block" style={{height: '100%' }} src={Chrystal} rounded/>
+
+                    <Card className="image-upload-profile">
+                        <label for="file-input">
+                            <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={add} rounded />
+                        </label>
+                        <input id="file-input" type="file" />
                     </Card>
                 </CardDeck>
-                
+
             </div>
         )
     }

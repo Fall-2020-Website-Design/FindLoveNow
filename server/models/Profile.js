@@ -8,17 +8,20 @@ module.exports = (sequelize, DataTypes) => {
         Gender: {
             type: DataTypes.STRING,
             validate: {
-                isIn: [["male", "female"]]
+                isIn: [['male', 'female']]
             }
         },
         Age: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
         },
         Location: {
             type: DataTypes.STRING,
         },
+        Interested: {
+            type: DataTypes.STRING,
+        },
         Height: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
         },
         Education: {
             type: DataTypes.STRING,
