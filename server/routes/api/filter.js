@@ -14,13 +14,17 @@ router.put('/update/:userID',
     [
         check('gender',"Gender input field required")
         .isLength( {min : 1 } ),
-        check('location', "Location input field required")
+        check('city', "City input field required")
+        .isLength( {min : 1 } ),
+        check('state', "State input field required")
         .isLength( {min : 1 } ),
         check('minAge', "Min Age input field required")
         .isLength( {min : 1 } ),
         check('maxAge', "Max Age input field required")
         .isLength( {min : 1 } ),
-        check('height', "Height input field required")
+        check('feet', "Height input field required")
+        .isLength( {min : 1 } ),
+        check('inches', "Height input field required")
         .isLength( {min : 1 } ),
         validatorErrors
     ], 
