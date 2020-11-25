@@ -1,19 +1,12 @@
 const FilterServices = require("../services/filter.js");
 
-    // gender,
-    // city,
-    // state,
-    // minAge,
-    // maxAge,
-    // feet,
-    // inches
 /**
     @type {RequestHandler}
  */
 const setPreferences =  async (req, res, next) => {
     const { gender, city, state, minAge, maxAge, feet, inches } = req.body;
     const { userID } = req.params;
-    const location = `${city.toLowerCase()}, ${state.toLowerCase()}`;
+    const location = `${city.toLowerCase()},${state.toLowerCase()}`;
     const height = parseInt(feet)*12 + parseInt(inches);
     
     const preferences = { 
