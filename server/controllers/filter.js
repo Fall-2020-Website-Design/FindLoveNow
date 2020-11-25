@@ -36,7 +36,27 @@ const userPreferences = async (req, res, next) => {
     }
 }
 
+const firstLoginForm = async (req, res, next) => {
+    const { userID, City, States, Gender } = req.body;
+    const Location = `${City.toLowerCase()}, ${States.toLowerCase()}`;
+    console.log(Location);
+    const data = {
+        userID,
+        Location,
+        Gender
+    }
+
+    try {
+        const updated = await FilterServices.formUpdate(data);
+        return res.json(updated);
+    }
+    catch (error) {
+        next(error);
+    }
+}
+
 module.exports = { 
     setPreferences,
-    userPreferences
+    userPreferences,
+    firstLoginForm
 }
