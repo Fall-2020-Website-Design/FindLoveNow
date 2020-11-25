@@ -64,8 +64,8 @@ export class Settings extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { userID, Age, Gender, City, States, Interested, Height, Education, Hobby, Work, Phrase } = this.state;
-        const H = Height === "" ? null : Height;
+        const { userID, Age, Gender, City, States, Interested, Feet, Inches, Education, Hobby, Work, Phrase } = this.state;
+        const Height = Feet*12 + Inches;
         const userData = {
             userID,
             Age,
@@ -73,7 +73,7 @@ export class Settings extends Component {
             City,
             States,
             Interested,
-            H,
+            Height,
             Education,
             Hobby,
             Work,
@@ -181,9 +181,9 @@ export class Settings extends Component {
                                 <Col sm={4}>
                                     <Form.Control as="select" id="Interested" onChange={this.handleChange("Interested")}>
                                         <option selected disabled>Choose</option>
-                                        <option value="Man">Man</option>
-                                        <option value="Woman">Woman</option>
-                                        <option value="Both">Both</option>
+                                        <option value="male">Man</option>
+                                        <option value="female">Woman</option>
+                                        <option value="both">Both</option>
                                     </Form.Control>
                                 </Col>
                             </Form.Row>
@@ -193,11 +193,11 @@ export class Settings extends Component {
                             <Form.Row>
                                 <Form.Label column="sm" sm={2} >Height:</Form.Label>
                                 <Col sm={1}>
-                                    <Form.Control type="number" placeholder="Feet" id="Height" max="6" min="4" onChange={this.handleChange("Height")} />
+                                    <Form.Control type="number" placeholder="Feet" id="Height" max="6" min="4" onChange={this.handleChange("Feet")} />
                                 </Col>
-                                {/* <Col sm={1}>
-                                    <Form.Control type="number" placeholder="Inches" id="Height" max="11" min="0" onChange={this.handleChange("Height")} />
-                                </Col> */}
+                                <Col sm={1}>
+                                    <Form.Control type="number" placeholder="Inches" id="Height" max="11" min="0" onChange={this.handleChange("Inches")} />
+                                </Col>
                             </Form.Row>
                         </Form.Group>
 

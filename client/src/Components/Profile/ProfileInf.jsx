@@ -31,15 +31,16 @@ export class ProfileInf extends Component {
     static getDerivedStateFromProps(props, state) {
         const { profile, Name } = props;
         if (profile) {
+            const Location = profile.Location.split(", ");
             return {
 
                 Name: Name,
                 Age: profile.Age,
-                Location: profile.Location,
-                Interested: profile.Interested,
+                Location: Location[0].charAt(0).toUpperCase() + Location[0].slice(1) + ", " +Location[1].charAt(0).toUpperCase() + Location[1].slice(1),
+                Interested: profile.Interested.charAt(0).toUpperCase() + profile.Interested.slice(1),
                 Height: profile.Height,
                 Education: profile.Education,
-                Hobby: profile.Hobby,
+                Hobby: profile.Hobby, 
                 Work: profile.Work,
                 Phrase: profile.Phrase
             };
@@ -48,14 +49,13 @@ export class ProfileInf extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const { userID, Age, City, States, Interested, Height, Education, Hobby, Work } = this.state;
-        const H = Height === "" ? null : Height;
         const userData = {
             userID,
             Age,
             City,
             States,
             Interested,
-            H,
+            Height,
             Education,
             Hobby,
             Work,
@@ -216,9 +216,9 @@ export class ProfileInf extends Component {
                                                     <Col>
                                                         <Form.Control as="select" id="Interested" onChange={this.handleChange("Interested")}>
                                                             <option value="Select" selected="true">Choose</option>
-                                                            <option value="Man">Man</option>
-                                                            <option value="Woman">Woman</option>
-                                                            <option value="Both">Both</option>
+                                                            <option value="male">Man</option>
+                                                            <option value="female">Woman</option>
+                                                            <option value="both">Both</option>
                                                         </Form.Control>
                                                     </Col>
                                                 </InputGroup>
