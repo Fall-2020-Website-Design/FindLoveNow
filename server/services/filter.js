@@ -18,6 +18,7 @@ const getPreferences = async (id) => {
  */
  
 const updatePreferences = async (data) => {
+    console.log(data)
     const filter = await db.Filter.update(
         {
             gender: data.gender,

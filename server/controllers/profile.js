@@ -2,10 +2,10 @@ const ProfileServices = require('../services/profile.js')
 
 const update = (req, res, next) => {
     const {userID, Gender, Age, City, States, Interested, Height, Education, Hobby, Work, Phrase} = req.body;
-    const Location = `${City}, ${States}`;
+    const Location = `${City},${States}`;
     
     const data = {userID, Gender, Age, Location, Interested, Height, Education, Hobby, Work, Phrase};
-    console.log(data)
+
     return ProfileServices.updateProfile(data)
     .then((data) => {
         res.json(data)
