@@ -64,7 +64,7 @@ export default class Filter extends React.Component {
             this.setState({
               errors
             })
-            alert("All fields must be filled out")
+            alert("All fields must be filled out");
         })
     };
 

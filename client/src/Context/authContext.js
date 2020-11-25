@@ -61,7 +61,7 @@ class AuthProvider extends Component {
 
   // Check for token to keep user logged in
   checkTokenExpired = () => {
-    console.log('Calling Token is Expired function!')
+    // console.log('Calling Token is Expired function!')
     if (localStorage.getItem("jwtToken")) {
       const token = localStorage.getItem("jwtToken");
       this.setAuthToken(token);
