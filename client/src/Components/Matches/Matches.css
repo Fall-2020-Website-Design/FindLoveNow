@@ -95,8 +95,7 @@
 }
 
 .name-age {
-    width: 133px;
-    height: 39px;
+    max-width: 40%;
     font-style: normal;
     font-weight: bold;
     font-size: 26px;

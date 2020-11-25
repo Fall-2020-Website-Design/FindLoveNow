@@ -57,7 +57,9 @@ const getProfile = (userID) => {
 }
 
 
-
+const getUserImages = (userID) => {
+  return axios.get(`http://localhost:8080/api/image/get/${userID}`)
+}
 
 export {
     LoginUser,
@@ -73,7 +75,7 @@ export {
     previousMatch,
     getallMatches,
     setProfile,
-    getProfile
-  
+    getProfile,
+    getUserImages
 }
 

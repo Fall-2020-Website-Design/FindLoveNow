@@ -16,37 +16,28 @@ export class Bar extends Component {
         super(props);
         this.state = {
             total: this.props.total,
+            current: 0,
             bars: [],
-            barSize: (80 / this.props.total).toString() + "%"
+            barSize: null
         }
     }
 
-    componentDidMount () {
-        let bar = []
+    static getDerivedStateFromProps (props, state) {
+        const { total, current } = props;
+        let bar = [];
+        const size = (80 / total).toString() + "%"
         
-        for(let i=0; i < this.state.total; i++) {
+        for(let i=0; i < total; i++) {
             bar.push(
-                <SingleBar key={i} size={this.state.barSize} color={0 === i ? "#FF0000" : "#808080"} onClick={() => this.props.click(i)}/>
+                <SingleBar key={i} size={size} color={current === i ? "#FF0000" : "#808080"} onClick={() => props.click(i)}/>
             );
         }
-
-        this.setState({
-            bars: bar
-        })
-    }
-
-    componentWillReceiveProps (newProps) {
-        let bar = []
-
-        for(let i=0; i < this.state.total; i++) {
-            bar.push(
-                <SingleBar key={i} size={this.state.barSize} color={newProps.current === i ? "#FF0000" : "#808080"} onClick={() => this.props.click(i)}/>
-            );
-        }
-
-        this.setState({
-            bars: bar
-        })
+        return {
+            total: total,
+            bars: bar,
+            barSize: size,
+            current: current
+        };
     }
 
     render() {
