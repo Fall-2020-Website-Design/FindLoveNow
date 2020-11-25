@@ -30,7 +30,7 @@ router.put('/update/:userID',
 * Post filter form to DB
 *
 * @memberof module:api/filter
-* @name PUT /:userID
+* @name GET /:userID
 */
 router.get('/get/:userID', 
     [

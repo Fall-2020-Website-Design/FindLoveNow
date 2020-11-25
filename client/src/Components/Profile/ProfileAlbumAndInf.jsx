@@ -6,13 +6,14 @@ import { AuthContext } from "../../Context/authContext";
 import ProfileDeck from './ProfileDeck'
 
 export class ProfileAlbumandInf extends Component {
+
     render() {
-        const { email, isAuthenicated, } = this.context
+        const { Name, profile } = this.props
         return (
             <Col lg={8}>
                 <ProfileDeck />
                 <Row className="mt-4">
-                    <ProfileInf />
+                    <ProfileInf Name={Name} profile={profile} />
                 </Row>
             </Col>
 
