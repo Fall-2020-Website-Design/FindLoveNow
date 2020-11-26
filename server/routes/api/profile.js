@@ -16,17 +16,7 @@ const { check, param, header } = require('express-validator');
  */
 router.put('/update',
     [
-        check('Gender', "Gender input field required")
-            .isLength({ min: 1 }),
-        check('City', "City input field required")
-            .isLength({ min: 1 }),
-        check('States', "State input field required")
-            .isLength({ min: 1 }),
-        check('Phrase', "Phrase input field required")
-            .isLength({ min: 1 }),
-        check('Height', "Height input field required")
-            .isLength({ min: 1 }),
-        check('Interested', "Interested input field required")
+        check('Gender', 'City', 'States', 'Phrase', 'Height', 'Interested', 'file', "input field required")
             .isLength({ min: 1 }),
         validatorErrors
     ],

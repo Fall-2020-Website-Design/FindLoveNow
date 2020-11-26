@@ -19,7 +19,7 @@ export class ProfileUser extends Component {
             errors: [],
         };
     }
-    static getDerivedStateFromProps (props, state) {
+    static getProps (props, state) {
         const { profile, Name } = props;
         if (profile){
             const Location = profile.Location.split(",");

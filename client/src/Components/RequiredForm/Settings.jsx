@@ -162,7 +162,7 @@ export class Settings extends Component {
 
             <Container className="requiredform-container">
                 <h1 className="requiredform-color text-center mb-4">Basic Information</h1>
-                    <Form >
+                    <Form noValidate>
                         <Form.Group action="/upload" method="POST" enctype="multipart/form-data">
                             <Form.Row>
                                 <Col md={3} className="mx-auto">
@@ -170,7 +170,7 @@ export class Settings extends Component {
                                         <label for="file-input">
                                             <Card.Img variant="top" className="image-setting d-block" style={{ height: '100%' }} src={add} rounded />
                                         </label>
-                                        <input id="file-input" type="file" />
+                                        <input id="file-input" type="file" required />
                                     </Card>
                                 </Col>
                             </Form.Row>
