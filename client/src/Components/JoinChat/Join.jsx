@@ -3,6 +3,8 @@ import NavBar from '../NavBar/NavBar';
 import * as API from "../../util/api"
 import { AuthContext } from "../../Context/authContext";
 import { Link } from 'react-router-dom';
+import './Join.css';
+import Footer from '../Footer/Footer';
 
 
 export class JoinChat extends Component {
@@ -15,19 +17,6 @@ export class JoinChat extends Component {
       match : [],
     }
   }
-
-  /*
-  match: {
-    matchID: 1,
-    requesterID: 2
-    addresseeID: 3
-  },
-  {
-   matchID: 2,
-   requesterID: 2,
-   addresseeID: 4 
-  }
-  */
 
  componentDidMount() {
   setTimeout(() => {
@@ -64,7 +53,6 @@ getAllMatches = () => {
           addresseeID,
           name
         }
-        // name is undefined when I call it here ....
         this.setState(prevState => {
           return { match: [...prevState.match, match]}
         })
@@ -86,43 +74,29 @@ getAllMatches = () => {
    return (
      <div>
        <NavBar />
-       <h1> Your list of matches</h1>
-        <div>
-          <ul>
+       <div className="joinOuterContainer">
+       <div className="joinInnerContainer">
+       <h1 className="Chat-SubHeader"> List of Matches</h1>
+       <h1 style={{fontFamily:"Snell Roundhand, cursive", fontSize:"18px"}}>click on the name to chat</h1>
+       <hr></hr>
+        <div className="users-font">
+          <ul className="chat-list">
             {matchItem.map((element) => (
               <li key={element.matchID}>
                 <Link to={`/chat?name=${this.state.name}&room=${element.matchID}`}>
                   {element.name} 
                 </Link>
+                <hr></hr>
               </li>  
             ))}
           </ul>
         </div>
      </div>
+     <div className="white-bg"><Footer /></div>
+     </div>
+     </div>
+     
    )
  }
 }
 export default JoinChat
-
-
-// export default function SignIn() {
-//   const [name, setName] = useState('');
-//   const [room, setRoom] = useState('');
-
-//   return (
-//     <div className="joinOuterContainer">
-//       <div className="joinInnerContainer">
-//         <h1 className="heading">Join</h1>
-//         <div>
-//           <input placeholder="Name" className="joinInput" type="text" onChange={(event) => setName(event.target.value)} />
-//         </div>
-//         <div>
-//           <input placeholder="Room" className="joinInput mt-20" type="text" onChange={(event) => setRoom(event.target.value)} />
-//         </div>
-//         <Link onClick={e => (!name || !room) ? e.preventDefault() : null} to={`/chat?name=${name}&room=${room}`}>
-//           <button className={'button mt-20'} type="submit">Sign In</button>
-//         </Link>
-//       </div>
-//     </div>
-//   );
-// }

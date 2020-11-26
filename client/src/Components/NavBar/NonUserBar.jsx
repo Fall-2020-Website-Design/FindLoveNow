@@ -10,6 +10,10 @@ export class NonUserBar extends Component {
         return (
             <Nav>
                 <Form inline >
+                    <Link to="/" className=" nav-link mr-4">
+                        <div className="NavBar-l2-color">
+                            Home</div>
+                    </Link>
                     <Link to="/About" className=" nav-link mr-4">
                         <div className="NavBar-l2-color">
                             About</div>

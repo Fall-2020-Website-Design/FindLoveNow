@@ -1,4 +1,4 @@
-.textContainer {
+.custom-textContainer {
   display: flex;
   flex-direction: column;
   margin-left: 100px;
@@ -7,27 +7,27 @@
   justify-content: space-between;
 }
 
-.activeContainer {
+.custom-activeContainer {
   display: flex;
   align-items: center;
   margin-bottom: 50%;
 }
 
-.activeItem {
+.custom-activeItem {
   display: flex;
   align-items: center;
 }
 
-.activeContainer img {
+.custom-activeContainer img {
   padding-left: 10px;
 }
 
-.textContainer h1 {
+.custom-textContainer h1 {
   margin-bottom: 0px;
 }
 
 @media (min-width: 320px) and (max-width: 1200px) {
-  .textContainer {
+  .custom-textContainer {
     display: none;
   }
 }

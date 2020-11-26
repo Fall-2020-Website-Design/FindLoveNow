@@ -102,35 +102,28 @@ db.sequelize
    });
 
 
-//   const socketHistory = {};
+// //Video:
 
-//   io.on('connection', (socket) => {
-//     let socketRoom;
-//     console.log(`Connected: ${socket.id}`);
-//     socket.on('disconnect', () =>
-//        console.log(`Disconnected: ${socket.id}`));
+// const users = {}; //users object to keep track of who the user is
 
+// io.on('connection', socket => { //each socket is a connection (each user has a unique id)
+//     if (!users[socket.id]) {
+//         users[socket.id] = socket.id;
+//     }
+//     socket.emit("yourID", socket.id);
+//     io.sockets.emit("allUsers", users);
+//     socket.on('disconnect', () => {
+//         delete users[socket.id];
+//     })
 
-//     socket.on('join', (room) => {
-//        console.log(`Socket ${socket.id} joining ${room}`);
-//        socket.join(room);
-//        socketRoom = room;
-//        socket.emit('joinResponse', socketHistory[room])
-//     });
-//     socket.on('chat', (data) => {
-//        const { message, room } = data;
-//        console.log(`msg: ${message}, room: ${room}`);
-//        socket.broadcast.to(socketRoom).emit('chat', message) 
-//        socketHistory[socketRoom] = socketHistory[socketRoom] ?
-//        [message, ...socketHistory[socketRoom]] : [message]
-//          });
-//     socket.on('switch', (data) => {
-//       const { prevRoom, nextRoom } = data;
-//       if (prevRoom) socket.leave(prevRoom);
-//       if (nextRoom) socket.join(nextRoom);
-//       socketRoom = nextRoom;
-//     });
-//  });
+//     socket.on("callUser", (data) => {
+//         io.to(data.userToCall).emit('hey', {signal: data.signalData, from: data.from});
+//     })
+
+//     socket.on("acceptCall", (data) => {
+//         io.to(data.to).emit('callAccepted', data.signal);
+//     })
+// });
 
 
   
