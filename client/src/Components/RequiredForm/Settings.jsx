@@ -162,21 +162,21 @@ export class Settings extends Component {
 
             <Container className="requiredform-container">
                 <h1 className="requiredform-color text-center mb-4">Basic Information</h1>
-                    <Form noValidate>
-                        <Form.Group action="/upload" method="POST" enctype="multipart/form-data">
-                            <Form.Row>
-                                <Col md={3} className="mx-auto">
-                                    <Card className="image-upload">
-                                        <label for="file-input">
-                                            <Card.Img variant="top" className="image-setting d-block" style={{ height: '100%' }} src={add} rounded />
-                                        </label>
-                                        <input id="file-input" type="file" required />
-                                    </Card>
-                                </Col>
-                            </Form.Row>
-                        </Form.Group>
+                <Form noValidate>
+                    <Form.Group action="/upload" method="POST" enctype="multipart/form-data">
+                        <Form.Row>
+                            <Col md={3} className="mx-auto">
+                                <Card className="image-upload">
+                                    <label for="file-input">
+                                        <Card.Img variant="top" className="image-setting d-block" style={{ height: '100%' }} src={add} rounded />
+                                    </label>
+                                    <input id="file-input" type="file" onChange={this.handleChange("file")} />
+                                </Card>
+                            </Col>
+                        </Form.Row>
+                    </Form.Group>
 
-    
+
                     <Form.Group>
                         <Form.Row>
                             <Form.Label column="sm" >Name: {this.state.Name}</Form.Label>
@@ -229,9 +229,6 @@ export class Settings extends Component {
                             <Col sm={4}>
                                 <Form.Control type="text" placeholder="State" id="State" onChange={this.handleChange("States")} />
                             </Col>
-                            <Col sm={2}>
-                                <Form.Label column="sm" sm={2} className="text-muted">(Optional)</Form.Label>
-                            </Col>
                         </Form.Row>
                     </Form.Group>
 
@@ -267,9 +264,6 @@ export class Settings extends Component {
                             <Col sm={8}>
                                 <Form.Control type="text" id="Education" maxlength="255" onChange={this.handleChange("Education")} />
                             </Col>
-                            <Col sm={2}>
-                                <Form.Label column="sm" sm={2} className="text-muted">(Optional)</Form.Label>
-                            </Col>
                         </Form.Row>
                     </Form.Group>
 
@@ -278,9 +272,6 @@ export class Settings extends Component {
                             <Form.Label column="sm" sm={2} >I love:</Form.Label>
                             <Col sm={8}>
                                 <Form.Control type="text" id="Hobby" maxlength="255" onChange={this.handleChange("Hobby")} />
-                            </Col>
-                            <Col sm={2}>
-                                <Form.Label column="sm" sm={2} className="text-muted">(Optional)</Form.Label>
                             </Col>
                         </Form.Row>
                     </Form.Group>
@@ -291,9 +282,6 @@ export class Settings extends Component {
                             <Col sm={8}>
                                 <Form.Control type="text" id="Work" maxlength="255" onChange={this.handleChange("Work")} />
                             </Col>
-                            <Col sm={2}>
-                                <Form.Label column="sm" sm={2} className="text-muted">(Optional)</Form.Label>
-                            </Col>
                         </Form.Row>
                     </Form.Group>
 
@@ -302,9 +290,6 @@ export class Settings extends Component {
                             <Form.Label column="sm" sm={2} >Catch Phrase:</Form.Label>
                             <Col sm={8}>
                                 <Form.Control as="textarea" id="Phrase" maxlength="255" onChange={this.handleChange("Phrase")} />
-                            </Col>
-                            <Col sm={2}>
-                                <Form.Label column="sm" sm={2} className="text-muted">(Optional)</Form.Label>
                             </Col>
                         </Form.Row>
                     </Form.Group>
