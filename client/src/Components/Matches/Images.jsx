@@ -34,7 +34,7 @@ export class Images extends Component {
             <div>
                 <Row className="justify-content-md-center">
                     <Col>
-                        <Image src={URL.createObjectURL(new Blob([Buffer.from(image)], {'type': type}))} className="card-img" />
+                        <Image src={URL.createObjectURL(new Blob([Buffer.from(image)], {'type': type}))} className="card-img" style={{height:"37rem"}}  />
                     </Col>
                 </Row>
             </div>

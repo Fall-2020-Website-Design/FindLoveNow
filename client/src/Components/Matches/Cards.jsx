@@ -22,21 +22,30 @@ export class Cards extends Component {
             age: "age",
             bio: "phrase",
             location: "location",
+            height: 0,
+            education: "N\\A",
             images: []
         };     
     }
 
     static getDerivedStateFromProps (props, state) {
         const { profile, pictures, name } = props;
-        return {
-            userID: profile.userID,
-            name: name,
-            total: pictures.length,
-            images: pictures,
-            age: profile.Age,
-            location: profile.Location,
-            bio: profile.phrase
-        };
+
+        
+            console.log(profile);
+            return {
+                userID: profile.userID,
+                name: name,
+                total: pictures.length,
+                images: pictures,
+                age: profile.Age,
+                location: profile.Location,
+                height: profile.Height,
+                education: (profile.Education !== null)?state.education:profile.Education,
+                bio: profile.Phrase
+            };
+      
+
     } 
 
     handleToUpdate = (index) => {
@@ -58,7 +67,7 @@ export class Cards extends Component {
     }
 
     render() {
-        const { bio, total, images, location, age, name, currentPicture } = this.state;
+        const { bio, total, images, location, age, name, currentPicture, height, education } = this.state;
 
         return (
             <div>
@@ -72,13 +81,14 @@ export class Cards extends Component {
                             <Images image={images[currentPicture]} className="d-inline-flex justify-content-center " />
 
                             <Col className="info" >
-                                <Row className="name-age"> { name }, { age } </Row>
-                                <div className="bio"> { bio } </div> 
+                                <Row className="name-age"> { name }, { age } - { `${Math.floor(height/12)}'${height%12}` } </Row>
+                                <Row className="edu"> Education: { education } </Row>
+                                <Row className="bio"> Phrase: { bio } </Row> 
                             </Col>  
 
                             <div className="location">
                                 <Row>
-                                    <Image alt="" src={location_image} /> { location }
+                                    <Image alt="" src={location_image} /> Location: { location }
                                 </Row>
                             </div>
                         </Card.Body>
