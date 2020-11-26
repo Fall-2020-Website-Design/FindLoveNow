@@ -69,7 +69,6 @@ export default class Matches extends Component {
 
     }
 
-
     getImages = (id) => {
         API.getUserImages(id).then((results) => {
             if (results.status === 200) {
@@ -107,7 +106,7 @@ export default class Matches extends Component {
             status: 0
         }).then((result) => {
             if (result.status === 200) {
-                this.updatePrevious(userID);
+                this.updatePrevious(profile.userID);
                 this.getMatch();
             }
         })
@@ -127,7 +126,7 @@ export default class Matches extends Component {
             status: 1
         }).then((result) => {
             if (result.status === 200) {
-                this.updatePrevious(userID);
+                this.updatePrevious(profile.userID);
                 this.getMatch();
             }
         })
@@ -144,18 +143,25 @@ export default class Matches extends Component {
             alert("You have no pervious match for this session");
         }
         else {
-            API.previousMatch(userID, previousID)
-            .then((result) => {
-                if (result.status === 200) {
-                    this.setState({
-                        profile: result.data.match
-                    })
-                }
-            }).catch((errors) => {
-                this.setState({
-                    errors
-                })
+            this.setState({
+                loading: true,
             });
+
+            setTimeout(() =>{
+                API.previousMatch(userID, previousID)
+                .then((result) => {
+                    if (result.status === 200) {
+                        this.setState({
+                            profile: result.data,
+                            loading: false
+                        })
+                    }
+                }).catch((errors) => {
+                    this.setState({
+                        errors
+                    })
+                });
+            }, 10);
         }
         
     }

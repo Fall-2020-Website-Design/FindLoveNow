@@ -12,9 +12,9 @@ export class Buttons extends Component {
     render() {
         return (
             <div>
-                <Col className="d-inline-flex justify-content-center">
-                    <Row className="d-inline-flex justify-content-center btn-row pt-4">
-                        <Col>
+                <Col className="d-inline-flex justify-content-center button-row">
+                    <Row className="d-inline-flex justify-content-center btn-row pt-4 buttons-width">
+                        <Col className="mr-5">
                             <Button variant="secondary" className="btn-circle-xl btn-xl btn-check" onClick={this.props.accept} >
                                 <Image alt="" src={checkmark_image} className=" align-top" fluid />
                             </Button>
@@ -26,7 +26,7 @@ export class Buttons extends Component {
                             </Button>
                         </Col>
 
-                        <Col>
+                        <Col className="ml-5">
                             <Button variant="secondary" className="btn-circle-xl btn-xl" onClick={this.props.reject} >
                                 <Image alt="" src={x_image} className="align-top" fluid />
                             </Button>
