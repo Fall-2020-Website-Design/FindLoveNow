@@ -8,7 +8,7 @@ import Logo from '../Animation/Logo';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import jwt_decode from "jwt-decode";
 import { AuthContext } from "../../Context/authContext";
-
+import Footer from '../Footer/Footer';
 
 export class Login extends React.Component {
   
@@ -121,6 +121,7 @@ export class Login extends React.Component {
       </div>
       </div>
       </div>
+      <div className="white-bg"><Footer /></div>
       </div>
     );
   }
