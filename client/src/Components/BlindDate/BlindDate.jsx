@@ -3,6 +3,7 @@ import "./BlindDate.css";
 import NavBar from "../NavBar/NavBar";
 import BBImg from '../../Images/blindDate.png';
 import BDate from '../../Images/Date.gif';
+import { Link } from 'react-router-dom';
 export default class BlindDate extends React.Component {
 
   render() {
@@ -27,17 +28,14 @@ export default class BlindDate extends React.Component {
                 <option value="both">Both</option>
             </select>
             </div>
-            </center>
+          <Link to="/videocall">
           <center><button type="button" className="custom-button-cm-BD">
             Match Me!
           </button>
           </center>
+           </Link>
+          </center>
             </div>
-            
-
-
-
-
       </>
     );
   }

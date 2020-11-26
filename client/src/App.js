@@ -8,6 +8,7 @@ import Matches from "./Components/Matches/Matches";
 import Filter from "./Components/Filter/Filter";
 import Chat from "./Components/Chat/Chat";
 import Join from './Components/JoinChat/Join';
+import Home from './Components/Home/Home';
 
 import BlindDate from "./Components/BlindDate/BlindDate";
 import RequiredForm from "./Components/RequiredForm/RequiredForm";
@@ -21,15 +22,16 @@ export class App extends Component {
       <AuthProvider>
         <Router>
           <Switch>
-            <Route exact path="/" component={Login} />
+            <Route exact path="/Form" component={RequiredForm} />
+            <Route exact path="/" component={Home} />
             <Route exact path="/Login" component={Login} />
             <Route exact path="/Register" component={Register} />
             <Route exact path="/About" component={About} />
             <Route path="/Form" component={RequiredForm} />
             <PrivateRoute path="/Profile" component={Profile} />
             <PrivateRoute exact path="/Filter" component={Filter} />
-            <Route path="/Chat" component={Chat} />
-            <Route path="/joinchat" component={Join} />
+            <Route path="/Chat" component={Chat}/>
+            <Route path="/joinchat" component={Join}/>
             <PrivateRoute exact path="/Home" component={Matches} />
             <PrivateRoute exact path="/BlindDate" component={BlindDate} />
           </Switch>

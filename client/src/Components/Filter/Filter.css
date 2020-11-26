@@ -3,7 +3,7 @@ body{
   }
 
 .filter-padding{
-    padding-bottom: 20px;
+    padding-top: 4%;
 }
 .Filter-Header{
     color: #737373;
@@ -31,7 +31,7 @@ body{
 .custom-filter-container{
     margin: auto;
     width: 60%;
-    height: 1135px;
+    padding-bottom: 35px;
     background: #FFFFFF;
     box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.15);
     border-radius: 15px;
@@ -138,3 +138,13 @@ body{
     font-family: 'Times New Roman', Times, serif;
     font-size: 15px;
 }
+
+@media (max-width: 800px) {
+    .filter-padding{
+        padding-top: 6%;
+    }
+    .custom-filter-container{
+        width: 90%;
+    }
+  
+  }
