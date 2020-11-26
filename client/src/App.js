@@ -15,6 +15,7 @@ import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router
 import { AuthProvider } from "./Context/authContext";
 import PrivateRoute from "./privateRoute";
 
+
 export class App extends Component {
   render() {
     return (
