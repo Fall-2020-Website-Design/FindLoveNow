@@ -21,10 +21,12 @@ export class ProfileUser extends Component {
     }
     static getDerivedStateFromProps (props, state) {
         const { profile, Name } = props;
-        if (profile){return {
+        if (profile){
+            const Location = profile.Location.split(",");
+            return {
             Name: Name,
             Age: profile.Age,
-            Location: profile.Location,
+            Location: Location[0].charAt(0).toUpperCase() + Location[0].slice(1) + ", " + Location[1].charAt(0).toUpperCase() + Location[1].slice(1),
             Phrase: profile.Phrase     
         };}
     } 

@@ -74,7 +74,9 @@ const createUser = async (data) => {
         userID: id.dataValues.userID,
         minAge: 18,
         maxAge: 65,
-        height: 0
+        height: 0,
+        gender: "both",
+        location: "any"
     })
 
     console.log(`${newUser} has been created in the function createUser`)

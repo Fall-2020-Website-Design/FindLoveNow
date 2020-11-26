@@ -30,6 +30,7 @@ export class Settings extends Component {
             Hobby: null,
             Work: null,
             Phrase: null,
+            file: null,
             errors: [],
         };
     }
@@ -43,7 +44,7 @@ export class Settings extends Component {
             }, () => this.getUserName(userID));
 
         }, 10)
-        console.log(this.state)
+        
     }
 
     getUserName = (id) => {
@@ -68,6 +69,7 @@ export class Settings extends Component {
         e.preventDefault();
        this.updateProfile();
        this.updatePreference();
+       this.uploadImage();
 
     };
 
@@ -89,13 +91,13 @@ export class Settings extends Component {
         }
         API.setProfile(userData).then((result) => {
             if (result.status === 200) {
-                console.log(result);
+                
             }
             alert("Profile Form set!")
         })
 
             .catch((errors) => {
-                console.log(errors)
+              
                 this.setState({
                     errors
                 })
@@ -113,8 +115,28 @@ export class Settings extends Component {
         }
         API.formPreference(userData).then((result) => {
             if (result.status === 200) {
-                console.log(result);
+                
                 this.props.history.push('/Home');
+            }
+        })
+        .catch((errors) => {
+            
+            this.setState({
+                errors
+            })
+        })
+    }
+    
+    uploadImage = () => {
+        const { userID, file} = this.state;
+        const userData = {
+            userID,
+            file
+        }
+        console.log(file)
+        API.uploadImage(userData).then((result) => {
+            if (result.status === 200) {
+                console.log(result);
             }
         })
         .catch((errors) => {
@@ -124,10 +146,6 @@ export class Settings extends Component {
             })
         })
     }
-    
-    // uploadImage = () => {
-    //     const { userID, file}
-    // }
 
 
     render() {
@@ -139,12 +157,21 @@ export class Settings extends Component {
                         <Form.Group action="/upload" method="POST" enctype="multipart/form-data">
                             <Form.Row>
                                 <Col md={3} className="mx-auto">
-                                    <Card className="image-upload">
-                                        <label for="file-input">
-                                            <Card.Img variant="top" className="image-setting d-block" style={{ height: '100%' }} src={add} rounded />
-                                        </label>
-                                        <input id="file-input" type="file" />
-                                    </Card>
+                                <form
+            class="mt-4"
+            action="/upload"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group">
+              <input
+                type="file"
+                name="file"
+                id="input-files"
+                class="form-control-file border"
+              />
+              </div>
+              </form>
                                 </Col>
                             </Form.Row>
                         </Form.Group>

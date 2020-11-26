@@ -31,7 +31,7 @@ export class ProfileInf extends Component {
     static getDerivedStateFromProps(props, state) {
         const { profile, Name } = props;
         if (profile) {
-            const Location = profile.Location.split(", ");
+            const Location = profile.Location.split(",");
             return {
 
                 Name: Name,
