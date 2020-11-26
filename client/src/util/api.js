@@ -28,6 +28,10 @@ const getName = (userID) => {
   return axios.get('http://localhost:8080/api/users/' + userID);
 }
 
+const uploadImage = () => {
+  return axios.post('http://localhost:8080/api/image/upload' )
+}
+
 const response = (matchData) => {
   return axios.post('http://localhost:8080/api/match/response', matchData);
 }
@@ -44,6 +48,19 @@ const getallMatches = (userID) => {
   return axios.get(`http://localhost:8080/api/match/allmatches/${userID}`)
 }
 
+const setProfile = (userData) => {
+  return axios.put('http://localhost:8080/api/profile/update/', userData );
+}
+
+const getProfile = (userID) => {
+  return axios.get(`http://localhost:8080/api/profile/${userID}`);
+}
+
+
+const getUserImages = (userID) => {
+  return axios.get(`http://localhost:8080/api/image/get/${userID}`)
+}
+
 export {
     LoginUser,
     Register,
@@ -52,9 +69,13 @@ export {
     setPreferences,
     getPreferences,
     getName,
+    uploadImage,
     response,
     findMatch,
     previousMatch,
-    getallMatches
+    getallMatches,
+    setProfile,
+    getProfile,
+    getUserImages
 }
 

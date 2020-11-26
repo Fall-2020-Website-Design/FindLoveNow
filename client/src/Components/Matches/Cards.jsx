@@ -13,16 +13,31 @@ export class Cards extends Component {
 
     constructor(props) {
         super(props);
-        const {profile, images} = this.props;
+      
         this.state = { 
+            userID: null,
             currentPicture: 0,
-            name: profile.name,
-            age: profile.Age,
-            bio: profile.Phrase,
-            location: profile.Location,
-            images: images
+            total: 0,
+            name: "name",
+            age: "age",
+            bio: "phrase",
+            location: "location",
+            images: []
         };     
     }
+
+    static getDerivedStateFromProps (props, state) {
+        const { profile, pictures, name } = props;
+        return {
+            userID: profile.userID,
+            name: name,
+            total: pictures.length,
+            images: pictures,
+            age: profile.Age,
+            location: profile.Location,
+            bio: profile.phrase
+        };
+    } 
 
     handleToUpdate = (index) => {
         this.setState({
@@ -43,21 +58,21 @@ export class Cards extends Component {
     }
 
     render() {
-        const { bio, images, location, age, name, currentPicture } = this.state;
+        const { bio, total, images, location, age, name, currentPicture } = this.state;
 
         return (
             <div>
                 <Col className="d-inline-flex justify-content-center pt-4">
                     <Card className="matches-card">
                         <Card.Body className="card-body">
-                            <Bar total={images.length} current={currentPicture} click={this.handleToUpdate} />
+                            <Bar total={total} current={currentPicture} click={this.handleToUpdate} />
 
                             <Arrows prev={this.prevImage} next={this.nextImage}/>
 
                             <Images image={images[currentPicture]} className="d-inline-flex justify-content-center " />
 
                             <Col className="info" >
-                                <div className="name-age"> { name }, { age } </div>
+                                <Row className="name-age"> { name }, { age } </Row>
                                 <div className="bio"> { bio } </div> 
                             </Col>  
 

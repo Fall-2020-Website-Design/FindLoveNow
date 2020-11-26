@@ -10,6 +10,7 @@
     "@types/react": "^16.9.53",
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
+    "formik": "^2.2.5",
     "jwt-decode": "^3.0.0",
     "query-string": "^6.13.7",
     "react": "^16.13.1",

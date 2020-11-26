@@ -45,3 +45,7 @@
 .image-deck {
     object-fit: cover;
 }
+
+.image-upload-profile>input {
+    display: none;
+  }

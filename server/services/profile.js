@@ -50,12 +50,12 @@ const updateProfile = async (data) => {
             Age: data.Age,
             Gender: data.Gender,
             Location: data.Location,
-            // Interested: data.Interested,
+            Interested: data.Interested,
             Height: data.Height,
-            // Education: data.Education,
-            // Hobby: data.Hobby,
-            // Work: data.Work,
-            // Phrase: data.Phrase,
+            Education: data.Education,
+            Hobby: data.Hobby,
+            Work: data.Work,
+            Phrase: data.Phrase,
         },
         {returning: true, where: {userID: data.userID} }
     )
