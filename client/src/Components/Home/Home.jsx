@@ -4,6 +4,7 @@ import NavBar from "../NavBar/NavBar";
 import { Link } from 'react-router-dom';
 import Love from '../../Images/love.svg';
 import Logo from '../Animation/Logo';
+import Welcome from '../Animation/Welcome';
 import Footer from '../Footer/Footer';
 import heartImg from '../../Images/heart.svg';
 export default class Home extends React.Component {
@@ -14,7 +15,7 @@ export default class Home extends React.Component {
         <NavBar />
         <div className="background-home">
         <div class="row-home">
-            <h1 style={{fontFamily:"Snell Roundhand, cursive", fontSize:"30px"}} className="centered2">Welcome to</h1>
+            <h1 style={{fontFamily:"Snell Roundhand, cursive", fontSize:"30px"}} className="centered2"><Welcome/></h1>
             <h1 className="centered"><Logo/></h1>
           <div class="column-home2">
           <center><img className="home-image" src={Love}/></center>

@@ -1,5 +1,5 @@
 #logo{
-    animation: fill 0.5s ease forwards 3.5s;
+    animation: Logo-fill 0.5s ease forwards 3.5s;
 }
 
 #logo path:nth-child(1){
@@ -63,7 +63,7 @@
         stroke-dashoffset: 0;
     }
 }
-@keyframes fill{
+@keyframes Logo-fill{
     from{
         fill: transparent;
     }
