@@ -162,27 +162,21 @@ export class Settings extends Component {
 
             <Container className="requiredform-container">
                 <h1 className="requiredform-color text-center mb-4">Basic Information</h1>
-                <Form >
-                    <Form.Group action="/upload" method="POST" enctype="multipart/form-data">
-                        <Form.Row>
-                            <Col md={3} className="mx-auto">
-                                <Form.Group action="/upload" method="POST" enctype="multipart/form-data">
-                                    <Form.Row>
-                                        <Col md={3} className="mx-auto">
-                                            <Card className="image-upload">
-                                                <label for="file-input">
-                                                    <Card.Img variant="top" className="image-setting d-block" style={{ height: '100%' }} src={add} rounded />
-                                                </label>
-                                                <input id="file-input" type="file" onChange={this.handleChange("file")} />
-                                            </Card>
-                                        </Col>
-                                    </Form.Row>
-                                </Form.Group>
+                    <Form >
+                        <Form.Group action="/upload" method="POST" enctype="multipart/form-data">
+                            <Form.Row>
+                                <Col md={3} className="mx-auto">
+                                    <Card className="image-upload">
+                                        <label for="file-input">
+                                            <Card.Img variant="top" className="image-setting d-block" style={{ height: '100%' }} src={add} rounded />
+                                        </label>
+                                        <input id="file-input" type="file" />
+                                    </Card>
+                                </Col>
+                            </Form.Row>
+                        </Form.Group>
 
-                            </Col>
-                        </Form.Row>
-                    </Form.Group>
-
+    
                     <Form.Group>
                         <Form.Row>
                             <Form.Label column="sm" >Name: {this.state.Name}</Form.Label>

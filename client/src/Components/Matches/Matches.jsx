@@ -146,22 +146,23 @@ export default class Matches extends Component {
             this.setState({
                 loading: true,
             });
-
-            setTimeout(() =>{
-                API.previousMatch(userID, previousID)
-                .then((result) => {
-                    if (result.status === 200) {
-                        this.setState({
-                            profile: result.data,
-                            loading: false
-                        })
-                    }
-                }).catch((errors) => {
+            this.getUserName(previousID);
+            this.getImages(previousID);
+            
+            API.previousMatch(userID, previousID)
+            .then((result) => {
+                if (result.status === 200) {
                     this.setState({
-                        errors
+                        profile: result.data,
+                        loading: false
                     })
-                });
-            }, 10);
+                }
+            }).catch((errors) => {
+                this.setState({
+                    errors
+                })
+            });
+        
         }
         
     }
