@@ -31,6 +31,7 @@ export class Settings extends Component {
             Work: null,
             Phrase: null,
             file: null,
+            validated: false,
             errors: [],
         };
     }
@@ -72,10 +73,21 @@ export class Settings extends Component {
     };
 
     handleSubmit = (e) => {
-        e.preventDefault();
-        this.updateProfile();
-        this.updatePreference();
-        this.uploadFile();
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        else {
+            this.setState({ validated: true })
+            e.preventDefault();
+            this.updateProfile();
+            this.updatePreference();
+            this.uploadFile();
+            if ((this.state.errors.length) < 0) {
+                this.props.history.push('/Home');
+            }
+        }
 
     };
 
@@ -134,43 +146,48 @@ export class Settings extends Component {
     }
 
     uploadFile = () => {
-        const { userID } = this.state;
-        const file = new FormData();
-
-        // Update the formData object 
-        file.append(
-            "file",
-            this.state.file,
-            this.state.file.name
-        );
-        API.uploadImage(userID, file).then((result) => {
-            if (result.status === 200) {
-                console.log(result);
-            }
-        })
-            .catch((errors) => {
-                console.log(errors)
-                this.setState({
-                    errors
-                })
+        const { userID, file } = this.state;
+        const formdata = new FormData();
+        if (file === null) {
+            alert("Please select a file")
+        }
+        else {
+            // Update the formData object 
+            formdata.append(
+                "file",
+                this.state.file,
+                this.state.file.name
+            );
+            API.uploadImage(userID, file).then((result) => {
+                if (result.status === 200) {
+                    console.log(result);
+                }
             })
+                .catch((errors) => {
+                    console.log(errors)
+                    this.setState({
+                        errors
+                    })
+                })
+        }
     }
 
 
     render() {
+        const { validated } = this.state;
         return (
 
             <Container className="requiredform-container">
                 <h1 className="requiredform-color text-center mb-4">Basic Information</h1>
-                <Form noValidate>
+                <Form  noValidate validated={validated} >
                     <Form.Group action="/upload" method="POST" enctype="multipart/form-data">
                         <Form.Row>
                             <Col md={3} className="mx-auto">
                                 <Card className="image-upload">
-                                    <label for="file-input">
+                                    <label for="file">
                                         <Card.Img variant="top" className="image-setting d-block" style={{ height: '100%' }} src={add} rounded />
                                     </label>
-                                    <input id="file-input" type="file" onChange={this.handleChange("file")} />
+                                    <input id="file" type="file" onChange={this.handleChange("file")} required />
                                 </Card>
                             </Col>
                         </Form.Row>
@@ -186,8 +203,8 @@ export class Settings extends Component {
                     <Form.Group>
                         <Form.Row>
                             <Form.Label column="sm" sm={2} >Age:</Form.Label>
-                            <Col sm={4}>
-                                <Form.Control type="number" style={{ width: 100 }} min="18" onChange={this.handleChange("Age")} />
+                            <Col sm={6}>
+                                <Form.Control type="number" style={{ width: 100 }} min="18" onChange={this.handleChange("Age")} required />
                             </Col>
                         </Form.Row>
                     </Form.Group>
@@ -210,8 +227,8 @@ export class Settings extends Component {
                             <Form.Row inline>
                                 <Form.Label column="md" md={2} >Gender</Form.Label>
                                 <Col md={2}>
-                                    <Form.Control as="select" onChange={this.handleChange("Gender")}>
-                                        <option selected disabled>Choose</option>
+                                    <Form.Control as="select" onChange={this.handleChange("Gender")} required>
+                                        <option selected disabled value="">Choose</option>
                                         <option value="male">Man</option>
                                         <option value="female">Woman</option>
                                     </Form.Control>
@@ -224,10 +241,10 @@ export class Settings extends Component {
                         <Form.Row>
                             <Form.Label column="sm" sm={2} >Location:</Form.Label>
                             <Col sm={4}>
-                                <Form.Control type="text" placeholder="City" id="City" onChange={this.handleChange("City")} />
+                                <Form.Control type="text" placeholder="City" id="City" onChange={this.handleChange("City")} required />
                             </Col>
                             <Col sm={4}>
-                                <Form.Control type="text" placeholder="State" id="State" onChange={this.handleChange("States")} />
+                                <Form.Control type="text" placeholder="State" id="State" onChange={this.handleChange("States")} required />
                             </Col>
                         </Form.Row>
                     </Form.Group>
@@ -236,8 +253,8 @@ export class Settings extends Component {
                         <Form.Row>
                             <Form.Label column="sm" sm={2} >I'm Interested in:</Form.Label>
                             <Col sm={4}>
-                                <Form.Control as="select" id="Interested" onChange={this.handleChange("Interested")}>
-                                    <option selected disabled>Choose</option>
+                                <Form.Control as="select" id="Interested" onChange={this.handleChange("Interested")} required >
+                                    <option selected disabled value="">Choose</option>
                                     <option value="male">Man</option>
                                     <option value="female">Woman</option>
                                     <option value="both">Both</option>
@@ -249,11 +266,11 @@ export class Settings extends Component {
                     <Form.Group>
                         <Form.Row>
                             <Form.Label column="sm" sm={2} >Height:</Form.Label>
-                            <Col sm={1}>
-                                <Form.Control type="number" placeholder="Feet" id="Height" max="6" min="4" onChange={this.handleChange("Feet")} />
+                            <Col sm={2}>
+                                <Form.Control type="number" placeholder="Feet" id="Height" max="6" min="4" onChange={this.handleChange("Feet")} required />
                             </Col>
-                            <Col sm={1}>
-                                <Form.Control type="number" placeholder="Inches" id="Height" max="11" min="0" onChange={this.handleChange("Inches")} />
+                            <Col sm={2}>
+                                <Form.Control type="number" placeholder="Inches" id="Height" max="11" min="0" onChange={this.handleChange("Inches")} required />
                             </Col>
                         </Form.Row>
                     </Form.Group>
@@ -262,7 +279,7 @@ export class Settings extends Component {
                         <Form.Row>
                             <Form.Label column="sm" sm={2} >Education:</Form.Label>
                             <Col sm={8}>
-                                <Form.Control type="text" id="Education" maxlength="255" onChange={this.handleChange("Education")} />
+                                <Form.Control type="text" id="Education" maxlength="255" onChange={this.handleChange("Education")} required />
                             </Col>
                         </Form.Row>
                     </Form.Group>
@@ -271,7 +288,7 @@ export class Settings extends Component {
                         <Form.Row>
                             <Form.Label column="sm" sm={2} >I love:</Form.Label>
                             <Col sm={8}>
-                                <Form.Control type="text" id="Hobby" maxlength="255" onChange={this.handleChange("Hobby")} />
+                                <Form.Control type="text" id="Hobby" maxlength="255" onChange={this.handleChange("Hobby")} required />
                             </Col>
                         </Form.Row>
                     </Form.Group>
@@ -280,7 +297,7 @@ export class Settings extends Component {
                         <Form.Row>
                             <Form.Label column="sm" sm={2} >Work at:</Form.Label>
                             <Col sm={8}>
-                                <Form.Control type="text" id="Work" maxlength="255" onChange={this.handleChange("Work")} />
+                                <Form.Control type="text" id="Work" maxlength="255" onChange={this.handleChange("Work")} required />
                             </Col>
                         </Form.Row>
                     </Form.Group>
@@ -289,12 +306,12 @@ export class Settings extends Component {
                         <Form.Row>
                             <Form.Label column="sm" sm={2} >Catch Phrase:</Form.Label>
                             <Col sm={8}>
-                                <Form.Control as="textarea" id="Phrase" maxlength="255" onChange={this.handleChange("Phrase")} />
+                                <Form.Control as="textarea" id="Phrase" maxlength="255" onChange={this.handleChange("Phrase")} required />
                             </Col>
                         </Form.Row>
                     </Form.Group>
                     <center className="mb-4">
-                        <Button bsPrefix="setting-button-color" onClick={this.handleSubmit}>Submit</Button>
+                        <Button bsPrefix="setting-button-color" onClick={this.handleSubmit} required>Submit</Button>
                     </center>
                 </Form>
             </Container>
