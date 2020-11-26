@@ -5,6 +5,7 @@ import "./Register.css";
 import * as API from "../../util/api";
 import Logo from '../Animation/Logo';
 import heartImg from '../../Images/heart.svg';
+import Footer from '../Footer/Footer';
 export class Register extends Component {
   constructor(props) {
     super(props);
@@ -107,6 +108,7 @@ export class Register extends Component {
       </div>
     </div>   
     </div>
+    <div className="white-bg"><Footer /></div>
     </div>
     )  
   }
