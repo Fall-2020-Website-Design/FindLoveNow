@@ -13,15 +13,40 @@ export class Cards extends Component {
 
     constructor(props) {
         super(props);
+      
         this.state = { 
-            currentPicture: this.props.user.currentPicture,
-            name: this.props.user.name,
-            age: this.props.user.age,
-            bio: this.props.user.bio,
-            miles: this.props.user.miles,
-            images: this.props.user.images
-        }     
+            userID: null,
+            currentPicture: 0,
+            total: 0,
+            name: "name",
+            age: "age",
+            bio: "phrase",
+            location: "location",
+            height: 0,
+            education: "N\\A",
+            images: []
+        };     
     }
+
+    static getDerivedStateFromProps (props, state) {
+        const { profile, pictures, name } = props;
+
+        
+            console.log(profile);
+            return {
+                userID: profile.userID,
+                name: name,
+                total: pictures.length,
+                images: pictures,
+                age: profile.Age,
+                location: profile.Location,
+                height: profile.Height,
+                education: (profile.Education !== null)?state.education:profile.Education,
+                bio: profile.Phrase
+            };
+      
+
+    } 
 
     handleToUpdate = (index) => {
         this.setState({
@@ -42,25 +67,28 @@ export class Cards extends Component {
     }
 
     render() {
+        const { bio, total, images, location, age, name, currentPicture, height, education } = this.state;
+
         return (
             <div>
                 <Col className="d-inline-flex justify-content-center pt-4">
                     <Card className="matches-card">
                         <Card.Body className="card-body">
-                            <Bar total={this.state.images.length} current={this.state.currentPicture} click={this.handleToUpdate} />
+                            <Bar total={total} current={currentPicture} click={this.handleToUpdate} />
 
                             <Arrows prev={this.prevImage} next={this.nextImage}/>
 
-                            <Images image={this.state.images[this.state.currentPicture]} className="d-inline-flex justify-content-center " />
+                            <Images image={images[currentPicture]} className="d-inline-flex justify-content-center " />
 
                             <Col className="info" >
-                                <div className="name-age"> {this.state.name}, {this.state.age} </div>
-                                <div className="bio"> {this.state.bio} </div> 
+                                <Row className="name-age"> { name }, { age } - { `${Math.floor(height/12)}'${height%12}` } </Row>
+                                <Row className="edu"> Education: { education } </Row>
+                                <Row className="bio"> Phrase: { bio } </Row> 
                             </Col>  
 
                             <div className="location">
                                 <Row>
-                                    <Image alt="" src={location_image} /> {this.state.miles}
+                                    <Image alt="" src={location_image} /> Location: { location }
                                 </Row>
                             </div>
                         </Card.Body>

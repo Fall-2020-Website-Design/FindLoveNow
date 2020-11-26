@@ -17,22 +17,28 @@
 
 .About-image {
     border-radius: 50%;
-    height: 200px;
     width: 200px;
+    height: 200px;
     margin-top: 2em;
     object-fit: cover;
 }
 
 .About-container {
-    padding: 30px;
+    padding: 40px;
     position: auto;
-    width: auto;
-    height: auto;
-    left: auto;
-    top: auto;
+    width: 62%;
     background: #FFFFFF;
     box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;   
+}
+.About-Ruler{
+    border: 3px solid rgba(253, 0, 0, 0.42);
+    width: 100%;
     border-radius: 10px;
-    
+}
+.about-transition-ruler{
+    border: 1px solid gray;
+    width: 100%;
+    border-radius: 10px;  
 }
 

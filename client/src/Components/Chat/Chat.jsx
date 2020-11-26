@@ -90,7 +90,7 @@ const Chat = () => {
           <Messages messages={messages} name={name} />
           <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
       </div>
-      <TextContainer users={users}/>
+    </div>
     </div>
   );
 }

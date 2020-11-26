@@ -3,6 +3,8 @@ import NavBar from '../NavBar/NavBar';
 import * as API from "../../util/api"
 import { AuthContext } from "../../Context/authContext";
 import { Link } from 'react-router-dom';
+import './Join.css';
+import Footer from '../Footer/Footer';
 
 
 export class JoinChat extends Component {
@@ -64,19 +66,28 @@ getAllMatches = () => {
    return (
      <div>
        <NavBar />
-       <h1> Your list of matches</h1>
-        <div>
-          <ul>
+       <div className="joinOuterContainer">
+       <div className="joinInnerContainer">
+       <h1 className="Chat-SubHeader"> List of Matches</h1>
+       <h1 style={{fontFamily:"Snell Roundhand, cursive", fontSize:"18px"}}>click on the name to chat</h1>
+       <hr></hr>
+        <div className="users-font">
+          <ul className="chat-list">
             {matchItem.map((element) => (
               <li key={element.matchID}>
                 <Link to={`/chat/${this.state.name}/${element.matchID}`}>
                   {element.name} 
                 </Link>
+                <hr></hr>
               </li>  
             ))}
           </ul>
         </div>
      </div>
+     <div className="white-bg"><Footer /></div>
+     </div>
+     </div>
+     
    )
  }
 }

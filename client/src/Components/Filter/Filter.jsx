@@ -1,3 +1,4 @@
+
 import React from "react";
 import FilterImg from '../../Images/filter.png';
 import "./Filter.css";
@@ -9,6 +10,9 @@ import { AuthContext } from "../../Context/authContext";
 import  Container from "react-bootstrap/Container";
 
 
+import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
+
 export default class Filter extends React.Component {
     static contextType = AuthContext;
 
@@ -17,26 +21,24 @@ export default class Filter extends React.Component {
         this.state = {
             userID: null,
             gender: null,
-            location: null,
+            city: null,
+            state: null,
             minAge: null,
             maxAge: null,
-            height: null,
+            feet: null,
+            inches: null,
             errors: []
         }
     }
 
-    componentCleanup() {
-        const { userID } = this.context;
-        this.setState({
-            userID: userID
-        });
-    }
-    
     componentDidMount () {
-        const { userID } = this.context;
-        this.setState({
-            userID: userID
-        });
+        setTimeout(() =>{
+            const { userID } = this.context;
+            this.setState({
+                userID: userID
+            });
+            console.log(userID);
+        }, 10)
     };
 
     // Handle field change
@@ -46,28 +48,32 @@ export default class Filter extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { userID, gender, location, minAge, maxAge, maxDistance, height, ethnicity } = this.state
-        API.setPreferences(userID, {
-          gender,
-          location,
-          minAge,
-          maxAge,
-          maxDistance,
-          height,
-          ethnicity
-        }).then((result) => {
-            if (result.status === 200) {
-                console.log(result);
-            }
-            alert("Preferences are now updated!")
-        })
-        .catch((errors) => {
-            console.log(errors)
-            this.setState({
-              errors
+        const { userID, gender, city, state, minAge, maxAge, feet, inches } = this.state;
+        console.log(userID);
+        if (minAge <= maxAge) {
+            API.setPreferences(userID, {
+                gender,
+                city,
+                state,
+                minAge,
+                maxAge,
+                feet,
+                inches
+            }).then((result) => {
+                if (result.status === 200) {
+                    alert("Preferences are now updated!");
+                }
             })
-            alert("All fields must be filled out")
-        })
+            .catch((errors) => {
+                this.setState({
+                errors
+                })
+                alert("All fields must be filled out");
+            })
+        }
+        else {
+            alert("Invalid Age Range")
+        }
     };
 
   render() {
@@ -101,12 +107,10 @@ export default class Filter extends React.Component {
             </select>
             </div>
             <div className="Filter-Submit">
-            <label>My Neighborhood:</label>
-            <input type="text" list="Location" onChange={this.handleChange("location")} />
-                <datalist id="Location">
-                    <option>Current Location</option>
-                    <option>Manhattan, NY</option>
-                </datalist>
+            <label>City:</label>
+            <input type="text" list="Location" onChange={this.handleChange("city")} />
+            <label>State:</label>
+            <input type="text" list="Location" onChange={this.handleChange("state")} />
             </div>
             <h2 className="Filter-SubHeader">More Preferences:</h2>
             <hr className="Filter-Ruler"></hr>
@@ -126,14 +130,18 @@ export default class Filter extends React.Component {
             <div className="Filter-Ethnicity">
          
                 <label>Height:</label>
-
-                <select onChange={this.handleChange("height")}>
-                    <option selected disabled>Choose Height</option>
-                    <option value="20">3'9+</option>
-                    <option value="30">4'5+</option>
-                    <option value="40">5'9+</option>
-                    <option value="50">6'5+</option>
-                </select>
+                
+                <Form.Group>
+                    <Form.Row>
+                        
+                        <Col>
+                            <Form.Control type="number" placeholder="Feet" id="Height" max="6" min="4" onChange={this.handleChange("feet")} />
+                        </Col>
+                         <Col>
+                            <Form.Control type="number" placeholder="Inches" id="Height" max="11" min="1" onChange={this.handleChange("inches")} />
+                        </Col> 
+                    </Form.Row>
+                </Form.Group>
       
             </div>
             <hr className="Filter-Ruler"></hr>

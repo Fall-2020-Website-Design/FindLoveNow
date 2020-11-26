@@ -1,23 +1,23 @@
 import React from 'react';
-
+import Logo from '../Animation/Logo';
 import onlineIcon from '../../Images/onlineIcon.png';
 
 import './TextContainer.css';
 
 const TextContainer = ({ users }) => (
-  <div className="textContainer">
+  <div className="custom-textContainer">
     <div>
-      <h1>Find Love Now Chat <span role="img" aria-label="emoji">💬</span></h1>
+      <h1><Logo/><span role="img" aria-label="emoji">💬</span></h1>
     </div>
     {
       users
         ? (
           <div>
             <h1>People currently chatting:</h1>
-            <div className="activeContainer">
+            <div className="custom-activeContainer">
               <h2>
                 {users.map(({name}) => (
-                  <div key={name} className="activeItem">
+                  <div key={name} className="custom-activeItem">
                     {name}
                     <img alt="Online Icon" src={onlineIcon}/>
                   </div>

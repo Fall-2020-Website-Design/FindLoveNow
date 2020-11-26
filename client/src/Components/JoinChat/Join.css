@@ -1,71 +1,81 @@
-html, body {
-    font-family: 'Roboto', sans-serif;
-    padding: 0;
-    margin: 0;
-  }
-  
-  #root {
-    height: 100vh;
-  }
-  
+
   * {
     box-sizing: border-box;
   }
   
   .joinOuterContainer {
-    display: flex;
-    justify-content: center;
     text-align: center;
     height: 100vh;
     align-items: center;
-    background-color: #1A1A1D;
+    background-color: #ffa4a4;
+    padding-top: 2%;
   }
   
   .joinInnerContainer {
-    width: 20%;
+    padding: 2%;
+    margin: auto;
+    width: 30%;
+    height: 80%;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
   }
   
-  .joinInput {
-    border-radius: 0;
-    padding: 15px 20px;
-    width: 100%;
+  .Chat-SubHeader{
+    color: #EE7E7E;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    padding: 10px;
+    text-decoration-line: underline;
   }
   
-  .heading {
-    color: white;
-    font-size: 2.5em;
-    padding-bottom: 10px;
-    border-bottom: 2px solid white;
+  .users-font{
+    color: #aaaaaa;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    padding: 10px;
   }
-  
-  .button {
+
+  .chat-list{
+    list-style-type:circle;
+    color: #EE7E7E;
+  }
+
+  .users-font:hover{
+    color: #EE7E7E;
+  }
+  .custom-join-button {
       color: #fff !important;
       text-transform: uppercase;
       text-decoration: none;
-      background: #2979FF;
+      background: #EE7E7E;
       padding: 20px;
       border-radius: 5px;
       display: inline-block;
       border: none;
       width: 100%;
   }
-  
-  .mt-20 {
-    margin-top: 20px;
+
+  .custom-join-button:hover{
+    background: linear-gradient(91.29deg, #DC2323 3.02%, rgba(244, 121, 121, 0.83) 100%);
   }
-  
-  @media (min-width: 320px) and (max-width: 480px) {
-    .joinOuterContainer {
-      height: 100%;
-    }
-  
-    .joinInnerContainer {
-      width: 90%;
-    }
-  
-  
-  }
-  
-  button:focus {
+  .custom-join-button:focus {
     outline: 0;
   }
+
+  
+  
+  @media (max-width: 900px) {
+  
+    .joinInnerContainer {
+      width: 80%;
+      padding: 4%;
+    }
+  
+  
+  }
+  
