@@ -49,7 +49,7 @@ export default class Filter extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { userID, gender, city, state, minAge, maxAge, feet, inches, alertBody } = this.state;
+        const { userID, gender, city, state, minAge, maxAge, feet, inches } = this.state;
 
         let dangerAlert = document.getElementById("filter-form-danger");
         let sucessAlert = document.getElementById("filter-form-success");
