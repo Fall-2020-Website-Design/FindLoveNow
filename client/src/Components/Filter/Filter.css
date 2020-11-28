@@ -148,3 +148,8 @@ body{
     }
   
   }
+
+.filter-alert {
+    text-align: center;
+    display: none;
+}
