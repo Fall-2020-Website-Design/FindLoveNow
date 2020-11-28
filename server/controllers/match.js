@@ -89,11 +89,9 @@ const allMatches = async(req,res,next) => {
     const { userID } = req.params
     try {
         let matches = await MatchServices.findAllMatches(userID)
-        console.log(matches)
         for (let i = 0 ; i < matches.length; i++) {
             const { name } =  await UserServices.findUser(matches[i].addresseeID)
             matches[i].dataValues["name"] = name 
-            //console.log(addresseeUser)
         }
         return res.json(matches);
     }

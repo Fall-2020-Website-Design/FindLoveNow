@@ -29,7 +29,7 @@ const createMessage = async (req, res, next) => {
     @type {RequestHandler}
 */
 const findAllMessages = async(req,res,next) => {
-    const  { userID } = req.body
+    const  { userID } = req.params
     try {
         const allMessages = await MessageService.findAllMessages(userID)
         return res.json(allMessages);

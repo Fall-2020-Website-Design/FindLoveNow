@@ -26,7 +26,7 @@ router.post('/create',
  * @memberof module:api/message
  * @name GET /message/allmessage
  */
-router.get('/allmessage',
+router.get('/allmessage/:userID',
     [
         validatorErrors
     ]

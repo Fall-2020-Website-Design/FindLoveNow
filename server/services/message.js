@@ -31,7 +31,10 @@ const findAllMessages = async (userID) => {
              { sender_id : userID } ,
              { recipient_id: userID }
             ]
-        }
+        },
+        order: [
+            ['createdAt','DESC']
+        ]
     })
     console.log(`${allMessages} is from service`)
     return allMessages

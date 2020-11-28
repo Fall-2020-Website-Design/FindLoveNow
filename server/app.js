@@ -9,7 +9,7 @@ const db = require('./models');
 const PORT = process.env.PORT || 8080;
 
 const apiRoutes = require('./routes/api/index');
-const { addUser, removeUser, getUser, getUsersInRoom } = require('./services/chat');
+const { addUser, removeUser, getUser, getUsersInRoom, switchRoom, leaveRoom } = require('./services/chat');
 
 
 const app = express();
@@ -65,24 +65,30 @@ db.sequelize
 
   io.on('connect', (socket) => {
     console.log(`This is calling socket right after io connect on the server side ${socket}`)
-    socket.on('join', ({ name, room }, callback) => {
-      const { error, user } = addUser({ id: socket.id, name, room });
-
-
+    socket.on('join', ({name, room , userID }, callback) => {
+      const { error, user } = addUser({ id : socket.id , name, room, userID});
       if(error) return callback(error);
-
+      
 
       console.log(`Socket ${socket.id} joining ${room}`);
       socket.join(user.room);
-  
+      
+      // Welcome current user
       socket.emit('message', { user: 'admin', text: `${user.name}, welcome to room ${user.room}.`});
-      socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined!` });
-  
-      io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
-  
+
+      // Broadcoast when a user connects
+      socket.broadcast.
+      to(user.room).
+      emit('message', { user: 'admin', text: `${user.name} has joined!` });
+      
+      // Send users and room info
+      io.to(user.room)
+      .emit('roomUsers', { room: user.room, users: getUsersInRoom(user.room) });
+      
       callback();
     });
-  
+
+    // Listen for chat Message 
     socket.on('sendMessage', (message, callback) => {
       const user = getUser(socket.id);
       console.log(`Getting the sendMessage data on the event sendMessage ${message}` )
@@ -90,13 +96,26 @@ db.sequelize
   
       callback();
     });
-  
+    
+    socket.on('leaveRoom', (data) => {
+        const room = leaveRoom(data.room)
+        socket.leave(room)
+        console.log('I am leaving this room from the server')
+    })
+    
+    // Run when Client disconnects
     socket.on('disconnect', () => {
       console.log(`Disconnected: ${socket.id}`)
       const user = removeUser(socket.id);
       if(user) {
-        io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.` });
-        io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room)});
+
+        io.to(user.room)
+        .emit('message', { user: 'Admin', text: `${user.name} has left.` });
+
+
+        //Send users and room info 
+        io.to(user.room)
+        .emit('roomUsers', { room: user.room, users: getUsersInRoom(user.room)});
       }
     })
    });
@@ -127,7 +146,6 @@ db.sequelize
 
 
   
-// Test the connection
 // start up the server
 server.listen(PORT, () => console.log(`Listening on ${PORT}`));
 

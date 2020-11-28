@@ -33,7 +33,8 @@ module.exports = (sequelize, DataTypes) => {
                 key: 'userID',
                 as: 'recipient_id'
             }
-        }
+        },
+        
     },
     {
         freezeTableName: true,
