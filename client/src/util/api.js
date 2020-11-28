@@ -28,8 +28,8 @@ const getName = (userID) => {
   return axios.get('http://localhost:8080/api/users/' + userID);
 }
 
-const uploadImage = () => {
-  return axios.post('http://localhost:8080/api/image/upload' )
+const uploadImage = (userID, file) => {
+  return axios.post(`http://localhost:8080/api/image/upload/${userID}`, file)
 }
 
 const response = (matchData) => {
@@ -58,8 +58,13 @@ const getProfile = (userID) => {
 
 
 const getUserImages = (userID) => {
-  return axios.get(`http://localhost:8080/api/image/get/${userID}`)
+  return axios.get(`http://localhost:8080/api/image/get/${userID}`);
 }
+
+const formPreference = (userData) => {
+  return axios.put('http://localhost:8080/api/filter/form', userData);
+}
+
 
 export {
     LoginUser,
@@ -76,6 +81,7 @@ export {
     getallMatches,
     setProfile,
     getProfile,
-    getUserImages
+    getUserImages,
+    formPreference
 }
 

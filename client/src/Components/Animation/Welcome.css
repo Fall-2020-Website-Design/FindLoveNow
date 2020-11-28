@@ -1,0 +1,64 @@
+#welcome{
+    animation: welcome-fill 0.5s ease forwards 3.5s;
+}
+
+#welcome path:nth-child(1){
+    stroke-dasharray: 340.48065185546875;
+    stroke-dashoffset: 340.48065185546875;
+    animation: welcome 2s ease forwards;
+}
+#welcome path:nth-child(2){
+    stroke-dasharray: 206.400390625;
+    stroke-dashoffset:206.400390625;
+    animation: welcome 2s ease forwards 0.3s;
+}
+#welcome path:nth-child(3){
+    stroke-dasharray: 322.20001220703125;
+    stroke-dashoffset: 322.20001220703125;
+    animation: welcome 2s ease forwards 0.6s;
+}
+#welcome path:nth-child(4){
+    stroke-dasharray: 331.5062255859375;
+    stroke-dashoffset: 331.5062255859375;
+    animation: welcome 2s ease forwards 0.9s;
+}
+#welcome path:nth-child(5){
+    stroke-dasharray: 64.60071563720703;
+    stroke-dashoffset: 64.60071563720703;
+    animation: welcome 2s ease forwards 1.2s;
+}
+#welcome path:nth-child(6){
+    stroke-dasharray: 342.9974670410156;
+    stroke-dashoffset: 342.9974670410156;
+    animation: welcome 2s ease forwards 1.5s;
+}
+#welcome path:nth-child(7){
+    stroke-dasharray: 353.1617736816406;
+    stroke-dashoffset: 353.1617736816406;
+    animation: welcome 2s ease forwards 1.8s;
+}
+#welcome path:nth-child(8){
+    stroke-dasharray: 371.1999816894531;
+    stroke-dashoffset: 371.1999816894531;
+    animation: welcome 2s ease forwards 2.1s;
+}
+#welcome path:nth-child(9){
+    stroke-dasharray: 322.1999816894531;
+    stroke-dashoffset: 322.1999816894531;
+    animation: welcome 2s ease forwards 2.4s;
+}
+
+
+@keyframes welcome{
+    to{
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes welcome-fill{
+    from{
+        fill: transparent;
+    }
+    to{
+        fill:#000000;
+    }
+}

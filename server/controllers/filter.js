@@ -38,13 +38,13 @@ const userPreferences = async (req, res, next) => {
 }
 
 const firstLoginForm = async (req, res, next) => {
-    const { userID, City, States, Gender } = req.body;
-    const Location = `${City.toLowerCase()}, ${States.toLowerCase()}`;
+    const { userID, City, States, Interested } = req.body;
+    const Location = `${City.toLowerCase()},${States.toLowerCase()}`;
     console.log(Location);
     const data = {
         userID,
         Location,
-        Gender
+        Interested
     }
 
     try {
