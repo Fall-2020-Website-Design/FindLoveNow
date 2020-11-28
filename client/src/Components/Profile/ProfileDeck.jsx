@@ -11,28 +11,28 @@ export class ProfileDeck extends Component {
                 <CardDeck>
                     <Card className="image-upload-profile">
                         <label for="file-input">
-                            <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={add} rounded />
+                            <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={add} rounded="true" />
                         </label>
                         <input id="file-input" type="file" />
                     </Card>
 
                     <Card className="image-upload-profile">
                         <label for="file-input">
-                            <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={add} rounded />
+                            <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={add} rounded="true" />
                         </label>
                         <input id="file-input" type="file" />
                     </Card>
 
                     <Card className="image-upload-profile">
                         <label for="file-input">
-                            <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={add} rounded />
+                            <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={add} rounded="true" />
                         </label>
                         <input id="file-input" type="file" />
                     </Card>
 
                     <Card className="image-upload-profile">
                         <label for="file-input">
-                            <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={add} rounded />
+                            <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={add} rounded="true" />
                         </label>
                         <input id="file-input" type="file" />
                     </Card>

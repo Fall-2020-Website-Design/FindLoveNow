@@ -1,27 +1,44 @@
 const ProfileServices = require('../services/profile.js')
 
-const update = (req, res, next) => {
-    const {userID, Gender, Age, City, States, Interested, Height, Education, Hobby, Work, Phrase} = req.body;
-    const Location = `${City.toLowerCase()},${States.toLowerCase()}`;
-    const data = {userID, Gender, Age, Location, Interested, Height, Education, Hobby, Work, Phrase};
+const update = async (req, res, next) => {
+    // const {userID, Gender, Age, City, States, Interested, Height, Education, Hobby, Work, Phrase} = req.body;
+    // const Location = `${City.toLowerCase()},${States.toLowerCase()}`;
+    // const data = {userID, Gender, Age, Location, Interested, Height, Education, Hobby, Work, Phrase};
 
-    return ProfileServices.updateProfile(data)
-    .then((data) => {
-        res.json(data)
-    })
-    .catch(error => next(error))
+    // return ProfileServices.updateProfile(data)
+    // .then((data) => {
+    //     res.json(data)
+    // })
+    // .catch(error => next(error))
+    const editData = {}
+    for (const key in req.body) {
+        if (req.body[key] !== undefined && req.body[key] !== null) {
+            editData[key] = req.body[key];
+            console.log(key)
+        }
+    } console.log(editData)
+    console.log(req.body)
+    try {
+        const updateProfile = await ProfileServices.updateProfile(editData)
+        console.log(updateProfile)
+        res.json(updateProfile)
+    }
+    catch (error) {
+        next(error)
+        console.log(error)
+    };
 }
 
 const filterProfiles = async (req, res, next) => {
     const { gender, minAge, maxAge, location, height } = req.body;
-    const preferences = { 
-        gender, 
-        minAge, 
-        maxAge, 
-        location, 
-        height 
+    const preferences = {
+        gender,
+        minAge,
+        maxAge,
+        location,
+        height
     };
-    
+
     try {
         const profiles = await ProfileServices.getFilteredProfiles(preferences);
         res.json(profiles);

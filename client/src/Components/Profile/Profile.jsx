@@ -9,6 +9,10 @@ import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import * as API from "../../util/api";
 import { AuthContext } from "../../Context/authContext";
+import Alert from 'react-bootstrap/Alert';
+import ProfileInf from './ProfileInf'
+import ProfileDeck from './ProfileDeck'
+import Col from 'react-bootstrap/Col'
 
 
 
@@ -21,7 +25,8 @@ export class Profile extends Component {
         this.state = {
             Name: null,
             profile: null,
-            pictures: [],
+            pictures: null,
+            loading: true,
             errors: [],
         };
     }
@@ -29,7 +34,7 @@ export class Profile extends Component {
     componentDidMount() {
         setTimeout(() => {
             const { userID } = this.context;
-            console.log(userID)
+
             this.setState({
                 userID: userID
             }, () => {
@@ -77,7 +82,8 @@ export class Profile extends Component {
         API.getUserImages(id).then((results) => {
             if (results.status === 200) {
                 this.setState({
-                    pictures: results.data
+                    pictures: results.data,
+                    loading: false
 
                 }, () => { console.log(`image call${this.state.pictures}`) })
             }
@@ -89,14 +95,28 @@ export class Profile extends Component {
     }
 
     render() {
+        let body = null;
+        if (this.state.loading) {
+            body = (
+                <Alert variant="secondary" className="text-center" style={{ maxHeight: "50px" }} id="finding">
+                    Please wait for image to load !
+                </Alert>
+            );
+        }
+        else {
+            body = (<ProfileUser Name={this.state.Name} profile={this.state.profile} pictures={this.state.pictures} userID={this.state.userID} />)
+        }
 
         return (
             <div>
                 <NavBar />
                 <Container fluid>
                     <Row className="p-4">
-                        <ProfileUser Name={this.state.Name} profile={this.state.profile} pictures={this.state.pictures} />
-                        <ProfileAlbumandInf Name={this.state.Name} profile={this.state.profile} pictures={this.state.pictures} />
+                        {body}
+                        <Col>
+                            <ProfileDeck Name={this.state.Name} profile={this.state.profile} pictures={this.state.pictures} userID={this.state.userID}/>
+                            <ProfileInf Name={this.state.Name} profile={this.state.profile} pictures={this.state.pictures} userID={this.state.userID} />
+                        </Col>
                     </Row>
                 </Container>
                 <Footer />

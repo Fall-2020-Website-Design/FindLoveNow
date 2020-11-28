@@ -9,6 +9,7 @@ import './RequiredForm.css'
 import { AuthContext } from "../../Context/authContext";
 import * as API from "../../util/api";
 import { withRouter } from 'react-router-dom';
+import Alert from 'react-bootstrap/Alert';
 
 
 
@@ -39,7 +40,6 @@ export class Settings extends Component {
     componentDidMount() {
         setTimeout(() => {
             const { userID } = this.context;
-            console.log(userID)
             this.setState({
                 userID: userID
             }, () => this.getUserName(userID));
@@ -64,7 +64,7 @@ export class Settings extends Component {
 
     handleChange = (input) => (e) => {
         if (input === "file") {
-            this.setState({ file: e.target.files[0] }, () => { console.log(this.state.file); });
+            this.setState({ file: e.target.files[0] });
             // Details of the uploaded file 
         }
         else {
@@ -73,34 +73,32 @@ export class Settings extends Component {
     };
 
     handleSubmit = (e) => {
-        const {Gender, City, States, Interested, Height, Education, Hobby, Work, Phrase, file } = this.state;
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
             e.preventDefault();
             e.stopPropagation();
+
         }
         else {
             this.setState({ validated: true })
             e.preventDefault();
-            if (Gender && City && States && Interested && Height && Education && Hobby && Work && Phrase && file) {
             this.updateProfile();
             this.updatePreference();
             this.uploadFile();
-            this.props.history.push('/Home');
-            }
+
         }
 
     };
 
     updateProfile = () => {
         const { userID, Age, Gender, City, States, Interested, Feet, Inches, Education, Hobby, Work, Phrase } = this.state;
+        const Location = City && States !== null ? `${City.toLowerCase()},${States.toLowerCase()}`: null;
         const Height = parseInt(Feet) * 12 + parseInt(Inches);
         const userData = {
             userID,
             Age,
             Gender,
-            City,
-            States,
+            Location,
             Interested,
             Height,
             Education,
@@ -110,17 +108,16 @@ export class Settings extends Component {
         }
         API.setProfile(userData).then((result) => {
             if (result.status === 200) {
-
+                if (this.state.file) {
+                    this.props.history.push('/Home');
+                }
             }
-            alert("Profile Form set!")
         })
-
             .catch((errors) => {
 
                 this.setState({
                     errors
                 })
-                alert("Filled out requiere fields")
             })
     }
 
@@ -132,12 +129,7 @@ export class Settings extends Component {
             City,
             States
         }
-        API.formPreference(userData).then((result) => {
-            if (result.status === 200) {
-
-                this.props.history.push('/Home');
-            }
-        })
+        API.formPreference(userData).then((result) => {})
             .catch((errors) => {
 
                 this.setState({
@@ -150,7 +142,9 @@ export class Settings extends Component {
         const { userID, file } = this.state;
         const formdata = new FormData();
         if (file === null) {
-            alert("Please select a file")
+            let dangerAlert = document.getElementById("empty-file");
+            dangerAlert.style.display = "block";
+
         }
         else {
             // Update the formData object 
@@ -159,10 +153,8 @@ export class Settings extends Component {
                 this.state.file,
                 this.state.file.name
             );
-            API.uploadImage(userID, file).then((result) => {
-                if (result.status === 200) {
-                    console.log(result);
-                }
+            API.uploadImage(userID, formdata).then((result) => {
+            
             })
                 .catch((errors) => {
                     console.log(errors)
@@ -173,38 +165,26 @@ export class Settings extends Component {
         }
     }
 
-    displayImage = (id) => {
-        API.getUserImages(id).then((results) => {
-            if (results.status === 200) {
-                this.setState({
-                    pictures: results.data
-                    
-                }, () => {console.log(`image call${this.state.pictures}`)})
-            }
-        }).catch((errors) => {
-            this.setState({
-              errors: errors
-            })
-        });
-    }
-
-
     render() {
         const { validated } = this.state;
         return (
 
             <Container className="requiredform-container">
                 <h1 className="requiredform-color text-center mb-4">Basic Information</h1>
-                <Form  noValidate validated={validated} >
+                <Form noValidate validated={validated} onSubmit={this.handleSubmit}>
                     <Form.Group action="/upload" method="POST" enctype="multipart/form-data">
                         <Form.Row>
                             <Col md={3} className="mx-auto">
                                 <Card className="image-upload">
                                     <label for="file">
-                                        <Card.Img variant="top" className="image-setting d-block" style={{ height: '100%' }} src={add} rounded />
+                                        <Card.Img variant="top" className="image-setting d-block mx-auto" style={{ height: '100%' }} src={this.state.file === null ? add : URL.createObjectURL(this.state.file)
+                                        } rounded />
                                     </label>
                                     <input id="file" type="file" onChange={this.handleChange("file")} required />
                                 </Card>
+                                <Alert variant="danger" id="empty-file" className="filter-alert mt-3">
+                                    Please select an image.
+                                </Alert>
                             </Col>
                         </Form.Row>
                     </Form.Group>

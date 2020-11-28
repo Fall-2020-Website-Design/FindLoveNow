@@ -59,6 +59,7 @@ const updateProfile = async (data) => {
         },
         {returning: true, where: {userID: data.userID} }
     )
+    return personalInfo;
     console.log('update form')
 }
 
