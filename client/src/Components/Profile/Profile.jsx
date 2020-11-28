@@ -4,7 +4,6 @@ import './Profile.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import Footer from '../Footer/Footer'
 import ProfileUser from './ProfileUser'
-import ProfileAlbumandInf from './ProfileAlbumAndInf'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import * as API from "../../util/api";

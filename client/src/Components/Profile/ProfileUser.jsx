@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
-import Alex from '../../Images/Alex.png'
 import Image from 'react-bootstrap/Image'
 import Location from '../../Images/location.svg'
 import { AuthContext } from "../../Context/authContext";
