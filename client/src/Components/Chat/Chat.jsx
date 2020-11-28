@@ -2,7 +2,7 @@
 import NavBar from "../NavBar/NavBar";
 import React, { useState, useEffect, useRef , useContext} from "react";
 import io from "socket.io-client";
-import { useLocation, useParams, useHistory} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import TextContainer from '../TextContainer/TextContainer';
 import Messages from '../Messages/Messages';
 import InfoBar from '../InfoBar/InfoBar';
@@ -17,9 +17,7 @@ import { AuthContext } from "../../Context/authContext";
 let socket;
 const ENDPOINT = 'http://127.0.0.1:8080/'
 const Chat = () => {
-  // const currentPath = useLocation() // Chat/K/1 
-  //const location = useLocation()
-  const urlParams = useParams() // get the params
+  const urlParams = useParams()
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
   const [users, setUsers] = useState('');
