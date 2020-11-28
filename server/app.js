@@ -64,7 +64,11 @@ db.sequelize
 
 
   io.on('connect', (socket) => {
+<<<<<<< HEAD
     console.log(`This is calling socket right after io connect on the server side ${ { socket }}`)
+=======
+    console.log(`This is calling socket right after io connect on the server side ${socket}`)
+>>>>>>> master
     socket.on('join', ({name, room , userID }, callback) => {
       const { error, user } = addUser({ id : socket.id , name, room, userID});
       if(error) return callback(error);
@@ -74,12 +78,20 @@ db.sequelize
       socket.join(user.room);
       
       // Welcome current user
+<<<<<<< HEAD
       socket.emit('message', { user: 'FindLoveNow', text: `${user.name}, welcome to room ${user.room}.`});
+=======
+      socket.emit('message', { user: 'admin', text: `${user.name}, welcome to room ${user.room}.`});
+>>>>>>> master
 
       // Broadcoast when a user connects
       socket.broadcast.
       to(user.room).
+<<<<<<< HEAD
       emit('message', { user: 'FindLoveNow', text: `${user.name} has joined!` });
+=======
+      emit('message', { user: 'admin', text: `${user.name} has joined!` });
+>>>>>>> master
       
       // Send users and room info
       io.to(user.room)
@@ -112,7 +124,11 @@ db.sequelize
       if(user) {
 
         io.to(user.room)
+<<<<<<< HEAD
         .emit('message', { user: 'FindLoveNow', text: `${user.name} has left.` });
+=======
+        .emit('message', { user: 'Admin', text: `${user.name} has left.` });
+>>>>>>> master
 
 
         //Send users and room info 
