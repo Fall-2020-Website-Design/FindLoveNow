@@ -64,7 +64,7 @@ db.sequelize
 
 
   io.on('connect', (socket) => {
-    console.log(`This is calling socket right after io connect on the server side ${socket}`)
+    console.log(`This is calling socket right after io connect on the server side ${ { socket }}`)
     socket.on('join', ({name, room , userID }, callback) => {
       const { error, user } = addUser({ id : socket.id , name, room, userID});
       if(error) return callback(error);
@@ -74,12 +74,12 @@ db.sequelize
       socket.join(user.room);
       
       // Welcome current user
-      socket.emit('message', { user: 'admin', text: `${user.name}, welcome to room ${user.room}.`});
+      socket.emit('message', { user: 'FindLoveNow', text: `${user.name}, welcome to room ${user.room}.`});
 
       // Broadcoast when a user connects
       socket.broadcast.
       to(user.room).
-      emit('message', { user: 'admin', text: `${user.name} has joined!` });
+      emit('message', { user: 'FindLoveNow', text: `${user.name} has joined!` });
       
       // Send users and room info
       io.to(user.room)
@@ -91,6 +91,8 @@ db.sequelize
     // Listen for chat Message 
     socket.on('sendMessage', (message, callback) => {
       const user = getUser(socket.id);
+      console.log(`this is the message ${message}`)
+      console.log(user)
       console.log(`Getting the sendMessage data on the event sendMessage ${message}` )
       io.to(user.room).emit('message', { user: user.name, text: message });
   
@@ -110,7 +112,7 @@ db.sequelize
       if(user) {
 
         io.to(user.room)
-        .emit('message', { user: 'Admin', text: `${user.name} has left.` });
+        .emit('message', { user: 'FindLoveNow', text: `${user.name} has left.` });
 
 
         //Send users and room info 
