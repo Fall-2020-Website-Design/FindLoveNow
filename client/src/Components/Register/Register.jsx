@@ -44,16 +44,14 @@ export class Register extends Component {
     })
       .catch((errors) => {
         if (errors.response) {
-          console.log(errors.response.data)
           const errorMsg = errors.response.data
-          console.log(typeof(errorMsg))
           let errorArray = []
           errorMsg.errors.forEach(element => {
             errorArray.push(element.msg)
           })
           this.setState({
             errors: errorArray
-          }, () => console.log(this.state.errors))
+          })
         }
       })
   }
