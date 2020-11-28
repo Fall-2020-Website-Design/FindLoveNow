@@ -16,6 +16,7 @@ import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router
 import { AuthProvider } from "./Context/authContext";
 import PrivateRoute from "./privateRoute";
 
+
 export class App extends Component {
   render() {
     return (
@@ -30,8 +31,8 @@ export class App extends Component {
             <Route path="/Form" component={RequiredForm} />
             <PrivateRoute path="/Profile" component={Profile} />
             <PrivateRoute exact path="/Filter" component={Filter} />
-            <Route path="/Chat" component={Chat}/>
-            <Route path="/joinchat" component={Join}/>
+            <Route path="/Chat/:name/:matchID" component={Chat} />
+            <Route path="/joinchat" component={Join} />
             <PrivateRoute exact path="/Home" component={Matches} />
             <PrivateRoute exact path="/BlindDate" component={BlindDate} />
           </Switch>
