@@ -8,6 +8,7 @@ import Footer from '../Footer/Footer'
 import * as API from "../../util/api"
 import { AuthContext } from "../../Context/authContext";
 
+import Alert from 'react-bootstrap/Alert';
 import 'bootstrap/dist/css/bootstrap.css';
 import "./Matches.css";
 
@@ -99,7 +100,9 @@ export default class Matches extends Component {
 
     acceptUser = () => {
         const { userID, profile } = this.state;
-
+        let alert = document.getElementById("prev");
+        alert.style.display = "none";
+        
         API.response({
             requesterID: userID,
             addresseeID: profile.userID,
@@ -119,7 +122,9 @@ export default class Matches extends Component {
 
     rejectedUser = () => {
         const { userID, profile } = this.state;
-
+        let alert = document.getElementById("prev");
+        alert.style.display = "none";
+        
         API.response({
             requesterID: userID,
             addresseeID: profile.userID,
@@ -139,8 +144,9 @@ export default class Matches extends Component {
 
     prevUser = () => {
         const { userID, previousID } = this.state;
-        if (previousID === null) {
-            alert("You have no pervious match for this session");
+        if (!previousID) {
+            let alert = document.getElementById("prev");
+            alert.style.display = "block";
         }
         else {
             this.setState({
@@ -178,21 +184,31 @@ export default class Matches extends Component {
         let body = null;
 
         if (loading) {
-            body = <div>
-                Please wait finding a match!
-            </div>
+
+            body = (
+                <Alert variant="info" className="finding-match" id="finding">
+                    Please wait find the perfect match !
+                </Alert>
+            );
         }
         else {
             if(found) {
-               body = <div>
-                    <Cards profile={profile} pictures={pictures} name={name} />
-                    <Buttons prev={this.prevUser} reject={this.rejectedUser} accept={this.acceptUser} />
-               </div>
+                body = (
+                    <div>
+                        <Alert variant="danger" className="prev" id="prev">
+                            You have no prev match for this session !
+                        </Alert>
+                        <Cards profile={profile} pictures={pictures} name={name} />
+                        <Buttons prev={this.prevUser} reject={this.rejectedUser} accept={this.acceptUser} />
+                    </div>
+                )
             }
             else {
-                body = <div>
-                    No Match found go to update your preferences to get a match
-                </div>
+                body = ( 
+                <Alert variant="warning" className="no-match" id="match">
+                    No Match found go to update your <Alert.Link href="/filter">FILTER</Alert.Link> to get a match
+                </Alert>
+                )
             }
         }
 
