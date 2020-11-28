@@ -9,7 +9,7 @@ import Footer from '../Footer/Footer'
 import { AuthContext } from "../../Context/authContext";
 import  Container from "react-bootstrap/Container";
 
-
+import Alert from 'react-bootstrap/Alert';
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 
@@ -27,6 +27,7 @@ export default class Filter extends React.Component {
             maxAge: null,
             feet: null,
             inches: null,
+            alertBody: null,
             errors: []
         }
     }
@@ -49,8 +50,25 @@ export default class Filter extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const { userID, gender, city, state, minAge, maxAge, feet, inches } = this.state;
-        console.log(userID);
-        if (minAge <= maxAge) {
+
+        let dangerAlert = document.getElementById("filter-form-danger");
+        let sucessAlert = document.getElementById("filter-form-success");
+
+        if (!gender || !city || !state || !minAge || !maxAge || !feet || !inches) {
+            this.setState({
+                alertBody: "You have to fill out all sections!"
+            }, () => {
+                dangerAlert.style.display = "block";
+            })
+        }
+        else if (minAge > maxAge) {
+            this.setState({
+                alertBody: "Invalid Age Range!"
+            }, () => {
+                dangerAlert.style.display = "block";
+            })
+        }   
+        else {
             API.setPreferences(userID, {
                 gender,
                 city,
@@ -61,18 +79,24 @@ export default class Filter extends React.Component {
                 inches
             }).then((result) => {
                 if (result.status === 200) {
-                    alert("Preferences are now updated!");
+                    this.setState({
+                        alertBody: "Your Filter has been Updated!"
+                    }, () => {
+                        sucessAlert.style.display = "block";
+                    })
                 }
             })
             .catch((errors) => {
                 this.setState({
-                errors
+                    alertBody: "Oh no, some other errors happened!"
+                }, () => {
+                    dangerAlert.style.display = "block";
                 })
-                alert("All fields must be filled out");
+                this.setState({
+                    errors
+                })
             })
-        }
-        else {
-            alert("Invalid Age Range")
+            
         }
     };
 
@@ -81,10 +105,8 @@ export default class Filter extends React.Component {
       for (let age=18; age <= 30; age++) {
         ages.push(<option key={age} value={age}>{age}</option>)
       }
-      const distance = []
-      for (let miles=1; miles <= 10; miles++) {
-        distance.push(<option key={miles*10} value={miles*10}>{miles*10} miles</option>)
-      }
+
+      const { alertBody } = this.state; 
 
     return (
         
@@ -92,6 +114,12 @@ export default class Filter extends React.Component {
         <div>
             < NavBar />
             <Container>
+            <Alert variant="danger" id="filter-form-danger" className="filter-alert mt-3">
+                { alertBody }
+            </Alert>
+            <Alert variant="success" id="filter-form-success" className="filter-alert mt-3">
+                { alertBody }
+            </Alert>
         <div className="filter-padding pt-4">
         <div className="custom-filter-container">
     <center><h1 className="Filter-Header">Filter Matches</h1></center>

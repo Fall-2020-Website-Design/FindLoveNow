@@ -30,22 +30,21 @@ export class Cards extends Component {
 
     static getDerivedStateFromProps (props, state) {
         const { profile, pictures, name } = props;
-
         
-            console.log(profile);
-            return {
-                userID: profile.userID,
-                name: name,
-                total: pictures.length,
-                images: pictures,
-                age: profile.Age,
-                location: profile.Location,
-                height: profile.Height,
-                education: (profile.Education !== null)?state.education:profile.Education,
-                bio: profile.Phrase
-            };
-      
-
+            if (profile) {
+                return {
+                    userID: profile.userID,
+                    name: name,
+                    total: pictures.length,
+                    images: pictures,
+                    age: profile.Age,
+                    location: profile.Location,
+                    height: profile.Height,
+                    education: (profile.Education !== null)?state.education:profile.Education,
+                    bio: profile.Phrase
+                };
+            }
+            return null;
     } 
 
     handleToUpdate = (index) => {
