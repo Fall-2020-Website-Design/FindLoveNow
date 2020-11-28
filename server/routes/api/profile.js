@@ -16,7 +16,6 @@ const { check, param, header } = require('express-validator');
  */
 router.put('/update',
     [
-        check('Gender', 'City', 'States', 'Phrase', 'Height', 'Interested', "input field required"),
         validatorErrors
     ],
     ProfileControllers.update);

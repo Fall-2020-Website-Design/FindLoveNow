@@ -73,6 +73,7 @@ export class Settings extends Component {
     };
 
     handleSubmit = (e) => {
+        const {Gender, City, States, Interested, Height, Education, Hobby, Work, Phrase, file } = this.state;
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
             e.preventDefault();
@@ -81,11 +82,11 @@ export class Settings extends Component {
         else {
             this.setState({ validated: true })
             e.preventDefault();
+            if (Gender && City && States && Interested && Height && Education && Hobby && Work && Phrase && file) {
             this.updateProfile();
             this.updatePreference();
             this.uploadFile();
-            if ((this.state.errors.length) < 0) {
-                this.props.history.push('/Home');
+            this.props.history.push('/Home');
             }
         }
 
@@ -170,6 +171,21 @@ export class Settings extends Component {
                     })
                 })
         }
+    }
+
+    displayImage = (id) => {
+        API.getUserImages(id).then((results) => {
+            if (results.status === 200) {
+                this.setState({
+                    pictures: results.data
+                    
+                }, () => {console.log(`image call${this.state.pictures}`)})
+            }
+        }).catch((errors) => {
+            this.setState({
+              errors: errors
+            })
+        });
     }
 
 
