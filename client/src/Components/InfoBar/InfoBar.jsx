@@ -13,11 +13,7 @@ const InfoBar = ({ room, leaveChatRoom }) => (
       <h3>{room}</h3>
     </div>
     <div className="rightInnerContainer">
-<<<<<<< HEAD
       <Link onClick={() => leaveChatRoom()}to={"/joinchat"}><img src={closeIcon} alt="close icon" /> </Link>
-=======
-      <a href="/Home"><img src={closeIcon} alt="close icon" /></a> 
->>>>>>> 175780c92c1cf37b36c3bfbf6b936a62e96c9f76
     </div>
   </div>
 );

@@ -2,7 +2,7 @@
 import NavBar from "../NavBar/NavBar";
 import React, { useState, useEffect, useRef , useContext} from "react";
 import io from "socket.io-client";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useHistory} from "react-router-dom";
 import TextContainer from '../TextContainer/TextContainer';
 import Messages from '../Messages/Messages';
 import InfoBar from '../InfoBar/InfoBar';
@@ -18,6 +18,7 @@ let socket;
 const ENDPOINT = 'http://127.0.0.1:8080/'
 const Chat = () => {
   // const currentPath = useLocation() // Chat/K/1 
+  //const location = useLocation()
   const urlParams = useParams() // get the params
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
@@ -26,20 +27,10 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
 
   const authValue = useContext(AuthContext)
-// const prevRoomRef = useRef();
-// useEffect(() => {
-//    prevRoomRef.current = room;
-//  },[room]);
-//  const prevRoom = prevRoomRef.current;
-// // useEffect(() => {
-// //    if (prevRoom && room) switchRooms(prevRoom, room);
-// // },[room])
+
 
   useEffect(() => {
-    console.log(urlParams)
     const { name, matchID } = urlParams ;
-    console.log(name,matchID)
-
     socket = io(ENDPOINT);
     const room = matchID
     const userID = authValue.userID
@@ -51,13 +42,10 @@ const Chat = () => {
           alert(error);
         }
       });
-    if (prevRoom && room) {
-      const nextRoom = room
-      socket.emit('switchRoom', {prevRoom, nextRoom}, (error) => {
-        if (error) {
-          alert(error)
-        }
-      })
+    return () => {
+      if (room) {
+        socket.emit('leaveRoom', { name, room , userID } )
+      }
     }
   }, [ENDPOINT, urlParams, authValue.userID]);
   
@@ -79,6 +67,7 @@ const Chat = () => {
     }
   }
 
+
   const leaveChatRoom = () => {
     socket.disconnect()
   }
@@ -91,12 +80,8 @@ const Chat = () => {
           <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
       </div>
     </div>
-    </div>
   );
 }
 
-//  const switchRooms = (prevRoom, nextRoom) => {
-//   if (socket) socket.emit('switchRoom', { prevRoom, nextRoom });
-// }
 
 export default Chat;

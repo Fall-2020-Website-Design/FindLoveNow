@@ -9,7 +9,7 @@ const db = require('./models');
 const PORT = process.env.PORT || 8080;
 
 const apiRoutes = require('./routes/api/index');
-const { addUser, removeUser, getUser, getUsersInRoom, switchRoom } = require('./services/chat');
+const { addUser, removeUser, getUser, getUsersInRoom, switchRoom, leaveRoom } = require('./services/chat');
 
 
 const app = express();
@@ -65,12 +65,10 @@ db.sequelize
 
   io.on('connect', (socket) => {
     console.log(`This is calling socket right after io connect on the server side ${socket}`)
-    socket.on('join', ({ name, room , userID }, callback) => {
+    socket.on('join', ({name, room , userID }, callback) => {
       const { error, user } = addUser({ id : socket.id , name, room, userID});
-        // userID take it out on line 69 
-
       if(error) return callback(error);
-
+      
 
       console.log(`Socket ${socket.id} joining ${room}`);
       socket.join(user.room);
@@ -86,7 +84,7 @@ db.sequelize
       // Send users and room info
       io.to(user.room)
       .emit('roomUsers', { room: user.room, users: getUsersInRoom(user.room) });
-  
+      
       callback();
     });
 
@@ -99,22 +97,12 @@ db.sequelize
       callback();
     });
     
-    socket.on('switchRoom', ( { prevRoom, nextRoom}, callback) => {
-      if (prevRoom) {
-        const room = getUsersInRoom(prevRoom)
-        console.log(room)
-        console.log('I am leaving this room ')
+    socket.on('leaveRoom', (data) => {
+        const room = leaveRoom(data.room)
         socket.leave(room)
-      }
-      if (nextRoom) {
-        const room = getUsersInRoom(nextRoom)
-        console.log(room)
-        console.log('I am joining this room')
-        socket.join(room)
-      }
-      switchRoom(nextRoom)
-
+        console.log('I am leaving this room from the server')
     })
+    
     // Run when Client disconnects
     socket.on('disconnect', () => {
       console.log(`Disconnected: ${socket.id}`)

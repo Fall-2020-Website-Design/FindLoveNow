@@ -31,13 +31,8 @@ export class App extends Component {
             <Route path="/Form" component={RequiredForm} />
             <PrivateRoute path="/Profile" component={Profile} />
             <PrivateRoute exact path="/Filter" component={Filter} />
-<<<<<<< HEAD
             <Route path="/Chat/:name/:matchID" component={Chat} />
             <Route path="/joinchat" component={Join} />
-=======
-            <Route path="/Chat" component={Chat}/>
-            <Route path="/joinchat" component={Join}/>
->>>>>>> 175780c92c1cf37b36c3bfbf6b936a62e96c9f76
             <PrivateRoute exact path="/Home" component={Matches} />
             <PrivateRoute exact path="/BlindDate" component={BlindDate} />
           </Switch>
