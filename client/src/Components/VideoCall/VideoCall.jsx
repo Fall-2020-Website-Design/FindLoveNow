@@ -40,10 +40,10 @@ function VideoCall() {
 
   const userVideo = useRef();
   const partnerVideo = useRef();
-  const socket = useRef();
+  const videoNsp = useRef(); //video socket namespace
 
   useEffect(() => {
-    socket.current = io.connect("/");
+    videoNsp.current = io.connect("/VideoCall");
     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => { //Is asking for user's permission to use their camera & audio
       setStream(stream);
       if (userVideo.current) {
@@ -51,14 +51,14 @@ function VideoCall() {
       }
     })
 
-    socket.current.on("yourID", (id) => {
+    videoNsp.current.on("yourID", (id) => {
       setYourID(id);
     })
-    socket.current.on("allUsers", (users) => {
+    videoNsp.current.on("allUsers", (users) => {
       setUsers(users);
     })
 
-    socket.current.on("hey", (data) => { //hey you're getting a call signal (notifies you that you are being called by ... do you want to accept?)
+    videoNsp.current.on("hey", (data) => { //hey you're getting a call signal (notifies you that you are being called by ... do you want to accept?)
     setReceivingCall(true);
     setCaller(data.from);
     setCallerSignal(data.signal);
@@ -72,7 +72,7 @@ function VideoCall() {
       stream: stream, });
 
     peer.on("signal", data => {
-      socket.current.emit("callUser", { userToCall: id, signalData: data, from: yourID })
+      videoNsp.current.emit("callUser", { userToCall: id, signalData: data, from: yourID })
     })
 
     peer.on("stream", stream => {
@@ -81,7 +81,7 @@ function VideoCall() {
       }
     });
 
-    socket.current.on("callAccepted", signal => {
+    videoNsp.current.on("callAccepted", signal => {
       setCallAccepted(true);
       peer.signal(signal);
     })
@@ -96,7 +96,7 @@ function VideoCall() {
       stream: stream,
     });
     peer.on("signal", data => {
-      socket.current.emit("acceptCall", { signal: data, to: caller })
+      videoNsp.current.emit("acceptCall", { signal: data, to: caller })
     })
 
     peer.on("stream", stream => {
