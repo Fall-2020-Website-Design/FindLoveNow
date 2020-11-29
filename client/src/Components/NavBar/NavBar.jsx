@@ -20,16 +20,20 @@ export class NavBar extends Component {
         return (
             <Navbar collapseOnSelect expand="lg" bg="light" className="justify-content-between">
                 <Navbar.Brand>
-                    <Link to="/">
-                        {/* <Image src={heartImg2} className="Heart-Logo2" id="Heart2" alt="Heart Logo 2" width="40" /> */}
-                        <Image src={heartImg} className="Heart-Logo" id="Heart" alt="Heart Logo" width="40"  />
-                        <Logo />
-                    </Link>
+                    {isAuthenicated ?
+                        (<Link to="/Home"> <Image src={heartImg} className="Heart-Logo" id="Heart" alt="Heart Logo" width="40" />
+                            <Logo />  </Link>)
+                        :
+                        (<Link to="/"> <Image src={heartImg} className="Heart-Logo" id="Heart" alt="Heart Logo" width="40" />
+                            <Logo />
+                        </Link>)
+                    }
+
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse >
                     <Nav className="mr-auto" />
-                    {isAuthenicated ? <UserBar email={email}/> : <NonUserBar />}
+                    {isAuthenicated ? <UserBar email={email} /> : <NonUserBar />}
                 </Navbar.Collapse>
             </Navbar>
         )

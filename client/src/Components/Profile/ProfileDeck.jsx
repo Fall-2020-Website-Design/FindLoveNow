@@ -103,7 +103,6 @@ export class ProfileDeck extends Component {
                 <center className="mb-4">
                     <Button bsPrefix="profileinf-button-color" onClick={this.handleEditPhrase}>EDIT</Button>
                 </center>
-            
             </Col>
             </Form.Row>
             </Form>

@@ -16,8 +16,10 @@ const {check, param, header} = require('express-validator');
  * @name POST /register
  */
 router.post('/register',[
-    check('name',"Name input field required")
-    .isLength( {min : 1 } ),
+    check('name',"Name must only contain letters")
+    .isLength( {min : 1 })
+    .matches(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/
+    ),
     check('email', "Email input field required")
     .isEmail()
     .bail()
