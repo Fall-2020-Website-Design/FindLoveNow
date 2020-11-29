@@ -3,10 +3,7 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import FormControl from 'react-bootstrap/FormControl'
 import { AuthContext } from "../../Context/authContext"
-import * as API from "../../util/api"
-import Alert from 'react-bootstrap/Alert'
 import ProfileEdit from './ProfileEdit'
 import { ProfilePhrase } from './ProfilePhrase'
 
