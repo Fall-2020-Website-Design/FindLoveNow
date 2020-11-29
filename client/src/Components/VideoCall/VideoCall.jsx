@@ -43,13 +43,14 @@ function VideoCall() {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io.connect("/VideoCall"); //connects to VideoCall 
+    socket.current = io.connect("/videocall");
+    console.log(socket.connect);
     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => { //Is asking for user's permission to use their camera & audio
       setStream(stream);
       if (userVideo.current) {
         userVideo.current.srcObject = stream;
       }
-    })
+    },[socket.current])
 
     socket.current.on("yourID", (id) => {
       setYourID(id);

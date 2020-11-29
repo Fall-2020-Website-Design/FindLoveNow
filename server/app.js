@@ -125,24 +125,23 @@ db.sequelize
 //Video: Video Call server side
 
  const users = {}; //users object to keep track of who the user is
- const VideoNSP = io.of('/VideoCall');
+ const VideoNSP = io.of('/videocall');
  VideoNSP.on('connection', socket => { //each socket is a connection (each user has a unique id)
-     console.log(`${socket.it} connected to videocall namespace`);
+     console.log(`${socket.id} connected to videocall namespace`);
      if (!users[socket.id]) {
-         users[socket.id] = socket.id;
+      users[socket.id] = socket.id;
      }
      socket.emit("yourID", socket.id);
-     VideoNSP.sockets.emit("allUsers", users);
-     socket.on('disconnect', () => {
+    io.sockets.emit("allUsers", users);
+    socket.on('disconnect', () => {
          delete users[socket.id];
      })
-
-     socket.on("callUser", (data) => {
-    VideoNSP.to(data.userToCall).emit('hey', {signal: data.signalData, from: data.from});
+    socket.on("callUser", (data) => {
+    io.to(data.userToCall).emit('hey', {signal: data.signalData, from: data.from});
      })
 
-     socket.on("acceptCall", (data) => {
-    VideoNSP.to(data.to).emit('callAccepted', data.signal);
+    socket.on("acceptCall", (data) => {
+    io.to(data.to).emit('callAccepted', data.signal);
      })
  });
 

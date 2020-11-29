@@ -9,6 +9,7 @@ import Filter from "./Components/Filter/Filter";
 import Chat from "./Components/Chat/Chat";
 import Join from './Components/JoinChat/Join';
 import Home from './Components/Home/Home';
+import VideoCall from './Components/VideoCall/VideoCall';
 
 import BlindDate from "./Components/BlindDate/BlindDate";
 import RequiredForm from "./Components/RequiredForm/RequiredForm";
@@ -34,7 +35,8 @@ export class App extends Component {
             <Route path="/Chat/:name/:matchID" component={Chat} />
             <Route path="/joinchat" component={Join} />
             <PrivateRoute exact path="/Home" component={Matches} />
-            <Route exact path="/BlindDate" component={BlindDate} />
+            <PrivateRoute exact path="/BlindDate" component={BlindDate} />
+            <PrivateRoute exact path="/VideoCall" component={VideoCall} />
           </Switch>
         </Router>
       </AuthProvider>
