@@ -59,7 +59,7 @@ const updateProfile = async (data) => {
         },
         {returning: true, where: {userID: data.userID} }
     )
-    console.log('update form')
+    return personalInfo;
 }
 
 
@@ -67,6 +67,8 @@ const getProfileByID = async (id) => {
     const profile = await db.Profile.findByPk(id);
     return profile.dataValues;
 }
+
+
 
 
 module.exports = {

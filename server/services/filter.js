@@ -42,7 +42,7 @@ const updatePreferences = async (data) => {
  */
 const formUpdate = async (data) => {
     await db.Filter.update({
-        gender: data.Gender,
+        gender: data.Interested,
         location: data.Location
     },
     {where: {

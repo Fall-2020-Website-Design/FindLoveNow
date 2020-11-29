@@ -46,6 +46,11 @@
     object-fit: cover;
 }
 
+.image-upload-profile{
+    border: none;
+}
+
 .image-upload-profile>input {
     display: none;
+    
   }

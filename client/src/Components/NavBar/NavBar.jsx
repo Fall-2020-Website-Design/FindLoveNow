@@ -20,7 +20,7 @@ export class NavBar extends Component {
         return (
             <Navbar collapseOnSelect expand="md" bg="light" className="justify-content-between">
                 <Navbar.Brand>
-                    <Link to="/Home">
+                    <Link to="/">
                         {/* <Image src={heartImg2} className="Heart-Logo2" id="Heart2" alt="Heart Logo 2" width="40" /> */}
                         <Image src={heartImg} className="Heart-Logo" id="Heart" alt="Heart Logo" width="40"  />
                         <Logo />

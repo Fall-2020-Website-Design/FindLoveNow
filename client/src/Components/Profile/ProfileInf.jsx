@@ -8,7 +8,7 @@ import FormControl from 'react-bootstrap/FormControl'
 import InputGroup from 'react-bootstrap/InputGroup'
 import { AuthContext } from "../../Context/authContext";
 import * as API from "../../util/api";
-
+import Alert from 'react-bootstrap/Alert'
 
 export class ProfileInf extends Component {
     static contextType = AuthContext
@@ -29,40 +29,44 @@ export class ProfileInf extends Component {
         };
     }
     static getDerivedStateFromProps(props, state) {
-        const { profile, Name } = props;
+        const { userID, profile, Name } = props;
         if (profile) {
+            const location = profile.Location.split(",");
             return {
-
+                userID: userID,
                 Name: Name,
                 Age: profile.Age,
-                Location: profile.Location,
-                Interested: profile.Interested,
-                Height: profile.Height,
+                Location: location[0].charAt(0).toUpperCase() + location[0].slice(1) + ", " + location[1].charAt(0).toUpperCase() + location[1].slice(1),
+                Interested: profile.Interested.charAt(0).toUpperCase() + profile.Interested.slice(1),
+                Height: `${Math.floor(profile.Height/12)} ' ${profile.Height % 12}''`,
                 Education: profile.Education,
-                Hobby: profile.Hobby,
+                Hobby: profile.Hobby, 
                 Work: profile.Work,
                 Phrase: profile.Phrase
             };
         }
+        return null;
     }
+    
     handleSubmit = (e) => {
         e.preventDefault();
-        const { userID, Age, City, States, Interested, Height, Education, Hobby, Work } = this.state;
-        const H = Height === "" ? null : Height;
+        const { userID, Age, City, States, Interested, Feet, Inches, Education, Hobby, Work } = this.state;
+        console.log(userID, Age, City, States, Interested, Feet, Inches, Education, Hobby, Work)
+        const Height = parseInt(Feet)*12 + parseInt(Inches);
+        const Location = City && States !== null ? `${City.toLowerCase()},${States.toLowerCase()}`: null;
         const userData = {
             userID,
             Age,
-            City,
-            States,
+            Location,
             Interested,
-            H,
+            Height,
             Education,
             Hobby,
             Work,
         }
         API.setProfile(userData).then((result) => {
             if (result.status === 200) {
-                console.log(result);
+                console.log(userData)
             }
             alert("Profile Form set!")
         })
@@ -85,11 +89,7 @@ export class ProfileInf extends Component {
             Phrase
         }
         API.setProfile(userData).then((result) => {
-            if (result.status === 200) {
-                console.log(result);
-            }
-            alert("Profile Form set!")
-
+            
         })
 
             .catch((errors) => {
@@ -97,7 +97,8 @@ export class ProfileInf extends Component {
                 this.setState({
                     errors
                 })
-                alert("Filled out requiere fields")
+                let dangerEdit = document.getElementById("edit-fail");
+                dangerEdit.style.display = "block";
             })
 
     };
@@ -114,13 +115,14 @@ export class ProfileInf extends Component {
 
     handleChange = (input) => (e) => {
         this.setState({ [input]: e.target.value })
+        console.log(input)
     };
 
     render() {
 
         return (
-            <>
-                <Col lg={6}>
+            <Row>
+                <Col >
                     {!this.state.edit &&
                         (
                             <Card className="profileinf-card mb-4" >
@@ -190,7 +192,7 @@ export class ProfileInf extends Component {
                                                 <InputGroup >
                                                     <p>Age:</p>
                                                     <Col>
-                                                        <FormControl type="number" min="18" style={{ width: 100 }} onChange={this.handleChange("Age")} />
+                                                        <FormControl type="number" min="18" id="Age" style={{ width: 100 }} onChange={this.handleChange("Age")} />
                                                     </Col>
                                                 </InputGroup>
                                             </Col>
@@ -216,9 +218,9 @@ export class ProfileInf extends Component {
                                                     <Col>
                                                         <Form.Control as="select" id="Interested" onChange={this.handleChange("Interested")}>
                                                             <option value="Select" selected="true">Choose</option>
-                                                            <option value="Man">Man</option>
-                                                            <option value="Woman">Woman</option>
-                                                            <option value="Both">Both</option>
+                                                            <option value="male">Man</option>
+                                                            <option value="female">Woman</option>
+                                                            <option value="both">Both</option>
                                                         </Form.Control>
                                                     </Col>
                                                 </InputGroup>
@@ -229,11 +231,11 @@ export class ProfileInf extends Component {
                                                 <InputGroup>
                                                     <p>Height:</p>
                                                     <Col sm={4}>
-                                                        <FormControl placeholder="Feet" type="number" id="Height" max="6" min="4" onChange={this.handleChange("Height")} />
+                                                        <FormControl placeholder="Feet" type="number" id="Height" max="6" min="4" onChange={this.handleChange("Feet")} />
                                                     </Col>
-                                                    {/* <Col sm={4}>
-                                                <FormControl placeholder="Inches" type="number" max="11" min="0" />
-                                            </Col> */}
+                                                    <Col sm={4}>
+                                                <FormControl placeholder="Inches" type="number" id="Height" max="11" min="0" onChange={this.handleChange("Inches")}/>
+                                            </Col>
                                                 </InputGroup>
                                             </Col>
                                         </Row>
@@ -270,14 +272,14 @@ export class ProfileInf extends Component {
                                         </Row>
                                     </Card.Text>
                                     <center className="mb-4">
-                                        <Button bsPrefix="profileinf-button-color" onClick={this.handleSubmit}>Submit</Button>
+                                        <Button bsPrefix="profileinf-button-color" type="submit" name="action" onClick={this.handleSubmit}>Submit</Button>
                                     </center>
                                 </Card.Body>
                             </Card>
                         )}
                 </Col>
 
-                <Col lg={6}>
+                <Col >
                     {!this.state.editPhrase &&
                         (
                             <Card className="profileinf-card">
@@ -295,6 +297,9 @@ export class ProfileInf extends Component {
                             <Card className="profileinf-card">
                                 <Card.Body>
                                     <Card.Title className="profileinf-color text-center mt-4">Catch Phrase</Card.Title>
+                                    <Alert variant="danger" id="edit-fail" className="filter-alert mt-3">
+                                    Please enter phrase or type N/A.
+                                    </Alert>
                                     <Card.Text className="p-3 text-size">
                                         <FormControl as="textarea" maxlength="255" onChange={this.handleChange("Work")} />
                                     </Card.Text>
@@ -305,7 +310,7 @@ export class ProfileInf extends Component {
                             </Card>
                         )}
                 </Col>
-            </>
+            </Row>
         )
     }
 }

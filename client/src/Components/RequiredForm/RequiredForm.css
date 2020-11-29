@@ -47,3 +47,7 @@
 .image-upload>input {
     display: none;
   }
+
+.image-upload {
+    border: none;
+}
