@@ -57,7 +57,6 @@ export class ProfileEdit extends Component {
                 this.setState({
                     errors
                 })
-                alert("Filled out requiere fields")
             })
 
     };
