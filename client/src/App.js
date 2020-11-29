@@ -34,7 +34,7 @@ export class App extends Component {
             <Route path="/Chat/:name/:matchID" component={Chat} />
             <Route path="/joinchat" component={Join} />
             <PrivateRoute exact path="/Home" component={Matches} />
-            <PrivateRoute exact path="/BlindDate" component={BlindDate} />
+            <Route exact path="/BlindDate" component={BlindDate} />
           </Switch>
         </Router>
       </AuthProvider>

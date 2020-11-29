@@ -122,35 +122,31 @@ db.sequelize
     })
    });
 
+//Video: Video Call server side
 
-// //Video:
+ const users = {}; //users object to keep track of who the user is
+ const VideoNSP = io.of('/VideoCall');
+ VideoNSP.on('connection', socket => { //each socket is a connection (each user has a unique id)
+     console.log(`${socket.it} connected to videocall namespace`);
+     if (!users[socket.id]) {
+         users[socket.id] = socket.id;
+     }
+     socket.emit("yourID", socket.id);
+     VideoNSP.sockets.emit("allUsers", users);
+     socket.on('disconnect', () => {
+         delete users[socket.id];
+     })
 
-// const users = {}; //users object to keep track of who the user is
+     socket.on("callUser", (data) => {
+    VideoNSP.to(data.userToCall).emit('hey', {signal: data.signalData, from: data.from});
+     })
 
-// io.on('connection', socket => { //each socket is a connection (each user has a unique id)
-//     if (!users[socket.id]) {
-//         users[socket.id] = socket.id;
-//     }
-//     socket.emit("yourID", socket.id);
-//     io.sockets.emit("allUsers", users);
-//     socket.on('disconnect', () => {
-//         delete users[socket.id];
-//     })
+     socket.on("acceptCall", (data) => {
+    VideoNSP.to(data.to).emit('callAccepted', data.signal);
+     })
+ });
 
-//     socket.on("callUser", (data) => {
-//         io.to(data.userToCall).emit('hey', {signal: data.signalData, from: data.from});
-//     })
-
-//     socket.on("acceptCall", (data) => {
-//         io.to(data.to).emit('callAccepted', data.signal);
-//     })
-// });
-
-
-  
 // start up the server
 server.listen(PORT, () => console.log(`Listening on ${PORT}`));
-
-
 
 module.exports = app;

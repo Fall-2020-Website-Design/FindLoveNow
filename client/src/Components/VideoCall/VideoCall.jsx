@@ -1,12 +1,12 @@
 import "./VideoCall.css";
 import NavBar from "../NavBar/NavBar";
 import React, { useState, useEffect, useRef } from 'react';
-import io from "socket.io-client";
+import io from "socket.io-client"; //This is the client facing!
 import Peer from "simple-peer";
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
-import close from '../../Images/exit.png'
-import Image from 'react-bootstrap/Image'
+import close from '../../Images/exit.png';
+import Image from 'react-bootstrap/Image';
 
 //Styling:
 const Container = styled.div` 
@@ -43,7 +43,7 @@ function VideoCall() {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io.connect("/");
+    socket.current = io.connect("/VideoCall"); //connects to VideoCall 
     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => { //Is asking for user's permission to use their camera & audio
       setStream(stream);
       if (userVideo.current) {
