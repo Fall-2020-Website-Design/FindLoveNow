@@ -5,6 +5,17 @@ import add from '../../Images/add.svg'
 
 
 export class ProfileDeck extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            userID: null,
+            file: null,
+            validated: false,
+            errors: [],
+        };
+    }
+
     render() {
         return (
             <div>

@@ -239,6 +239,7 @@ export class Settings extends Component {
                             <Col sm={4}>
                                 <Form.Control type="text" placeholder="City" id="City" onChange={this.handleChange("City")} required />
                             </Col>
+                            <Form.Label>,</Form.Label>
                             <Col sm={4}>
                                 <Form.Control type="text" placeholder="State" id="State" onChange={this.handleChange("States")} required />
                             </Col>

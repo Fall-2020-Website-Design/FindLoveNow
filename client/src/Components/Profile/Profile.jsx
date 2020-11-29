@@ -114,7 +114,7 @@ export class Profile extends Component {
                         {body}
                         <Col>
                             <ProfileDeck Name={this.state.Name} profile={this.state.profile} pictures={this.state.pictures} userID={this.state.userID}/>
-                            <ProfileInf Name={this.state.Name} profile={this.state.profile} pictures={this.state.pictures} userID={this.state.userID} />
+                            <ProfileInf Name={this.state.Name} profile={this.state.profile} userID={this.state.userID} />
                         </Col>
                     </Row>
                 </Container>
