@@ -137,7 +137,7 @@ db.sequelize
          delete users[socket.id];
      })
     socket.on("callUser", (data) => {
-    io.to(data.userToCall).emit('hey', {signal: data.signalData, from: data.from});
+    io.to(data.userToCall).emit("hey", {signal: data.signalData, from: data.from});
      })
 
     socket.on("acceptCall", (data) => {

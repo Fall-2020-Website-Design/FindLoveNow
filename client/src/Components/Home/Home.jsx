@@ -19,7 +19,7 @@ export default class Home extends React.Component {
             <h1 className="centered"><Logo/></h1>
           <div class="column-home2">
           <center><img className="home-image" src={Love}/></center>
-          <center><h3 style={{fontSize:"10px"}} className="position1">we are here to help you </h3></center>
+          <center><h3 style={{fontSize:"16px"}} className="position1">we are here to help you </h3></center>
           <center><h3 style={{fontFamily:"Snell Roundhand, cursive", fontSize:"20px"}} className="position2">find your perfect match  <img style={{width:"10px", height:"10px" }} src={heartImg}/></h3></center>
           </div>
         </div>
