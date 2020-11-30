@@ -25,6 +25,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        lastLoginTime: {
+            type: DataTypes.DATE,
+            allowNull: true,
+            defaultValue: null,
+        }
     },
         {
             freezeTableName: true,

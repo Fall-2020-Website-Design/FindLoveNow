@@ -51,7 +51,11 @@ router.post('/login',
 , userController.login)
 
 router.get('/:userID', [validatorErrors], userController.getName)
+router.get('/lastLogin/:userID', [validatorErrors], 
+userController.getLastLogin)
 
+router.put('/updateLoginTime/:userID', [validatorErrors], 
+userController.updateLastLogin)
 
 
 module.exports = router;
