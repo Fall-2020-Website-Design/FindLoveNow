@@ -1,7 +1,9 @@
 import React, { Component, createContext} from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import * as API from "../util/api";
 export const AuthContext = createContext();
+
 
 // export const AuthProvider = AuthContext.Provider
 class AuthProvider extends Component {
@@ -51,6 +53,7 @@ class AuthProvider extends Component {
   };
 
   LogoutUser = () => {
+    this.updateLastLogin();
     localStorage.removeItem("jwtToken");
     this.setAuthToken(false);
     this.setState((prevState) => {
@@ -76,6 +79,11 @@ class AuthProvider extends Component {
     }
   };
 
+  updateLastLogin = () => {
+    const { userID } = this.state
+    API.updateLastLogin(userID)
+  }
+
   render() {
     const { children } = this.props;
     const { userID, email, isAuthenicated } = this.state;
@@ -85,6 +93,7 @@ class AuthProvider extends Component {
       checkTokenExist,
       setAuthToken,
       LogoutUser,
+      updateLastLogin,
       checkTokenExpired,
     } = this;
 
@@ -99,6 +108,7 @@ class AuthProvider extends Component {
           checkTokenExist,
           setAuthToken,
           LogoutUser,
+          updateLastLogin,
           checkTokenExpired,
         }}
       >
