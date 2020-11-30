@@ -40,7 +40,7 @@ export class ProfileUser extends Component {
         return (
             <Col lg={4}>
                 <Card className="profile-card mb-4">
-                    <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={URL.createObjectURL(new Blob([Buffer.from(this.state.image)], {'type': this.state.type}))} rounded="true" />
+                    <Card.Img variant="top" className="d-block" style={{ height: '100%' }} src={URL.createObjectURL(new Blob([Buffer.from(this.state.image)], {'type': this.state.type}))} rounded="true" />
                     <Card.Body className="p-4">
                     <Card.Title className="title-size">{this.state.Name}, {this.state.Age}</Card.Title>
                         <Card.Text className="text-size text-muted">

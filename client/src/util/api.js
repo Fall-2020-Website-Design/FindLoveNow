@@ -72,6 +72,10 @@ const updateLastLogin = (userID) => {
   return axios.put(`/api/users/updateLoginTime/${userID}`)
 }
 
+const deleteImage = (userID) => {
+  return axios.delete(`/api/image/delete/${userID}`);
+}
+
 
 export {
     LoginUser,
@@ -91,6 +95,7 @@ export {
     getUserImages,
     formPreference,
     getLastLogin,
-    updateLastLogin
+    updateLastLogin,
+    deleteImage
 }
 
