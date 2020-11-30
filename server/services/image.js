@@ -17,7 +17,21 @@ const getImages = async (userID) => {
     return images
 }
 
+
+/**
+ * 
+ * @param {Integer} imageID 
+ */
+
+const deleteImageByID = async (imageID) => {
+    await db.Image.destroy({
+        where: {
+            id: imageID
+        }
+    })
+}
  
 module.exports = {
     getImages,
+    deleteImageByID,
 } 
