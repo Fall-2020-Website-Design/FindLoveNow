@@ -21,12 +21,11 @@ export class ProfileInf extends Component {
     static getDerivedStateFromProps(props, state) {
         const { userID, profile, Name } = props;
         if (profile) {
-            const location = profile.Location.split(",");
             return {
                 userID: userID,
                 Name: Name,
                 Age: profile.Age,
-                Location: location[0].charAt(0).toUpperCase() + location[0].slice(1) + ", " + location[1].charAt(0).toUpperCase() + location[1].slice(1),
+                Location: profile.Location,
                 Interested: profile.Interested.charAt(0).toUpperCase() + profile.Interested.slice(1),
                 Height: `${Math.floor(profile.Height / 12)} ' ${profile.Height % 12}''`,
                 Education: profile.Education,
