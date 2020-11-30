@@ -115,6 +115,7 @@ export class ProfileDeck extends Component {
             if (results.status === 200) {
                 console.log(results);
                 this.getUserImages(id);
+                window.location.reload(false);
             }
         }).catch((errors) => {
             this.setState({
