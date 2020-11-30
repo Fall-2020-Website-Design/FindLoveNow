@@ -21,7 +21,7 @@ export class ProfilePhrase extends Component {
 
     handleChange = (input) => (e) => {
         this.setState({ [input]: e.target.value })
-        console.log(input)
+        
     };
 
     handleSubmitPhrase = (e) => {

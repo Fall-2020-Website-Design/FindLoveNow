@@ -95,14 +95,11 @@ export class ProfileDeck extends Component {
                 this.setState({
                     pictures: results.data
                 }, () => {
-                    console.log(this.state.pictures)
                     let body = [];
                     for (let index = 0; index < this.state.pictures.length; index++) {
                         body.push(<ProfileImages key={this.state.pictures[index].id} image={this.state.pictures[index].data} type={this.state.pictures[index]} />)
-                        console.log(body)
                     }
                     this.setState({ profilePictures: body })
-                    console.log(body)
                 })
             }
         }).catch((errors) => {

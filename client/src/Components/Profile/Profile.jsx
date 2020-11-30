@@ -82,7 +82,7 @@ export class Profile extends Component {
                     pictures: results.data,
                     loading: false
 
-                }, () => { console.log(`image call${this.state.pictures}`) })
+                },)
             }
         }).catch((errors) => {
             this.setState({
