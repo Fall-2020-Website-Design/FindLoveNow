@@ -49,6 +49,7 @@
 
 .image-deck {
     object-fit: cover;
+    border-radius: 3px;
 }
 
 .image-upload-profile{
@@ -58,4 +59,14 @@
 .image-upload-profile>input {
     display: none;
     
+  }
+
+.close{
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .close:hover {
+      opacity: 0;
   }
