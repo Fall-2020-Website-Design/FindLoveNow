@@ -73,14 +73,19 @@ getAllMatches = () => {
        <hr></hr>
         <div className="users-font">
           <ul className="chat-list">
-            {matchItem.map((element) => (
+          { matchItem.length > 0 ? matchItem.map((element) => (
               <li key={element.matchID}>
                 <Link to={`/chat/${this.state.name}/${element.matchID}`}>
                   {element.name} 
                 </Link>
                 <hr></hr>
               </li>  
-            ))}
+            )) : <div>
+              <p> 
+                Sorry, you don't have any matches!
+              </p>
+            </div>
+            }
           </ul>
         </div>
      </div>
