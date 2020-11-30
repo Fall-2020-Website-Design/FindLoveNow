@@ -8,7 +8,7 @@ export class ProfileImages extends Component {
     render() {
         console.log(this.props.imageID);
         return (
-            <Card>
+            <Card style={{ maxWidth: '25%' }} rounderd="true">
                 <button type="button" class="close" aria-label="Close" onClick={() => {this.props.delete(this.props.imageID)}}>
                     <span aria-hidden="true">&times;</span>
                 </button>
