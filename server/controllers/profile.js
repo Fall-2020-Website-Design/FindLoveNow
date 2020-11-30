@@ -16,7 +16,7 @@ const update = async (req, res, next) => {
     catch (error) {
         next(error)
         console.log(error)
-    };
+    }
 }
 
 const filterProfiles = async (req, res, next) => {
