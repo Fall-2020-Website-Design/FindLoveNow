@@ -3,12 +3,13 @@ import Card from 'react-bootstrap/Card'
 import './Profile.css'
 
 export class ProfileImages extends Component {
-
+    
 
     render() {
+        console.log(this.props.imageID);
         return (
             <Card>
-                <button type="button" class="close" aria-label="Close">
+                <button type="button" class="close" aria-label="Close" onClick={() => {this.props.delete(this.props.imageID)}}>
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} rounderd="true"
