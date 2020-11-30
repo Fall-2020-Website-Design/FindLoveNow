@@ -95,11 +95,26 @@ export class ProfileDeck extends Component {
                     pictures: results.data
                 }, () => {
                     let body = [];
-                    for (let index = 0; index < this.state.pictures.length; index++) {
-                        body.push(<ProfileImages key={this.state.pictures[index].id} image={this.state.pictures[index].data} type={this.state.pictures[index]} />)
+                    if (this.state.pictures.length > 1) {
+                        for (let index = 1; index < this.state.pictures.length; index++) {
+                            body.push(<ProfileImages imageID={this.state.pictures[index].id} key={this.state.pictures[index].id} image={this.state.pictures[index].data} type={this.state.pictures[index]} delete={this.deleteImage} />)
+                        }
                     }
                     this.setState({ profilePictures: body })
                 })
+            }
+        }).catch((errors) => {
+            this.setState({
+                errors: errors
+            })
+        });
+    }
+
+    deleteImage = (id) => {
+        API.deleteImage(id).then((results) => {
+            if (results.status === 200) {
+                console.log(results);
+                this.getUserImages(id);
             }
         }).catch((errors) => {
             this.setState({
