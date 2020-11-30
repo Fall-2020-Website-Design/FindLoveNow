@@ -63,6 +63,8 @@ export class ProfileDeck extends Component {
         }
     }
 
+
+
     render() {
         return (
             <Form>
@@ -81,7 +83,8 @@ export class ProfileDeck extends Component {
 
                     <Card className="image-upload-profile">
                         <label for="file-input">
-                            <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={add} rounded="true" />
+                            <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={add} src={this.state.file === null ? add : URL.createObjectURL(this.state.file)
+                                }rounded="true" />
                         </label>
                         <input id="file-input" type="file" />
                     </Card>
@@ -100,9 +103,9 @@ export class ProfileDeck extends Component {
                         <input id="file-input" type="file" />
                     </Card>
                 </CardDeck>
-                <center className="mb-4">
+                {/* <center className="mb-4">
                     <Button bsPrefix="profileinf-button-color" onClick={this.handleEditPhrase}>EDIT</Button>
-                </center>
+                </center> */}
             </Col>
             </Form.Row>
             </Form>
