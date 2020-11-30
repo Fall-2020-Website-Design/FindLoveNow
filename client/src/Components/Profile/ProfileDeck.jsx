@@ -1,24 +1,41 @@
 import React, { Component } from 'react'
 import CardDeck from 'react-bootstrap/CardDeck'
 import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
+import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import add from '../../Images/add.svg'
 import * as API from "../../util/api";
+import ProfileImages from './ProfileImages'
+import { AuthContext } from "../../Context/authContext";
+import Alert from 'react-bootstrap/Alert';
 
 
 export class ProfileDeck extends Component {
+    static contextType = AuthContext;
 
     constructor(props) {
         super(props);
         this.state = {
             userID: null,
             file: null,
+            pictures: [],
+            profilePictures: [],
             validated: false,
             errors: [],
         };
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+            const { userID } = this.context;
+            this.setState({
+                userID: userID
+            }, () => this.getUserImages(userID));
+
+        }, 10)
+
     }
 
     handleChange = (input) => (e) => {
@@ -34,6 +51,12 @@ export class ProfileDeck extends Component {
     handelSubmit = (e) => {
         e.preventDefault();
         this.uploadFile();
+    }
+
+    handelCancel = (e) => {
+        e.preventDefault();
+        window.location.reload(false);
+
     }
 
     uploadFile = () => {
@@ -52,6 +75,9 @@ export class ProfileDeck extends Component {
                 this.state.file.name
             );
             API.uploadImage(userID, formdata).then((result) => {
+                if (result.status === 200) {
+                    window.location.reload(false);
+                }
 
             })
                 .catch((errors) => {
@@ -63,52 +89,77 @@ export class ProfileDeck extends Component {
         }
     }
 
+    getUserImages = (id) => {
+        API.getUserImages(id).then((results) => {
+            if (results.status === 200) {
+                this.setState({
+                    pictures: results.data
+                }, () => {
+                    console.log(this.state.pictures)
+                    let body = [];
+                    for (let index = 0; index < this.state.pictures.length; index++) {
+                        body.push(<ProfileImages key={this.state.pictures[index].id} image={this.state.pictures[index].data} type={this.state.pictures[index]} />)
+                        console.log(body)
+                    }
+                    this.setState({ profilePictures: body })
+                    console.log(body)
+                })
+            }
+        }).catch((errors) => {
+            this.setState({
+                errors: errors
+            })
+        });
+    }
+
+    handleEdit = (e) => {
+        e.preventDefault();
+        this.setState({ edit: !this.state.edit });
+    };
 
 
     render() {
         return (
-            <Form>
-                <Form.Row>
-            <Col>
-            
-                <CardDeck>
-                    <Card className="image-upload-profile">
-                        <label for="file-input">
-                            <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }}
-                                src={this.state.file === null ? add : URL.createObjectURL(this.state.file)
-                                } />
-                        </label>
-                        <input id="file-input" type="file" onChange={this.handleChange("file")} />
-                    </Card>
-
-                    <Card className="image-upload-profile">
-                        <label for="file-input">
-                            <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={add} src={this.state.file === null ? add : URL.createObjectURL(this.state.file)
-                                }rounded="true" />
-                        </label>
-                        <input id="file-input" type="file" />
-                    </Card>
-
-                    <Card className="image-upload-profile">
-                        <label for="file-input">
-                            <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={add} rounded="true" />
-                        </label>
-                        <input id="file-input" type="file" />
-                    </Card>
-
-                    <Card className="image-upload-profile">
-                        <label for="file-input">
-                            <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={add} rounded="true" />
-                        </label>
-                        <input id="file-input" type="file" />
-                    </Card>
-                </CardDeck>
-                {/* <center className="mb-4">
-                    <Button bsPrefix="profileinf-button-color" onClick={this.handleEditPhrase}>EDIT</Button>
-                </center> */}
-            </Col>
-            </Form.Row>
-            </Form>
+            <div>
+                {!this.state.edit && (
+                    <div>
+                        <CardDeck>
+                            {this.state.profilePictures}
+                        </CardDeck>
+                        <center className="p-4">
+                            <Button bsPrefix="profileinf-button-color" onClick={this.handleEdit}>Add Photo</Button>
+                        </center>
+                    </div>
+                )}
+                {this.state.edit &&
+                    (
+                        <Col className="p-4">
+                            <center>
+                                <CardDeck>
+                                    <Card className="image-upload-profile">
+                                        <label for="file-input">
+                                            <Card.Img variant="top" className="image-deck d-block" style={{ maxHeight: '100%', maxWidth: '25%' }}
+                                                src={this.state.file === null ? add : URL.createObjectURL(this.state.file)
+                                                } />
+                                        </label>
+                                        <input id="file-input" type="file" onChange={this.handleChange("file")} />
+                                    </Card>
+                                </CardDeck>
+                                <Alert variant="danger" id="empty-file" className="filter-alert mt-3">
+                                    Please select an image.
+                                    </Alert>
+                                <Row>
+                                    <Col>
+                                        <Button bsPrefix="profileinf-button-color " onClick={this.handelSubmit}>Save</Button>
+                                    </Col>
+                                    <Col>
+                                        <Button bsPrefix="profileinf-button-color" onClick={this.handelCancel}>Cancel</Button>
+                                    </Col>
+                                </Row>
+                            </center>
+                        </Col>
+                    )}
+            </div>
         )
     }
 }
