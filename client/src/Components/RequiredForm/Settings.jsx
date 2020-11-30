@@ -92,7 +92,7 @@ export class Settings extends Component {
 
     updateProfile = () => {
         const { userID, Age, Gender, City, States, Interested, Feet, Inches, Education, Hobby, Work, Phrase } = this.state;
-        const Location = City && States !== null ? `${City.toLowerCase()},${States.toLowerCase()}`: null;
+        const Location = City && States !== null ? `${City.toLowerCase()},${States.toLowerCase()}` : null;
         const Height = parseInt(Feet) * 12 + parseInt(Inches);
         const userData = {
             userID,
@@ -129,7 +129,7 @@ export class Settings extends Component {
             City,
             States
         }
-        API.formPreference(userData).then((result) => {})
+        API.formPreference(userData).then((result) => { })
             .catch((errors) => {
 
                 this.setState({
@@ -154,7 +154,7 @@ export class Settings extends Component {
                 this.state.file.name
             );
             API.uploadImage(userID, formdata).then((result) => {
-            
+
             })
                 .catch((errors) => {
                     console.log(errors)
@@ -218,20 +218,18 @@ export class Settings extends Component {
                         </Form.Row>
                     </Form.Group>
 
-                    <fieldset aria-required>
-                        <Form.Group>
-                            <Form.Row inline>
-                                <Form.Label column="md" md={2} >Gender</Form.Label>
-                                <Col md={2}>
-                                    <Form.Control as="select" onChange={this.handleChange("Gender")} required>
-                                        <option selected disabled value="">Choose</option>
-                                        <option value="male">Man</option>
-                                        <option value="female">Woman</option>
-                                    </Form.Control>
-                                </Col>
-                            </Form.Row>
-                        </Form.Group>
-                    </fieldset>
+                    <Form.Group>
+                        <Form.Row inline>
+                            <Form.Label column="md" md={2} >Gender</Form.Label>
+                            <Col md={2}>
+                                <Form.Control as="select" onChange={this.handleChange("Gender")} required>
+                                    <option selected disabled value="">Choose</option>
+                                    <option value="male">Man</option>
+                                    <option value="female">Woman</option>
+                                </Form.Control>
+                            </Col>
+                        </Form.Row>
+                    </Form.Group>
 
                     <Form.Group>
                         <Form.Row>

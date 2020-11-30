@@ -53,7 +53,7 @@ export class ProfileInf extends Component {
         return (
             <Form>
                 <Form.Row>
-                    <Col >
+                    <Col md={6}>
                         {!this.state.edit &&
                             (
                                 <Card className="profileinf-card mb-4" >
@@ -113,7 +113,7 @@ export class ProfileInf extends Component {
                             )}
                     </Col>
 
-                    <Col >
+                    <Col md={6}>
                         {!this.state.editPhrase &&
                             (
                                 <Card className="profileinf-card">

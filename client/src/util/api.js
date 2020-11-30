@@ -56,7 +56,6 @@ const getProfile = (userID) => {
   return axios.get(`/api/profile/${userID}`);
 }
 
-
 const getUserImages = (userID) => {
   return axios.get(`/api/image/get/${userID}`);
 }

@@ -21,6 +21,7 @@ export class Login extends React.Component {
       userID: null,
       email: "",
       password: "",
+      LastLogin: "",
       errors: [],
       isAuthenticated: false,
     }
@@ -29,7 +30,7 @@ export class Login extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.isAuthenticated !== this.state.isAuthenticated) {
-      this.props.history.push("/Home")
+     this.checkLastLogin();
     }
   }
 
@@ -51,6 +52,10 @@ export class Login extends React.Component {
   // eventually api call to the backend
   handleSubmit = (e) => {
     e.preventDefault();
+    this.loginUser();
+  };
+
+  loginUser = () => {
     const { email, password } = this.state
     API.LoginUser({
       email,
@@ -81,7 +86,33 @@ export class Login extends React.Component {
           })
         }
       })
-  };
+  }
+  
+  checkLastLogin = () => {
+    const { userID } = this.context
+    API.getLastLogin(userID).then((result) => {
+      if (result.status === 200) {
+        if (result.data.lastLogin === null) {
+          this.setState({
+            LastLogin: null
+          });
+          this.props.history.push('/Form');
+        } 
+        else {
+          this.props.history.push('/Home');
+        }
+      }
+    })
+      .catch((errors) => {
+
+        this.setState({
+          errors
+        })
+      })
+  }
+
+  
+
 
   render() {
     return (

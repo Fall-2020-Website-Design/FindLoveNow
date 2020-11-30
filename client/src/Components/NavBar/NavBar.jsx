@@ -18,7 +18,7 @@ export class NavBar extends Component {
     render() {
         const { email, isAuthenicated } = this.context
         return (
-            <Navbar collapseOnSelect expand="md" bg="light" className="justify-content-between">
+            <Navbar collapseOnSelect expand="lg" bg="light" className="justify-content-between">
                 <Navbar.Brand>
                     {isAuthenicated ?
                         (<Link to="/Home"> <Image src={heartImg} className="Heart-Logo" id="Heart" alt="Heart Logo" width="40" />

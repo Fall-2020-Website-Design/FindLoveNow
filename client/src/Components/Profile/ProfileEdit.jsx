@@ -28,7 +28,7 @@ export class ProfileEdit extends Component {
 
     handleChange = (input) => (e) => {
         this.setState({ [input]: e.target.value })
-        console.log(input)
+       
     };
 
     handleSubmit = (e) => {
