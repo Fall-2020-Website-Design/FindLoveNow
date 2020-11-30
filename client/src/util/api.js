@@ -65,6 +65,14 @@ const formPreference = (userData) => {
   return axios.put('/api/filter/form', userData);
 }
 
+const getLastLogin = (userID) => {
+  return axios.get(`/api/users/lastLogin/${userID}`)
+} 
+
+const updateLastLogin = (userID) => {
+  return axios.put(`/api/users/updateLoginTime/${userID}`)
+}
+
 
 export {
     LoginUser,
@@ -82,6 +90,8 @@ export {
     setProfile,
     getProfile,
     getUserImages,
-    formPreference
+    formPreference,
+    getLastLogin,
+    updateLastLogin
 }
 

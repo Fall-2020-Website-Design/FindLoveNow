@@ -76,10 +76,33 @@ const getName = (req, res, next) => {
 
 }
 
+const getLastLogin = (req,res,next) => {
+    return UserServices.findUser(req.params.userID)
+        .then((user) => {
+            res.json({lastLogin: user.lastLoginTime })
+        })
+        .catch(error => next(error))
+} 
+
+const updateLastLogin = async (req,res,next) => {
+    const { userID } = req.params
+    try {
+        const updatedLogin = await UserServices.updateLastLogin(userID)
+        return res.json({
+            "Success": true,
+            updatedLogin})
+        // updatedLogin[0]['lastLoginTime']
+    }
+    catch(error) {
+        next(error)
+    }
+}
 
 module.exports = {
     getUserById,
     login,
     register,
-    getName
+    getName,
+    getLastLogin,
+    updateLastLogin
 }
