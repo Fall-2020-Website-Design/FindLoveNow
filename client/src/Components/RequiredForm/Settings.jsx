@@ -224,7 +224,6 @@ export class Settings extends Component {
                         </Form.Row>
                     </Form.Group>
 
-<<<<<<< HEAD
                         <Form.Group>
                             <Form.Row inline>
                                 <Form.Label column="md" md={2} >Gender</Form.Label>
@@ -238,21 +237,6 @@ export class Settings extends Component {
                             </Form.Row>
                         </Form.Group>
                    
-=======
-                    <Form.Group>
-                        <Form.Row inline>
-                            <Form.Label column="md" md={2} >Gender</Form.Label>
-                            <Col md={2}>
-                                <Form.Control as="select" onChange={this.handleChange("Gender")} required>
-                                    <option selected disabled value="">Choose</option>
-                                    <option value="male">Man</option>
-                                    <option value="female">Woman</option>
-                                </Form.Control>
-                            </Col>
-                        </Form.Row>
-                    </Form.Group>
-
->>>>>>> 8e0c05669d9e49c1aa1422913d4d652371edc31e
                     <Form.Group>
                         <Form.Row>
                             <Form.Label column="sm" sm={2} >Location:</Form.Label>
