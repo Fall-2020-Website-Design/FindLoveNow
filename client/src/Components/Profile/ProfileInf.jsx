@@ -26,7 +26,7 @@ export class ProfileInf extends Component {
                 Name: Name,
                 Age: profile.Age,
                 Location: profile.Location,
-                Interested: profile.Interested.charAt(0).toUpperCase() + profile.Interested.slice(1),
+                Interested: profile.Interested,
                 Height: `${Math.floor(profile.Height / 12)} ' ${profile.Height % 12}''`,
                 Education: profile.Education,
                 Hobby: profile.Hobby,

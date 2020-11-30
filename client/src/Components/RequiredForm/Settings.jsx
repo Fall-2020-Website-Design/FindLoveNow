@@ -184,9 +184,7 @@ export class Settings extends Component {
                                 <Card className="image-upload">
                                     <Card.Img variant="top" className="image-setting d-block mx-auto" style={{ height: '100%' }} src={this.state.file === null ? add : URL.createObjectURL(this.state.file)
                                     } rounded />
-                                    <label for="file">
-                                        <input id="file" type="file" onChange={this.handleChange("file")} required />
-                                    </label>
+                                    <Form.File type="file" onChange={this.handleChange("file")} required />
                                 </Card>
                                 <Alert variant="danger" id="empty-file" className="filter-alert mt-3">
                                     Please select an image.
