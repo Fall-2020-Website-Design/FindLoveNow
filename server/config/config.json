@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "admin",
+    "username": "postgres",
     "password": "password",
     "database": "FindLoveNow_Dev",
     "host": "127.0.0.1",

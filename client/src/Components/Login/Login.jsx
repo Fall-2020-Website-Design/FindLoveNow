@@ -72,7 +72,7 @@ export class Login extends React.Component {
         this.setState((prevState) => {
           return { userID: decoded.id, email: decoded.email, isAuthenticated: true };
         })
-        this.checkLastLogin();
+        this.props.history.push('/Form');
       }
     })
       .catch((errors) => {
