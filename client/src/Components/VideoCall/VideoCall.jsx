@@ -1,12 +1,12 @@
 import "./VideoCall.css";
 import NavBar from "../NavBar/NavBar";
 import React, { useState, useEffect, useRef } from 'react';
-import io from "socket.io-client";
+import io from "socket.io-client"; //This is the client facing!
 import Peer from "simple-peer";
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
-import close from '../../Images/exit.png'
-import Image from 'react-bootstrap/Image'
+import close from '../../Images/exit.png';
+import Image from 'react-bootstrap/Image';
 
 //Styling:
 const Container = styled.div` 
@@ -43,13 +43,15 @@ function VideoCall() {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io.connect("/");
+    socket.current = io.connect("http://127.0.0.1:8080/videocall");
+    console.log(socket.connect);
+    console.log("hello");
     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => { //Is asking for user's permission to use their camera & audio
       setStream(stream);
       if (userVideo.current) {
         userVideo.current.srcObject = stream;
       }
-    })
+    },[socket.current])
 
     socket.current.on("yourID", (id) => {
       setYourID(id);
@@ -72,16 +74,16 @@ function VideoCall() {
       stream: stream, });
 
     peer.on("signal", data => {
-      socket.current.emit("callUser", { userToCall: id, signalData: data, from: yourID })
+      socket.current.emit("callUser", {userToCall: id, signalData: data, from: yourID})
     })
 
-    peer.on("stream", stream => {
+    peer.on("stream", stream => { //This allows us to see ourselves and our partner.
       if (partnerVideo.current) {
         partnerVideo.current.srcObject = stream;
       }
     });
 
-    socket.current.on("callAccepted", signal => {
+    socket.current.on("callAccepted", signal => { //completes hand shake
       setCallAccepted(true);
       peer.signal(signal);
     })
