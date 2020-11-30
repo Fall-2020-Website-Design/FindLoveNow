@@ -23,11 +23,10 @@ export class ProfileUser extends Component {
     static getDerivedStateFromProps (props, state) {
         const { profile, Name, pictures } = props;
         if (profile && pictures){
-            const location = profile.Location.split(",");
             return {
             Name: Name,
             Age: profile.Age,
-            Location: location[0].charAt(0).toUpperCase() + location[0].slice(1) + ", " + location[1].charAt(0).toUpperCase() + location[1].slice(1),
+            Location: profile.Location,
             Phrase: profile.Phrase, 
             image: pictures[0].data,
             type: pictures[0]    
