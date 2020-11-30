@@ -43,7 +43,20 @@ const getUserImages = async (req, res, next) => {
   }
 }
 
+const deleteImage =  async (req, res, next) => {
+  const { imageID } = req.params;
+
+  try {
+    await ImageServices.deleteImageByID(imageID)
+    return res.json("Success")
+  } 
+  catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   uploadFiles,
-  getUserImages
+  getUserImages,
+  deleteImage
 };
