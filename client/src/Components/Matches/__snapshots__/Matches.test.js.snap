@@ -3,7 +3,7 @@
 exports[`Matches renders 1`] = `
 Array [
   <nav
-    className="justify-content-between navbar navbar-expand-md navbar-light bg-light"
+    className="justify-content-between navbar navbar-expand-lg navbar-light bg-light"
   >
     <span
       className="navbar-brand"
@@ -12,6 +12,7 @@ Array [
         href="/"
         onClick={[Function]}
       >
+         
         <img
           alt="Heart Logo"
           className="Heart-Logo"
