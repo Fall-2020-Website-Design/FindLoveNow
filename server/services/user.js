@@ -49,6 +49,18 @@ const findUser = async (id) => {
     return User;
 }
 
+const updateLastLogin = async (userID) => {
+    const time = new Date()
+    const updateLogin = await db.User.update({
+        lastLoginTime : time
+    }, 
+    {
+        returning : true,
+        where : { userID: userID }
+    })
+    return updateLogin[1]
+}
+
 
 /**
  * 
@@ -103,5 +115,6 @@ module.exports = {
     findUserByEmail,
     findUser,
     createUser,
-    generateHash
+    generateHash,
+    updateLastLogin
 } 

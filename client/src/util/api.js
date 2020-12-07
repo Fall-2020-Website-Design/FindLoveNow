@@ -56,13 +56,24 @@ const getProfile = (userID) => {
   return axios.get(`/api/profile/${userID}`);
 }
 
-
 const getUserImages = (userID) => {
   return axios.get(`/api/image/get/${userID}`);
 }
 
 const formPreference = (userData) => {
   return axios.put('/api/filter/form', userData);
+}
+
+const getLastLogin = (userID) => {
+  return axios.get(`/api/users/lastLogin/${userID}`)
+} 
+
+const updateLastLogin = (userID) => {
+  return axios.put(`/api/users/updateLoginTime/${userID}`)
+}
+
+const deleteImage = (userID) => {
+  return axios.delete(`/api/image/delete/${userID}`);
 }
 
 
@@ -82,6 +93,9 @@ export {
     setProfile,
     getProfile,
     getUserImages,
-    formPreference
+    formPreference,
+    getLastLogin,
+    updateLastLogin,
+    deleteImage
 }
 

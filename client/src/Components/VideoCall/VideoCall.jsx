@@ -42,10 +42,9 @@ function VideoCall() {
   const partnerVideo = useRef();
   const socket = io("/videocall");
 
-
-  useEffect(() => { 
+  useEffect(() => {
     socket.current = io.connect("/videocall");
-    console.log(socket.current);
+    console.log(socket.connect);
     console.log("hello");
 
     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => { //Is asking for user's permission to use their camera & audio

@@ -33,6 +33,8 @@ export class Settings extends Component {
             Phrase: null,
             file: null,
             validated: false,
+            isFormFill: false,
+            isImageUpload: false,
             errors: [],
         };
     }
@@ -90,9 +92,11 @@ export class Settings extends Component {
 
     };
 
+
+
     updateProfile = () => {
         const { userID, Age, Gender, City, States, Interested, Feet, Inches, Education, Hobby, Work, Phrase } = this.state;
-        const Location = City && States !== null ? `${City.toLowerCase()},${States.toLowerCase()}`: null;
+        const Location = City && States !== null ? `${City.toLowerCase()},${States.toLowerCase()}` : null;
         const Height = parseInt(Feet) * 12 + parseInt(Inches);
         const userData = {
             userID,
@@ -107,11 +111,7 @@ export class Settings extends Component {
             Phrase
         }
         API.setProfile(userData).then((result) => {
-            if (result.status === 200) {
-                if (this.state.file) {
-                    this.props.history.push('/Home');
-                }
-            }
+            
         })
             .catch((errors) => {
 
@@ -129,7 +129,13 @@ export class Settings extends Component {
             City,
             States
         }
-        API.formPreference(userData).then((result) => {})
+        API.formPreference(userData).then((result) => {
+            if (result.status === 200) {
+                if (this.state.file) {
+                    this.props.history.push('/Home');
+                }
+            }
+        })
             .catch((errors) => {
 
                 this.setState({
@@ -154,7 +160,7 @@ export class Settings extends Component {
                 this.state.file.name
             );
             API.uploadImage(userID, formdata).then((result) => {
-            
+
             })
                 .catch((errors) => {
                     console.log(errors)
@@ -176,11 +182,9 @@ export class Settings extends Component {
                         <Form.Row>
                             <Col md={3} className="mx-auto">
                                 <Card className="image-upload">
-                                    <label for="file">
-                                        <Card.Img variant="top" className="image-setting d-block mx-auto" style={{ height: '100%' }} src={this.state.file === null ? add : URL.createObjectURL(this.state.file)
-                                        } rounded />
-                                    </label>
-                                    <input id="file" type="file" onChange={this.handleChange("file")} required />
+                                    <Card.Img variant="top" className="image-setting d-block mx-auto" style={{ height: '100%' }} src={this.state.file === null ? add : URL.createObjectURL(this.state.file)
+                                    } rounded />
+                                    <Form.File type="file" onChange={this.handleChange("file")} required />
                                 </Card>
                                 <Alert variant="danger" id="empty-file" className="filter-alert mt-3">
                                     Please select an image.
@@ -218,7 +222,6 @@ export class Settings extends Component {
                         </Form.Row>
                     </Form.Group>
 
-                    <fieldset aria-required>
                         <Form.Group>
                             <Form.Row inline>
                                 <Form.Label column="md" md={2} >Gender</Form.Label>
@@ -231,14 +234,14 @@ export class Settings extends Component {
                                 </Col>
                             </Form.Row>
                         </Form.Group>
-                    </fieldset>
-
+                   
                     <Form.Group>
                         <Form.Row>
                             <Form.Label column="sm" sm={2} >Location:</Form.Label>
                             <Col sm={4}>
                                 <Form.Control type="text" placeholder="City" id="City" onChange={this.handleChange("City")} required />
                             </Col>
+                            <Form.Label>,</Form.Label>
                             <Col sm={4}>
                                 <Form.Control type="text" placeholder="State" id="State" onChange={this.handleChange("States")} required />
                             </Col>
@@ -307,7 +310,7 @@ export class Settings extends Component {
                         </Form.Row>
                     </Form.Group>
                     <center className="mb-4">
-                        <Button bsPrefix="setting-button-color" onClick={this.handleSubmit} required>Submit</Button>
+                        <Button bsPrefix="setting-button-color" onClick={this.handleSubmit}>Submit</Button>
                     </center>
                 </Form>
             </Container>

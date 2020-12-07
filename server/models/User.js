@@ -12,9 +12,6 @@ module.exports = (sequelize, DataTypes) => {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                 isAlpha : true
-            }
         },
         email: {
             type: DataTypes.STRING,
@@ -28,6 +25,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        lastLoginTime: {
+            type: DataTypes.DATE,
+            allowNull: true,
+            defaultValue: null,
+        }
     },
         {
             freezeTableName: true,

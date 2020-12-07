@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import FormControl from 'react-bootstrap/FormControl'
-import InputGroup from 'react-bootstrap/InputGroup'
-import { AuthContext } from "../../Context/authContext";
-import * as API from "../../util/api";
-import Alert from 'react-bootstrap/Alert'
+import { AuthContext } from "../../Context/authContext"
+import ProfileEdit from './ProfileEdit'
+import { ProfilePhrase } from './ProfilePhrase'
 
 export class ProfileInf extends Component {
     static contextType = AuthContext
@@ -17,13 +14,6 @@ export class ProfileInf extends Component {
         this.state = {
             userID: null,
             Name: null,
-            Age: null,
-            Location: null,
-            Interested: null,
-            Height: null,
-            Education: null,
-            Hobby: null,
-            Work: null,
             Phrase: null,
             errors: [],
         };
@@ -31,77 +21,21 @@ export class ProfileInf extends Component {
     static getDerivedStateFromProps(props, state) {
         const { userID, profile, Name } = props;
         if (profile) {
-            const location = profile.Location.split(",");
             return {
                 userID: userID,
                 Name: Name,
                 Age: profile.Age,
-                Location: location[0].charAt(0).toUpperCase() + location[0].slice(1) + ", " + location[1].charAt(0).toUpperCase() + location[1].slice(1),
-                Interested: profile.Interested.charAt(0).toUpperCase() + profile.Interested.slice(1),
-                Height: `${Math.floor(profile.Height/12)} ' ${profile.Height % 12}''`,
+                Location: profile.Location,
+                Interested: profile.Interested,
+                Height: `${Math.floor(profile.Height / 12)} ' ${profile.Height % 12}''`,
                 Education: profile.Education,
-                Hobby: profile.Hobby, 
+                Hobby: profile.Hobby,
                 Work: profile.Work,
                 Phrase: profile.Phrase
             };
         }
         return null;
     }
-    
-    handleSubmit = (e) => {
-        e.preventDefault();
-        const { userID, Age, City, States, Interested, Feet, Inches, Education, Hobby, Work } = this.state;
-        console.log(userID, Age, City, States, Interested, Feet, Inches, Education, Hobby, Work)
-        const Height = parseInt(Feet)*12 + parseInt(Inches);
-        const Location = City && States !== null ? `${City.toLowerCase()},${States.toLowerCase()}`: null;
-        const userData = {
-            userID,
-            Age,
-            Location,
-            Interested,
-            Height,
-            Education,
-            Hobby,
-            Work,
-        }
-        API.setProfile(userData).then((result) => {
-            if (result.status === 200) {
-                console.log(userData)
-            }
-            alert("Profile Form set!")
-        })
-            .catch((errors) => {
-                console.log(errors)
-                this.setState({
-                    errors
-                })
-                alert("Filled out requiere fields")
-            })
-
-    };
-
-    handleSubmitPhrase = (e) => {
-        e.preventDefault();
-        const { userID, Phrase } = this.state;
-
-        const userData = {
-            userID,
-            Phrase
-        }
-        API.setProfile(userData).then((result) => {
-            
-        })
-
-            .catch((errors) => {
-                console.log(errors)
-                this.setState({
-                    errors
-                })
-                let dangerEdit = document.getElementById("edit-fail");
-                dangerEdit.style.display = "block";
-            })
-
-    };
 
     handleEdit = (e) => {
         e.preventDefault();
@@ -113,204 +47,91 @@ export class ProfileInf extends Component {
         this.setState({ editPhrase: !this.state.editPhrase });
     };
 
-    handleChange = (input) => (e) => {
-        this.setState({ [input]: e.target.value })
-        console.log(input)
-    };
-
     render() {
 
         return (
-            <Row>
-                <Col >
-                    {!this.state.edit &&
-                        (
-                            <Card className="profileinf-card mb-4" >
-                                <Card.Body>
-                                    <Card.Title className="profileinf-color text-center mt-4">Basic Information</Card.Title>
-                                    <Card.Text className="p-3 text-size">
-                                        <Row>
-                                            <Col>
-                                                <p>Name: {this.state.Name} </p>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                <p>Age: {this.state.Age}</p>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                <p>Location: {this.state.Location}</p>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                <p>I'm inerested in: {this.state.Interested}</p>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                <p>Height: {this.state.Height}</p>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                <p>Education: {this.state.Education}</p>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                <p>I Love: {this.state.Hobby}</p>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                <p>Work at: {this.state.Work}</p>
-                                            </Col>
-                                        </Row>
-                                    </Card.Text>
-                                    <center className="mb-4">
-                                        <Button bsPrefix="profileinf-button-color" onClick={this.handleEdit}>EDIT</Button>
-                                    </center>
-                                </Card.Body>
-                            </Card>
-                        )}
-                    {this.state.edit &&
-                        (
-                            <Card className="profileinf-card mb-4" >
-                                <Card.Body>
-                                    <Card.Title className="profileinf-color text-center mt-4">Basic Information</Card.Title>
-                                    <Card.Text className="p-3 text-size">
-                                        <Row >
-                                            <Col>
-                                                <p>Name: {this.state.Name} </p>
-                                            </Col>
-                                        </Row>
-                                        <Row >
-                                            <Col>
-                                                <InputGroup >
-                                                    <p>Age:</p>
-                                                    <Col>
-                                                        <FormControl type="number" min="18" id="Age" style={{ width: 100 }} onChange={this.handleChange("Age")} />
-                                                    </Col>
-                                                </InputGroup>
-                                            </Col>
-                                        </Row>
-                                        <Row >
-                                            <Col>
-                                                <InputGroup inline>
-                                                    <p>Location:</p>
-                                                    <Col>
-                                                        <FormControl placeholder="City" id="City" onChange={this.handleChange("City")} />
-                                                    </Col>
-                                                    <p>,</p>
-                                                    <Col >
-                                                        <FormControl placeholder="State" id="State" onChange={this.handleChange("States")} />
-                                                    </Col>
-                                                </InputGroup>
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                <InputGroup>
-                                                    <p>I'm inerested in:</p>
-                                                    <Col>
-                                                        <Form.Control as="select" id="Interested" onChange={this.handleChange("Interested")}>
-                                                            <option value="Select" selected="true">Choose</option>
-                                                            <option value="male">Man</option>
-                                                            <option value="female">Woman</option>
-                                                            <option value="both">Both</option>
-                                                        </Form.Control>
-                                                    </Col>
-                                                </InputGroup>
-                                            </Col>
-                                        </Row>
-                                        <Row >
-                                            <Col>
-                                                <InputGroup>
-                                                    <p>Height:</p>
-                                                    <Col sm={4}>
-                                                        <FormControl placeholder="Feet" type="number" id="Height" max="6" min="4" onChange={this.handleChange("Feet")} />
-                                                    </Col>
-                                                    <Col sm={4}>
-                                                <FormControl placeholder="Inches" type="number" id="Height" max="11" min="0" onChange={this.handleChange("Inches")}/>
-                                            </Col>
-                                                </InputGroup>
-                                            </Col>
-                                        </Row>
-                                        <Row >
-                                            <Col>
-                                                <InputGroup>
-                                                    <p>Education:</p>
-                                                    <Col>
-                                                        <FormControl type="text" id="Education" maxlength="125" onChange={this.handleChange("Education")} />
-                                                    </Col>
-                                                </InputGroup>
-                                            </Col>
-                                        </Row>
-                                        <Row >
-                                            <Col>
-                                                <InputGroup>
-                                                    <p>I Love:</p>
-                                                    <Col>
-                                                        <FormControl type="text" id="Hobby" maxlength="255" onChange={this.handleChange("Hobby")} />
-                                                    </Col>
-                                                </InputGroup>
-                                            </Col>
-                                        </Row>
+            <Form>
+                <Form.Row>
+                    <Col md={6}>
+                        {!this.state.edit &&
+                            (
+                                <Card className="profileinf-card mb-4" >
+                                    <Card.Body>
+                                        <Card.Title className="profileinf-color text-center mt-4">Basic Information</Card.Title>
+                                        <Card.Text className="p-3 text-size">
+                                            <Form.Row>
+                                                <Col>
+                                                    <Form.Label>Name: {this.state.Name} </Form.Label>
+                                                </Col>
+                                            </Form.Row>
+                                            <Form.Row>
+                                                <Col>
+                                                    <Form.Label>Age: {this.state.Age}</Form.Label>
+                                                </Col>
+                                            </Form.Row>
+                                            <Form.Row>
+                                                <Col>
+                                                    <Form.Label>Location: {this.state.Location}</Form.Label>
+                                                </Col>
+                                            </Form.Row>
+                                            <Form.Row>
+                                                <Col>
+                                                    <Form.Label>I'm inerested in: {this.state.Interested}</Form.Label>
+                                                </Col>
+                                            </Form.Row>
+                                            <Form.Row>
+                                                <Col>
+                                                    <Form.Label>Height: {this.state.Height}</Form.Label>
+                                                </Col>
+                                            </Form.Row>
+                                            <Form.Row>
+                                                <Col>
+                                                    <Form.Label>Education: {this.state.Education}</Form.Label>
+                                                </Col>
+                                            </Form.Row>
+                                            <Form.Row>
+                                                <Col>
+                                                    <Form.Label>I Love: {this.state.Hobby}</Form.Label>
+                                                </Col>
+                                            </Form.Row>
+                                            <Form.Row>
+                                                <Col>
+                                                    <Form.Label>Work at: {this.state.Work}</Form.Label>
+                                                </Col>
+                                            </Form.Row>
+                                        </Card.Text>
+                                        <center className="mb-4">
+                                            <Button bsPrefix="profileinf-button-color" onClick={this.handleEdit}>EDIT</Button>
+                                        </center>
+                                    </Card.Body>
+                                </Card>
+                            )}
+                        {this.state.edit &&
+                            (
+                              <ProfileEdit Name={this.state.Name} userID={this.state.userID} />
+                            )}
+                    </Col>
 
-                                        <Row >
-                                            <Col>
-                                                <InputGroup>
-                                                    <p>Work at:</p>
-                                                    <Col>
-                                                        <FormControl type="text" id="Work" maxlength="255" onChange={this.handleChange("Work")} />
-                                                    </Col>
-                                                </InputGroup>
-                                            </Col>
-                                        </Row>
-                                    </Card.Text>
-                                    <center className="mb-4">
-                                        <Button bsPrefix="profileinf-button-color" type="submit" name="action" onClick={this.handleSubmit}>Submit</Button>
-                                    </center>
-                                </Card.Body>
-                            </Card>
-                        )}
-                </Col>
-
-                <Col >
-                    {!this.state.editPhrase &&
-                        (
-                            <Card className="profileinf-card">
-                                <Card.Body>
-                                    <Card.Title className="profileinf-color text-center mt-4">Catch Phrase</Card.Title>
-                                    <Card.Text className="p-3 text-size"> {this.state.Phrase} </Card.Text>
-                                    <center className="mb-4">
-                                        <Button bsPrefix="profileinf-button-color" onClick={this.handleEditPhrase}>EDIT</Button>
-                                    </center>
-                                </Card.Body>
-                            </Card>
-                        )}
-                    {this.state.editPhrase &&
-                        (
-                            <Card className="profileinf-card">
-                                <Card.Body>
-                                    <Card.Title className="profileinf-color text-center mt-4">Catch Phrase</Card.Title>
-                                    <Alert variant="danger" id="edit-fail" className="filter-alert mt-3">
-                                    Please enter phrase or type N/A.
-                                    </Alert>
-                                    <Card.Text className="p-3 text-size">
-                                        <FormControl as="textarea" maxlength="255" onChange={this.handleChange("Work")} />
-                                    </Card.Text>
-                                    <center className="mb-4">
-                                        <Button bsPrefix="profileinf-button-color" onClick={this.handleSubmitPhrase}>Submit</Button>
-                                    </center>
-                                </Card.Body>
-                            </Card>
-                        )}
-                </Col>
-            </Row>
+                    <Col md={6}>
+                        {!this.state.editPhrase &&
+                            (
+                                <Card className="profileinf-card">
+                                    <Card.Body>
+                                        <Card.Title className="profileinf-color text-center mt-4">Catch Phrase</Card.Title>
+                                        <Card.Text className="p-3 text-size"> {this.state.Phrase} </Card.Text>
+                                        <center className="mb-4">
+                                            <Button bsPrefix="profileinf-button-color" onClick={this.handleEditPhrase}>EDIT</Button>
+                                        </center>
+                                    </Card.Body>
+                                </Card>
+                            )}
+                        {this.state.editPhrase &&
+                            (
+                                <ProfilePhrase userID={this.state.userID}/>
+                            )}
+                    </Col>
+                </Form.Row>
+            </Form>
         )
     }
 }

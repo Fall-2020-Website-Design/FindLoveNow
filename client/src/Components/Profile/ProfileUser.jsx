@@ -23,11 +23,10 @@ export class ProfileUser extends Component {
     static getDerivedStateFromProps (props, state) {
         const { profile, Name, pictures } = props;
         if (profile && pictures){
-            const location = profile.Location.split(",");
             return {
             Name: Name,
             Age: profile.Age,
-            Location: location[0].charAt(0).toUpperCase() + location[0].slice(1) + ", " + location[1].charAt(0).toUpperCase() + location[1].slice(1),
+            Location: profile.Location,
             Phrase: profile.Phrase, 
             image: pictures[0].data,
             type: pictures[0]    
@@ -40,7 +39,7 @@ export class ProfileUser extends Component {
         return (
             <Col lg={4}>
                 <Card className="profile-card mb-4">
-                    <Card.Img variant="top" className="image-deck d-block" style={{ height: '100%' }} src={URL.createObjectURL(new Blob([Buffer.from(this.state.image)], {'type': this.state.type}))} rounded="true" />
+                    <Card.Img variant="top" className="d-block" style={{ height: '100%' }} src={URL.createObjectURL(new Blob([Buffer.from(this.state.image)], {'type': this.state.type}))} rounded="true" />
                     <Card.Body className="p-4">
                     <Card.Title className="title-size">{this.state.Name}, {this.state.Age}</Card.Title>
                         <Card.Text className="text-size text-muted">

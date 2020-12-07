@@ -14,8 +14,6 @@ import ProfileDeck from './ProfileDeck'
 import Col from 'react-bootstrap/Col'
 
 
-
-
 export class Profile extends Component {
     static contextType = AuthContext
 
@@ -84,7 +82,7 @@ export class Profile extends Component {
                     pictures: results.data,
                     loading: false
 
-                }, () => { console.log(`image call${this.state.pictures}`) })
+                },)
             }
         }).catch((errors) => {
             this.setState({
@@ -106,15 +104,27 @@ export class Profile extends Component {
             body = (<ProfileUser Name={this.state.Name} profile={this.state.profile} pictures={this.state.pictures} userID={this.state.userID} />)
         }
 
+        let deck = null;
+        if (this.state.loading) {
+            deck = (
+                <Alert variant="secondary" className="text-center" style={{ maxHeight: "50px" }} id="finding-deck">
+                    Please wait for image to load !
+                </Alert>
+            );
+        }
+        else {
+            deck = (<ProfileDeck Name={this.state.Name} profile={this.state.profile} pictures={this.state.pictures} userID={this.state.userID} />)
+        }
+
         return (
             <div>
                 <NavBar />
                 <Container fluid>
-                    <Row className="p-4">
+                    <Row>
                         {body}
                         <Col>
-                            <ProfileDeck Name={this.state.Name} profile={this.state.profile} pictures={this.state.pictures} userID={this.state.userID}/>
-                            <ProfileInf Name={this.state.Name} profile={this.state.profile} pictures={this.state.pictures} userID={this.state.userID} />
+                            {deck}
+                            <ProfileInf Name={this.state.Name} profile={this.state.profile} userID={this.state.userID} />
                         </Col>
                     </Row>
                 </Container>

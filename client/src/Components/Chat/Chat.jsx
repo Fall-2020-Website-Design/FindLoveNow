@@ -15,7 +15,7 @@ import { AuthContext } from "../../Context/authContext";
 
 //const ENDPOINT = 'URL'; we will put our website as the endpoint link here once we deploy it on herokuapp
 let socket;
-const ENDPOINT = 'http://127.0.0.1:8080/'
+const ENDPOINT = ''
 const Chat = () => {
   const urlParams = useParams()
   const [name, setName] = useState('');
