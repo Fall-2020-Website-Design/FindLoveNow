@@ -71,8 +71,8 @@ const Chat = () => {
   }
 
   return (
-    <div className="outerContainer">
-      <div className="chat-container">
+    <div className="custom-outerContainer">
+      <div className="custom-chat-container">
           <InfoBar room={room} leaveChatRoom={leaveChatRoom}/>
           <Messages messages={messages} name={name} />
           <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
