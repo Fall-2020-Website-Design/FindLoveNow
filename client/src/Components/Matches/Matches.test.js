@@ -22,6 +22,10 @@ describe('Matches', () => {
 	beforeEach(() => {
 		wrapper = shallow(<Matches />, params.context);
     });
+
+    afterEach(() => {
+        wrapper.unmount();
+    });
     
     test('renders', () => {
 		const component = renderer.create(
@@ -34,4 +38,12 @@ describe('Matches', () => {
 
 		expect(component).toMatchSnapshot();
     });
+
+    test("loading must be true when rendered", () => {
+        expect(wrapper.state().loading).toBeTruthy();
+    })
+
+
+
+
 });
