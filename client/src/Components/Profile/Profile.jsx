@@ -119,7 +119,7 @@ export class Profile extends Component {
         return (
             <div>
                 <NavBar />
-                <Container fluid>
+                <Container className="mt-4" fluid>
                     <Row>
                         {body}
                         <Col>

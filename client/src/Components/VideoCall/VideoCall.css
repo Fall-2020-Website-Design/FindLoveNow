@@ -22,11 +22,15 @@ font-family: 'Times New Roman', Times, serif;
 .custom-button-BD-exit{
     background: linear-gradient(91.29deg, #DC2323 3.02%, rgba(244, 121, 121, 0.83) 100%);
     color: #FFFFFF;
-    padding: 20px;
     border: none;
-    width: 5%;
+    width: 10%;
+    padding: 2%;
     border-radius: 50%;
     cursor: pointer;
     font-style: normal;
     font-weight: bold;
+}
+.exit-img{
+    margin: auto;
+    width: 70%;
 }

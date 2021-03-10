@@ -127,12 +127,12 @@ export default class Filter extends React.Component {
             <hr className="Filter-Ruler"></hr>
             <div className="Filter-Selection">
             <label>I’m Interested In:</label>
-            <select onChange={this.handleChange("gender")}>
+            <Form.Control as="select" onChange={this.handleChange("gender")}>
                 <option selected disabled>Choose Gender</option>
                 <option value="male">Men</option>
                 <option value="female">Women</option>
                 <option value="both">Both</option>
-            </select>
+            </Form.Control>
             </div>
             <div className="Filter-Submit">
             <label>City:</label>
@@ -144,15 +144,15 @@ export default class Filter extends React.Component {
             <hr className="Filter-Ruler"></hr>
             <div className="Filter-Selection">
             <label>Age Range: (Min)</label>
-            <select onChange={this.handleChange("minAge")}>
+            <Form.Control as="select"  onChange={this.handleChange("minAge")}>
             <option selected disabled>Choose Min Age</option>
                 {ages}
-            </select>
+            </Form.Control>
             <label>Age Range: (Max)</label>
-            <select onChange={this.handleChange("maxAge")}>
+            <Form.Control as="select" onChange={this.handleChange("maxAge")}>
                 <option selected disabled>Choose Max Age</option>
                 {ages}
-            </select>
+            </Form.Control>
             </div>
 
             <div className="Filter-Ethnicity">

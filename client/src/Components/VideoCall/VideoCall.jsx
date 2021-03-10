@@ -40,12 +40,13 @@ function VideoCall() {
 
   const userVideo = useRef();
   const partnerVideo = useRef();
-  const socket = useRef();
+  const socket = io("/videocall");
 
   useEffect(() => {
     socket.current = io.connect("/videocall");
     console.log(socket.connect);
     console.log("hello");
+
     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => { //Is asking for user's permission to use their camera & audio
       setStream(stream);
       if (userVideo.current) {
@@ -138,8 +139,7 @@ function VideoCall() {
     <div>
     <NavBar/>
     <div className="topPadding-BD">
-    <center><h3 style={{fontFamily:"Snell Roundhand, cursive", fontSize:"35px"}}>Welcome to your blind date with:</h3></center>
-    <center><h3 style={{fontFamily:"'Times New Roman', Times, serif;", fontSize:"25px", color:"red"}}>[insert matches name]{caller}</h3></center>
+    <center><h3 style={{fontFamily:"Snell Roundhand, cursive", fontSize:"35px"}}>Enjoy your blind date with:</h3></center>
    
     <Container>
       <Row>
@@ -164,7 +164,7 @@ function VideoCall() {
     <center><h3 style={{fontFamily:"Snell Roundhand, cursive", fontSize:"12px"}}>wait a few seconds while we find your perfect match, when ready click accept</h3></center>
     <Link to="/Home">
     <center><button type="button" className="custom-button-BD-exit">
-    <Image src={close} id="exitBD" alt="exitBD" width="35" className="d-block mx-auto" />
+    <Image src={close} className="exit-img" />
           </button>
     </center>
     </Link>
