@@ -4,6 +4,7 @@ import NavBar from "../NavBar/NavBar";
 import BBImg from '../../Images/blindDate.png';
 import BDate from '../../Images/Date.gif';
 import { Link } from 'react-router-dom';
+import Footer from '../Footer/Footer'
 export default class BlindDate extends React.Component {
 
   render() {
@@ -36,6 +37,7 @@ export default class BlindDate extends React.Component {
            </Link>
           </center>
             </div>
+            <Footer />
       </>
     );
   }

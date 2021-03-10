@@ -1,4 +1,3 @@
-
 import NavBar from "../NavBar/NavBar";
 import React, { useState, useEffect, useRef , useContext} from "react";
 import io from "socket.io-client";
@@ -15,7 +14,7 @@ import { AuthContext } from "../../Context/authContext";
 
 //const ENDPOINT = 'URL'; we will put our website as the endpoint link here once we deploy it on herokuapp
 let socket;
-const ENDPOINT = '/'
+const ENDPOINT = ''
 const Chat = () => {
   const urlParams = useParams()
   const [name, setName] = useState('');
@@ -71,13 +70,16 @@ const Chat = () => {
   }
 
   return (
-    <div className="outerContainer">
-      <div className="chat-container">
+    <>
+    <NavBar />
+    <div className="custom-outerContainer">
+      <div className="custom-chat-container">
           <InfoBar room={room} leaveChatRoom={leaveChatRoom}/>
           <Messages messages={messages} name={name} />
           <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
       </div>
     </div>
+    </>
   );
 }
 
