@@ -28,11 +28,11 @@ export class Login extends React.Component {
   }
 
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.isAuthenticated !== this.state.isAuthenticated) {
-     this.checkLastLogin();
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.isAuthenticated !== this.state.isAuthenticated) {
+  //    this.checkLastLogin();
+  //   }
+  // }
 
   // Handle field change
   handleChange = (input) => (e) => {
@@ -72,6 +72,7 @@ export class Login extends React.Component {
         this.setState((prevState) => {
           return { userID: decoded.id, email: decoded.email, isAuthenticated: true };
         })
+        this.props.history.push('/Form');
       }
     })
       .catch((errors) => {
