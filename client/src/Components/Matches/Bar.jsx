@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import Row from 'react-bootstrap/Row';
-import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.css';
-import './Matches.css'
-
-const SingleBar = styled.button`
-    height: 7px;
-    width: ${props => props.size};
-    margin-left: 5px;
-    background: ${props => props.color};
-`;
+import SingleBar  from "./SingleBar";
+import './Matches.css';
 
 export class Bar extends Component {
     constructor(props) {

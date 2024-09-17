@@ -10,8 +10,8 @@ export class Arrows extends Component {
             <div>
                 <Row>
                     <Col className="d-flex justify-content-between arrows" >
-                        <Image alt="" src={arrow} className="align-top left-arrow" onClick={this.props.prev} fluid />
-                        <Image alt="" src={arrow} className="align-top right-arrow" onClick={this.props.next} fluid />
+                        <Image id="left" alt="left" src={arrow} className="align-top left-arrow" onClick={this.props.prev} fluid />
+                        <Image id="right" alt="right" src={arrow} className="align-top right-arrow" onClick={this.props.next} fluid />
                     </Col>
                 </Row>
             </div>
@@ -19,4 +19,4 @@ export class Arrows extends Component {
     }
 }
 
-export default Arrows
+export default Arrows;

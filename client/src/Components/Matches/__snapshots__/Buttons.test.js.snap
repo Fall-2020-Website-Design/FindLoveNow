@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Buttons renders 1`] = `
+<div>
+  <div
+    className="d-inline-flex justify-content-center button-row col"
+  >
+    <div
+      className="d-inline-flex justify-content-center btn-row pt-4 buttons-width row"
+    >
+      <div
+        className="mr-5 col"
+      >
+        <button
+          className="btn-circle-xl btn-xl btn-check btn btn-secondary"
+          disabled={false}
+          type="button"
+        >
+          <img
+            alt=""
+            className=" align-top img-fluid"
+            src="checkmark.svg"
+          />
+        </button>
+      </div>
+      <div
+        className="pt-3 ml-3 col"
+      >
+        <button
+          className="btn-circle-sm btn-sm btn btn-secondary"
+          disabled={false}
+          type="button"
+        >
+          <img
+            alt=""
+            className="align-top pt-1 img-fluid"
+            src="prev.svg"
+          />
+        </button>
+      </div>
+      <div
+        className="ml-5 col"
+      >
+        <button
+          className="btn-circle-xl btn-xl btn btn-secondary"
+          disabled={false}
+          type="button"
+        >
+          <img
+            alt=""
+            className="align-top img-fluid"
+            src="x.png"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

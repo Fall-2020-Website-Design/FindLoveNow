@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Arrows renders 1`] = `
+<div>
+  <div
+    className="row"
+  >
+    <div
+      className="d-flex justify-content-between arrows col"
+    >
+      <img
+        alt="left"
+        className="align-top left-arrow img-fluid"
+        id="left"
+        src="arrow.svg"
+      />
+      <img
+        alt="right"
+        className="align-top right-arrow img-fluid"
+        id="right"
+        src="arrow.svg"
+      />
+    </div>
+  </div>
+</div>
+`;

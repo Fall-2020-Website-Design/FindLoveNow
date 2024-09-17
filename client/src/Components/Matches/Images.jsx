@@ -10,8 +10,7 @@ export class Images extends Component {
         super(props);
       
         this.state = { 
-            image: require('../../Images/samplepicture.svg'),
-            type: null
+            image: null,
         };     
     }
 
@@ -20,21 +19,20 @@ export class Images extends Component {
         
         if (image) {
             return {
-                image: image.data,
-                type: image
+                image: URL.createObjectURL(new Blob([Buffer.from(image.data)], {'type': image})),
             }
         }
         return null;
     } 
 
     render() {
-        const { image, type } = this.state;
+        const { image } = this.state;
 
         return (
             <div>
                 <Row className="justify-content-md-center">
                     <Col>
-                        <Image src={URL.createObjectURL(new Blob([Buffer.from(image)], {'type': type}))} className="card-img" style={{height:"37rem"}}  />
+                        <Image src={image} className="card-img" style={{height:"37rem"}}  />
                     </Col>
                 </Row>
             </div>

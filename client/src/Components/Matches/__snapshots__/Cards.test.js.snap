@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cards renders 1`] = `
+<div>
+  <div
+    className="d-inline-flex justify-content-center pt-4 col"
+  >
+    <div
+      className="matches-card card"
+    >
+      <div
+        className="card-body card-body"
+      >
+        <div>
+          <div
+            className="justify-content-center mt-1 row"
+          />
+        </div>
+        <div>
+          <div
+            className="row"
+          >
+            <div
+              className="d-flex justify-content-between arrows col"
+            >
+              <img
+                alt="left"
+                className="align-top left-arrow img-fluid"
+                id="left"
+                onClick={[Function]}
+                src="arrow.svg"
+              />
+              <img
+                alt="right"
+                className="align-top right-arrow img-fluid"
+                id="right"
+                onClick={[Function]}
+                src="arrow.svg"
+              />
+            </div>
+          </div>
+        </div>
+        <div>
+          <div
+            className="justify-content-md-center row"
+          >
+            <div
+              className="col"
+            >
+              <img
+                className="card-img"
+                src={null}
+                style={
+                  Object {
+                    "height": "37rem",
+                  }
+                }
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="info col"
+        >
+          <div
+            className="name-age row"
+          >
+             
+            name
+            , 
+            age
+             - 
+            0'0
+             
+          </div>
+          <div
+            className="edu row"
+          >
+             Education: 
+            N\\A
+             
+          </div>
+          <div
+            className="bio row"
+          >
+             Phrase: 
+            phrase
+             
+          </div>
+        </div>
+        <div
+          className="location"
+        >
+          <div
+            className="row"
+          >
+            <img
+              alt=""
+              className=""
+              src="location.svg"
+            />
+             Location: 
+            location
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

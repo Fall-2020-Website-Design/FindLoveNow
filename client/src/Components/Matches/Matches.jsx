@@ -12,7 +12,7 @@ import Alert from 'react-bootstrap/Alert';
 import 'bootstrap/dist/css/bootstrap.css';
 import "./Matches.css";
 
-export default class Matches extends Component {
+export class Matches extends Component {
     static contextType = AuthContext;
     
     constructor(props) {
@@ -225,3 +225,5 @@ export default class Matches extends Component {
         )
     }
 }
+
+export default Matches;
