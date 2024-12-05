@@ -146,7 +146,7 @@ export class About extends Component {
                                         </a>
                                     </Col>
                                     <Col>
-                                        <a href="https://www.linkedin.com/in/jia-peng-zhen-6455a1170/" rel="noopener noreferrer" target="_blank" >
+                                        <a href="https://www.linkedin.com/in/alexjpzhen/" rel="noopener noreferrer" target="_blank" >
                                             <Image src={LinkedIn} width="100" className="responsive d-block mx-auto" />
                                         </a>
                                     </Col>
